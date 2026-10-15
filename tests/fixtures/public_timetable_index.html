@@ -1,0 +1,205 @@
+
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="utf-8" />
+    <meta id="bkViewport" name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rozvrh</title>
+    <link href="/bakaweb/next/css/bundles/timetable.bundle.min.css?v=20261114" rel="stylesheet" />
+    <script src="/bakaweb/next/js/bundles/thirdpartylibs.bundle.js?v=20261114"></script>
+    <script src="/bakaweb/next/js/Timetable/TimetableCommon.js?v=20261114"></script>
+
+    <script type="text/javascript">
+        const objectType = '';
+        const objectId = '';
+        const timetableQuery = '';
+
+        function changeClass() {
+            showTimetable('Class', $('#selectedClass').val());
+        }
+
+        function showTimetable(objectType, objectId) {
+            if (objectId) {
+                var term = $('[name=options]:checked').val();
+                if (!term) {
+                    term = 'Permanent';
+                }
+                var href = appRoot + 'Timetable/Public/' + term + '/' + objectType + '/' + objectId + timetableQuery;
+                window.location.href = href;
+            }
+        }
+    </script>
+
+<script id="guardTemplate" type="text/x-jsrender">
+    <div class="line guard mb-1">
+        <span class="bubble-label">Dozor:</span>
+        <span class="bubble-value">{{:name}}</span>
+    </div>
+</script>
+</head>
+
+<body>
+    <div class="bk-timetable-body">
+        <div class="container-fluid bk-timetable-header">
+                <div class="d-flex">
+                    <div class="w-100">
+                            <div class="bk-header-caption">Z&#225;kladn&#237; škola Vzorov&#225;</div>
+
+                            <div class="bk-timetable-selects row mb-1 mt-1">
+
+                                    <div class="d-inline-flex m-1 mr-2">
+                                        <div class="btn-group btn-group-toggle bk-timetable-btngroup" data-toggle="buttons" id="selectedTerm" style="height: 28px;">
+                                                <label class="btn btn-secondary ">
+                                                    <input type="radio" name="options" id="option1" value="Permanent"   onchange="changeTerm()"> St&#225;l&#253;
+                                                    </label>
+                                                <label class="btn btn-secondary ">
+                                                    <input type="radio" name="options" id="option2" value="Actual"    checked="checked"
+ onchange="changeTerm()"> Tento t&#253;den
+                                                    </label>
+                                                <label class="btn btn-secondary ">
+                                                    <input type="radio" name="options" id="option3" value="Next"   onchange="changeTerm()"> Př&#237;št&#237; t&#253;den
+                                                    </label>
+                                        </div>
+                                    </div>
+                            </div>
+                    </div>
+                </div>
+        </div>
+
+        <div id="teacher_canvas" class="bk-canvas">
+            <div class="bk-canvas-content">
+                <div class="bk-canvas-header">
+                    <span class="bk-canvas-title">Zvolte učitele. . .</span>
+                    <span href="javascript:void(0)" class="closebtn ico32-ovladani-krizek" onclick="closeCanvas()"></span>
+                </div>
+                <div class="bk-canvas-body">
+                        <a href="/bakaweb/timetable/public/Actual/teacher/UQX01"
+                           >
+                            <span>Testová Ema</span>
+                        </a>
+                        <a href="/bakaweb/timetable/public/Actual/teacher/U  19"
+                           >
+                            <span>Vzorový Karel</span>
+                        </a>
+                        <a href="/bakaweb/timetable/public/Actual/teacher/UZK(7)"
+                           >
+                            <span>Ukázková Lucie</span>
+                        </a>
+                        <a href="/bakaweb/timetable/public/Actual/teacher/UFI02"
+                           >
+                            <span>Fiktivní Oto</span>
+                        </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="class_canvas" class="bk-canvas">
+            <div class="bk-canvas-content">
+                <div class="bk-canvas-header">
+                    <span class="bk-canvas-title">Zvolte tř&#237;du. . .</span>
+                    <span href="javascript:void(0)" class="closebtn ico32-ovladani-krizek" onclick="closeCanvas()"></span>
+                </div>
+                <div class="bk-canvas-body">
+                        <a href="/bakaweb/timetable/public/Actual/class/2B"
+                           >
+                            <span>2.B</span>
+                        </a>
+                        <a href="/bakaweb/timetable/public/Actual/class/1A"
+                           >
+                            <span>1.A</span>
+                        </a>
+                        <a href="/bakaweb/timetable/public/Actual/class/ZQ"
+                           >
+                            <span>3.C</span>
+                        </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="room_canvas" class="bk-canvas">
+            <div class="bk-canvas-content">
+                <div class="bk-canvas-header">
+                    <span class="bk-canvas-title">Zvolte m&#237;stnost. . .</span>
+                    <span href="javascript:void(0)" class="closebtn ico32-ovladani-krizek" onclick="closeCanvas()"></span>
+                </div>
+                <div class="bk-canvas-body">
+                        <a href="/bakaweb/timetable/public/Actual/room/R1"
+                           >
+                            <span>12</span>
+                        </a>
+                        <a href="/bakaweb/timetable/public/Actual/room/G 7"
+                           >
+                            <span>14</span>
+                        </a>
+                        <a href="/bakaweb/timetable/public/Actual/room/KL"
+                           >
+                            <span>Tělocvična</span>
+                        </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="bk-timetable-days-wrapper" data-bind="foreach: Days">
+            <div class="d-flex flex-row bk-timetable-row">
+                <div class="bk-timetable-day day-name">
+                    <div class="bk-day-wrapper">
+                        <div>
+                            <span class="bk-day-day" data-bind="text: DayAbbrev"></span>
+                            <span class="bk-day-date" data-bind="text: Date"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="bk-cell-wrapper">
+                    <!-- ko if: DayOff -->
+                    <div class="bk-timetable-cell" data-testid="timetable-day-off">
+                        <div class="day-item-volno">
+                            <div class="dayoff-badge">V</div>
+                            <div class="dayoff-content">
+                                <span class="dayoff-name" data-bind="text: DayOffName"></span>
+                                <span>Volno</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /ko-->
+                    <div data-bind="foreach: Hours" class="d-flex">
+                        <div class="bk-timetable-cell">
+                            <!-- ko if: Type() === 'atoms' -->
+                            <div class="day-item">
+                                <div data-bind="foreach: Atoms">
+                                    <div class="day-item-hover position-absolute" data-bind="attr: { 'data-detail': TooltipDetails }" data-testid="timetable-day-item-hover">
+                                        <div class="day-flex">
+                                            <div class="top">
+                                                <div class="left top-hide"><div class="groups-names" data-bind="safeHtml: GroupsNames"></div></div>
+                                                <div class="right top-hide"><div class="first" data-bind="text: Room"></div></div>
+                                            </div>
+                                            <div class="middle">
+                                                <div data-bind="text: SubjectAbbrev"></div>
+                                                <div class="change-badge released-badge" title="Ž&#225;k se ne&#250;častn&#237; v&#253;uky">U</div>
+                                                <span class="teacher-name" data-bind="text: Teacher"></span>
+                                            </div>
+                                            <div class="bottom d-flex"><div class="hour-badge homeworkIco"><span>U</span></div></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /ko-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script type="text/javascript">
+        const timetableData = {"TimetableDataAvailable":false,"SelectedTeacher":null,"ShowTeacherAbsenceReason":true,"Days":[{"Hours":null,"DayAbbrev":"po","Date":"","DayOff":false,"DayOffName":"","PauseGuards":[],"HourGuards":[],"GeneralGuards":[],"Absences":[]},{"Hours":null,"DayAbbrev":"út","Date":"","DayOff":false,"DayOffName":"","PauseGuards":[],"HourGuards":[],"GeneralGuards":[],"Absences":[]},{"Hours":null,"DayAbbrev":"st","Date":"","DayOff":false,"DayOffName":"","PauseGuards":[],"HourGuards":[],"GeneralGuards":[],"Absences":[]},{"Hours":null,"DayAbbrev":"čt","Date":"","DayOff":false,"DayOffName":"","PauseGuards":[],"HourGuards":[],"GeneralGuards":[],"Absences":[]},{"Hours":null,"DayAbbrev":"pá","Date":"","DayOff":false,"DayOffName":"","PauseGuards":[],"HourGuards":[],"GeneralGuards":[],"Absences":[]}],"ShowGroups":true,"ShowRooms":true,"ShowTeachers":true,"Hours":[{"Caption":"0","BeginTime":"7:05","EndTime":"7:50","CssX":"3.17%","CssWidth":"9.52%","StackLevel":0},{"Caption":"1","BeginTime":"8:00","EndTime":"8:45","CssX":"14.28%","CssWidth":"9.52%","StackLevel":0},{"Caption":"2","BeginTime":"8:55","EndTime":"9:40","CssX":"25.39%","CssWidth":"9.52%","StackLevel":0},{"Caption":"3","BeginTime":"10:00","EndTime":"10:45","CssX":"36.50%","CssWidth":"9.52%","StackLevel":0},{"Caption":"4","BeginTime":"10:55","EndTime":"11:40","CssX":"47.61%","CssWidth":"9.52%","StackLevel":0},{"Caption":"5","BeginTime":"11:50","EndTime":"12:35","CssX":"58.72%","CssWidth":"9.52%","StackLevel":0},{"Caption":"6","BeginTime":"12:45","EndTime":"13:30","CssX":"69.83%","CssWidth":"9.52%","StackLevel":0},{"Caption":"7","BeginTime":"13:40","EndTime":"14:25","CssX":"80.94%","CssWidth":"9.52%","StackLevel":0}],"Raster":[{"CssWidth":"0.79%","CssX":"1.59%","Time":"01:40:00","IsFullHour":false},{"CssWidth":"0.79%","CssX":"2.38%","Time":"01:45:00","IsFullHour":true}],"IsTeachingOverviewEnabled":false,"ShowTimeline":false,"UserType":-1,"ShowBakaLogo":true,"IsIFrame":false};
+
+        /** Kontrola dat */
+        if (timetableData == null) {
+            console.log('no data');
+        }
+        self.SetStackLevels(timetableData);
+        self.TimetableData = ko.mapping.fromJS(timetableData);
+    </script>
+</body>
+</html>

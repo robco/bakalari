@@ -1,0 +1,64 @@
+{
+  "PersonConsents": [
+    {
+      "Id": 5101,
+      "PersonType": "student",
+      "PersonId": "K9PZ1",
+      "Created": "2025-09-01T07:58:02+02:00",
+      "Title": "Pořizování fotografií žáka na školních akcích",
+      "PersonalData": "fotografie",
+      "UsagePurpose": "propagace školy ",
+      "Body": "Souhlasím s pořizováním fotografií a videozáznamů žáka na akcích pořádaných školou a s jejich zveřejněním na webu a ve výroční zprávě školy. Souhlas je dobrovolný a lze jej kdykoli odvolat.",
+      "Validity": "neomezenou",
+      "ValidFrom": "2025-09-01T00:00:00+02:00",
+      "ValidTo": null,
+      "ValidYears": null,
+      "State": "Agreed",
+      "Rights": {
+        "CanAgree": false,
+        "CanDisagree": true,
+        "CanRevokeRequest": false
+      }
+    },
+    {
+      "Id": 5102,
+      "PersonType": "student",
+      "PersonId": "K9PZ1",
+      "Created": "2025-09-01T07:58:02+02:00",
+      "Title": "Zveřejnění jména žáka ve výsledcích soutěží",
+      "PersonalData": "jméno, příjmení, třída",
+      "UsagePurpose": " zveřejnění výsledků soutěží a olympiád na webu školy a ve školním časopise ",
+      "Body": "Souhlasím se zveřejněním jména, příjmení a třídy žáka ve výsledkových listinách soutěží a olympiád, kterých se žák zúčastní. Souhlas je dobrovolný a lze jej kdykoli odvolat.",
+      "Validity": "",
+      "ValidFrom": "2025-09-01T00:00:00+02:00",
+      "ValidTo": null,
+      "ValidYears": 5,
+      "State": "Agreed",
+      "Rights": {
+        "CanAgree": false,
+        "CanDisagree": true,
+        "CanRevokeRequest": true
+      }
+    },
+    {
+      "Id": 5103,
+      "PersonType": "student",
+      "PersonId": "K9PZ1",
+      "Created": "2026-09-01T08:01:44+02:00",
+      "Title": "Účast na preventivním programu",
+      "PersonalData": "",
+      "UsagePurpose": "",
+      "Body": "Souhlasím s účastí žáka na preventivním programu školního poradenského pracoviště. Souhlas je dobrovolný a lze jej kdykoli odvolat.",
+      "Validity": "1 rok",
+      "ValidFrom": "2026-09-01T00:00:00+02:00",
+      "ValidTo": null,
+      "ValidYears": 1,
+      "State": "Agreed",
+      "Rights": {
+        "CanAgree": false,
+        "CanDisagree": false,
+        "CanRevokeRequest": false
+      }
+    }
+  ]
+}

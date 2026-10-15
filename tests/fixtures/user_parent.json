@@ -1,0 +1,245 @@
+{
+  "UserUID": "7310/RODIC0042KOCOUR",
+  "CampaignCategoryCode": "eyJzaWQiOiI3MzEwIiwidXQiOjY5LCJzeSI6Nn0=",
+  "Class": {
+    "Id": "2E",
+    "Abbrev": "6.E",
+    "Name": ""
+  },
+  "TeacherClasses": null,
+  "FullName": "Kocourek Vilém, 6.E",
+  "SchoolOrganizationName": "Základní škola Kocourkov, Mlýnská 7 ",
+  "SchoolType": null,
+  "UserType": "parents",
+  "UserTypeText": "rodič",
+  "StudyYear": 6,
+  "EnabledModules": [
+    {
+      "Module": "Komens",
+      "Rights": [
+        "ShowReceivedMessages",
+        "ShowSentMessages",
+        "ShowNoticeBoardMessages",
+        "SaveConcept",
+        "ShowConcepts",
+        "SendMessages",
+        "ShowRatingDetails",
+        "SendAttachments"
+      ]
+    },
+    {
+      "Module": "Absence",
+      "Rights": [
+        "ShowAbsence",
+        "ShowAbsencePercentage"
+      ]
+    },
+    {
+      "Module": "Events",
+      "Rights": [
+        "ShowEvents"
+      ]
+    },
+    {
+      "Module": "Marks",
+      "Rights": [
+        "ShowFinalMarks",
+        "ShowManners",
+        "ShowMarks",
+        "PredictMarks",
+        "CanConfirmClassification"
+      ]
+    },
+    {
+      "Module": "Timetable",
+      "Rights": [
+        "ShowTimetable"
+      ]
+    },
+    {
+      "Module": "Substitutions",
+      "Rights": [
+        "ShowSubstitutions"
+      ]
+    },
+    {
+      "Module": "Subjects",
+      "Rights": [
+        "ShowSubjects",
+        "ShowSubjectThemes"
+      ]
+    },
+    {
+      "Module": "Homeworks",
+      "Rights": [
+        "ShowHomeworks"
+      ]
+    },
+    {
+      "Module": "Gdpr",
+      "Rights": [
+        "ShowOwnConsents",
+        "ShowChildConsents",
+        "ShowCommissioners"
+      ]
+    },
+    {
+      "Module": "Campaign",
+      "Rights": [
+        "ShowCampaign"
+      ]
+    },
+    {
+      "Module": "AccessSystem",
+      "Rights": [
+        "CanShowStudentPresentAtSchool"
+      ]
+    }
+  ],
+  "SettingModules": {
+    "Komens": {
+      "$type": "KomensModuleSettings",
+      "UploadFolderVerified": true,
+      "CurrentSchoolYearStartDate": "2026-09-01T00:00:00+02:00"
+    },
+    "Marking": {
+      "$type": "MarksModuleSettings",
+      "RequiredClassificationConfirmation": true,
+      "ClassificationConfirmationClassesList": [],
+      "ClassificationConfirmationNotification": true,
+      "NumberOfDaysClassificationConfirmationNotifications": 14
+    },
+    "Timetable": {
+      "$type": "TimetableModuleSettings",
+      "DisplayType": "Classic",
+      "HoursDefinition": [
+        {
+          "Id": 0,
+          "Caption": "0",
+          "Start": 425,
+          "Duration": 45,
+          "IsVisible": false
+        },
+        {
+          "Id": 1,
+          "Caption": "1",
+          "Start": 480,
+          "Duration": 45,
+          "IsVisible": true
+        },
+        {
+          "Id": 2,
+          "Caption": "2",
+          "Start": 535,
+          "Duration": 45,
+          "IsVisible": true
+        },
+        {
+          "Id": 10,
+          "Caption": "10",
+          "Start": 1010,
+          "Duration": 45,
+          "IsVisible": false
+        }
+      ],
+      "DaysDefinition": [
+        {
+          "Id": 0,
+          "Abbrev": "po",
+          "Caption": "pondělí",
+          "IsVisible": true
+        },
+        {
+          "Id": 1,
+          "Abbrev": "út",
+          "Caption": "úterý",
+          "IsVisible": true
+        },
+        {
+          "Id": 2,
+          "Abbrev": "st",
+          "Caption": "středa",
+          "IsVisible": true
+        },
+        {
+          "Id": 3,
+          "Abbrev": "čt",
+          "Caption": "čtvrtek",
+          "IsVisible": true
+        },
+        {
+          "Id": 4,
+          "Abbrev": "pá",
+          "Caption": "pátek",
+          "IsVisible": true
+        },
+        {
+          "Id": 5,
+          "Abbrev": "so",
+          "Caption": "sobota",
+          "IsVisible": false
+        },
+        {
+          "Id": 6,
+          "Abbrev": "ne",
+          "Caption": "neděle",
+          "IsVisible": false
+        }
+      ],
+      "HeaderType": "HourIndex"
+    },
+    "Homeworks": {
+      "$type": "HomeworksModuleSettings",
+      "UploadFolderVerified": true
+    },
+    "ClassBook": {
+      "$type": "ClassBookModuleSettings",
+      "AbsenceCalculationType": "Lessons",
+      "AbsenceCalculationPeriod": [
+        {
+          "SemesterId": "1",
+          "From": "2026-09-01T00:00:00+02:00",
+          "To": "2027-01-31T23:59:59+01:00"
+        },
+        {
+          "SemesterId": "2",
+          "From": "2027-02-01T00:00:00+01:00",
+          "To": "2027-08-31T23:59:59+02:00"
+        }
+      ]
+    },
+    "Common": {
+      "$type": "CommonModuleSettings",
+      "ActualSemester": {
+        "SemesterId": "1",
+        "From": "2026-09-01T00:00:00+02:00",
+        "To": "2027-01-31T23:59:59+01:00"
+      },
+      "ActualSchoolYear": {
+        "Id": "2026/27",
+        "Name": "2026/27",
+        "EffectiveStartDate": "2026-09-01T00:00:00+02:00",
+        "EffectiveEndDate": "2027-08-31T23:59:59+02:00"
+      }
+    },
+    "Emergency": {
+      "$type": "EmergencyModuleSettings",
+      "FirestoreDbName": "production",
+      "EmergencyServerUrl": "https://emergency.service.example",
+      "IsSmsLicensed": false
+    }
+  },
+  "FullUserName": "Kocourková Bára",
+  "Students": [
+    {
+      "FullName": "Kocourek Vilém, 6.E",
+      "Class": {
+        "Id": "2E",
+        "Abbrev": "6.E",
+        "Name": ""
+      },
+      "SchoolType": null,
+      "StudyYear": 6
+    }
+  ]
+}

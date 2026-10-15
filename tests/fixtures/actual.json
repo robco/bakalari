@@ -1,0 +1,73 @@
+{
+  "Hours": [
+    {"Id": 2, "Caption": "0", "BeginTime": "7:10", "EndTime": "7:55", "Start": 430, "Duration": 45},
+    {"Id": 3, "Caption": "1", "BeginTime": "8:00", "EndTime": "8:45", "Start": 480, "Duration": 45},
+    {"Id": 4, "Caption": "2", "BeginTime": "8:55", "EndTime": "9:40", "Start": 535, "Duration": 45}
+  ],
+  "Days": [
+    {
+      "Atoms": [
+        {
+          "HourId": 3, "Start": 480, "Duration": 45, "GroupIds": ["G1"], "SubjectId": null, "TeacherId": null,
+          "RoomId": null, "IsLastRoomLesson": false, "CycleIds": [],
+          "Change": {
+            "ChangeSubject": null, "Day": "2026-10-12T00:00:00+02:00", "Hours": "1. hod", "ChangeType": "Absence",
+            "ChangeDisplayType": "OriginalTeacher", "Description": "Třídnická hodina: Nováková Jana",
+            "Time": "8:00 - 8:45", "TypeAbbrev": "Tříd", "TypeName": "Třídnická hodina", "AtomType": "Hour",
+            "ChangeLessonInfo": null, "BeginTime": null, "EndTime": null, "Start": 480, "Duration": 45
+          },
+          "HomeworkIds": [], "Homeworks": [], "Theme": null, "WeekTheme": null, "Assistants": [], "Notice": null,
+          "LessonRelease": "NoChange", "PlannedClasification": null
+        },
+        {
+          "HourId": 4, "Start": 535, "Duration": 45, "GroupIds": ["G2"], "SubjectId": " 2", "TeacherId": "T1",
+          "RoomId": "R1", "IsLastRoomLesson": false, "CycleIds": ["5"], "Change": null, "HomeworkIds": [],
+          "Homeworks": [], "Theme": "Vyjmenovaná slova", "WeekTheme": null, "Assistants": [], "Notice": "",
+          "LessonRelease": "NoChange", "PlannedClasification": null
+        }
+      ],
+      "AssistanceAtoms": [], "DayOfWeek": 1, "Date": "2026-10-12T00:00:00+02:00", "DayDescription": "",
+      "DayType": "WorkDay"
+    },
+    {
+      "Atoms": [
+        {
+          "HourId": 3, "Start": 480, "Duration": 45, "GroupIds": ["G1"], "SubjectId": "10", "TeacherId": "T2",
+          "RoomId": "R2", "IsLastRoomLesson": false, "CycleIds": ["5"],
+          "Change": {
+            "ChangeSubject": null, "Day": "2026-10-13T00:00:00+02:00", "Hours": "1. hod", "ChangeType": "RoomChanged",
+            "ChangeDisplayType": "Room", "Description": "Změna učebny: 105", "Time": "8:00 - 8:45",
+            "TypeAbbrev": null, "TypeName": null, "AtomType": "Hour"
+          },
+          "HomeworkIds": [], "Homeworks": [], "Theme": "Zlomky", "WeekTheme": null, "Assistants": [], "Notice": "",
+          "LessonRelease": "NoChange", "PlannedClasification": null
+        }
+      ],
+      "AssistanceAtoms": [], "DayOfWeek": 2, "Date": "2026-10-13T00:00:00+02:00", "DayDescription": "",
+      "DayType": "WorkDay"
+    },
+    {
+      "Atoms": [], "AssistanceAtoms": [], "DayOfWeek": 3, "Date": "2026-10-14T00:00:00+02:00",
+      "DayDescription": "podzimní prázdniny", "DayType": "Holiday"
+    }
+  ],
+  "Classes": [{"Id": "0E", "Abbrev": "1.A", "Name": "Prima A"}],
+  "Groups": [
+    {"ClassId": "0E", "Id": "G1", "Abbrev": "1.A", "Name": "Prima A"},
+    {"ClassId": "0E", "Id": "G2", "Abbrev": "1.A Chl", "Name": "Prima A chlapci"}
+  ],
+  "Subjects": [
+    {"Id": " 2", "Abbrev": "Čj", "Name": "Český jazyk a literatura"},
+    {"Id": "10", "Abbrev": "M", "Name": "Matematika"}
+  ],
+  "Teachers": [
+    {"Id": "T1", "Abbrev": "Nov", "Name": "Mgr. Jana Nováková"},
+    {"Id": "T2", "Abbrev": "Dvo", "Name": "RNDr. Petr Dvořák"}
+  ],
+  "Rooms": [
+    {"Id": "R1", "Abbrev": "205", "Name": "Učebna 205"},
+    {"Id": "R2", "Abbrev": "105", "Name": "Učebna 105"}
+  ],
+  "Cycles": [{"Id": "5", "Abbrev": "S", "Name": "Šestý"}],
+  "Students": []
+}

@@ -1,0 +1,16 @@
+# LF line endings in the repository and in every checkout, Windows included.
+* text=auto eol=lf
+
+*.py diff=python
+*.md diff=markdown
+
+# Binary files are never normalized.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.pdf binary
+*.zip binary
+*.gz binary
+*.whl binary

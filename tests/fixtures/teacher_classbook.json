@@ -1,0 +1,82 @@
+{
+  "Days": [
+    {
+      "Date": "2026-09-21T00:00:00+02:00",
+      "DayOfWeek": 1,
+      "DayDescription": "",
+      "DayType": "WorkDay",
+      "Hours": [
+        {
+          "Id": "2026092103AB",
+          "LessonId": "20260921030300012",
+          "Label": "14",
+          "Notice": "Přinést kružítko ",
+          "PrivateNotice": "Ověřit domácí úkoly",
+          "Tags": ["T1", "T 2"],
+          "Theme": " Pythagorova věta",
+          "ClassBookLevel": "SecondLevel",
+          "WeekTheme": "Geometrie v rovině",
+          "HourId": 3,
+          "Date": "2026-09-21T00:00:00+02:00",
+          "Start": 480,
+          "Duration": 45,
+          "HourCaption": "1",
+          "HourTime": "8:00 - 8:45",
+          "Subject": {"Id": " 7", "Abbrev": "M ", "Name": "Matematika"},
+          "Groups": [{"ClassId": "2B", "Id": "AB", "Abbrev": "2.B", "Name": "2.B"}],
+          "EditableGroups": ["AB"],
+          "ChangeText": "",
+          "Supervision": null
+        },
+        {
+          "Id": "2026092105 C",
+          "LessonId": "20260921050500031",
+          "Label": "1",
+          "Theme": "Ukázkové téma",
+          "ClassBookLevel": "SecondLevel",
+          "HourId": 5,
+          "Subject": {"Id": "F1", "Abbrev": "Fy", "Name": "Fyzika"},
+          "Groups": [
+            {"ClassId": "1A", "Id": " C", "Abbrev": "1.A sk1", "Name": "1.A skupina 1"},
+            {"ClassId": "1B", "Id": " D", "Abbrev": "1.B sk1", "Name": "1.B skupina 1"}
+          ],
+          "EditableGroups": [" C"]
+        },
+        {
+          "Id": "2026092106ZZ",
+          "LessonId": "20260921060600099",
+          "Label": null,
+          "Notice": null,
+          "PrivateNotice": null,
+          "Tags": null,
+          "Theme": null,
+          "ClassBookLevel": null,
+          "WeekTheme": null,
+          "HourId": null,
+          "Date": "0001-01-01T00:00:00",
+          "Start": null,
+          "Duration": null,
+          "HourCaption": null,
+          "HourTime": null,
+          "Subject": null,
+          "Groups": null,
+          "EditableGroups": null,
+          "ChangeText": "Suplování za: Fiktivní Oto",
+          "Supervision": false
+        }
+      ]
+    },
+    {
+      "Date": "2026-09-28T00:00:00+02:00",
+      "DayOfWeek": 1,
+      "DayDescription": "Den české státnosti",
+      "DayType": "Celebration",
+      "Hours": []
+    }
+  ],
+  "Hours": [
+    {"Id": 2, "Caption": "0", "BeginTime": "7:05", "EndTime": "7:50", "Start": 425, "Duration": 45},
+    {"Id": 3, "Caption": "1", "BeginTime": "8:00", "EndTime": "8:45", "Start": 480, "Duration": 45},
+    {"Id": 5, "Caption": "3", "BeginTime": "10:00", "EndTime": "10:45", "Start": 600, "Duration": 45}
+  ]
+}

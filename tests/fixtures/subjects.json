@@ -1,0 +1,20 @@
+{
+  "Subjects": [
+    {
+      "SubjectID": " 2", "SubjectName": "Český jazyk a literatura", "SubjectAbbrev": "Čj", "TeacherID": "UTX1A",
+      "TeacherName": "Mgr. Jana Nováková", "TeacherAbbrev": "Nv", "TeacherEmail": null, "TeacherWeb": null,
+      "TeacherSchoolPhone": null, "TeacherHomePhone": null, "TeacherMobilePhone": null
+    },
+    {
+      "SubjectID": "10", "SubjectName": "Matematika", "SubjectAbbrev": "M", "TeacherID": "UQW7B",
+      "TeacherName": "Ing. Petr Svoboda", "TeacherAbbrev": "Sv", "TeacherEmail": null, "TeacherWeb": null,
+      "TeacherSchoolPhone": null, "TeacherHomePhone": null, "TeacherMobilePhone": null
+    },
+    {
+      "SubjectID": "TV", "SubjectName": "Tělesná výchova", "SubjectAbbrev": "TV", "TeacherID": "UZK3C",
+      "TeacherName": "Bc. Eva Dvořáková", "TeacherAbbrev": "Dv", "TeacherEmail": "eva.dvorakova@school.example",
+      "TeacherWeb": "", "TeacherSchoolPhone": "+420 100 010 203", "TeacherHomePhone": null,
+      "TeacherMobilePhone": "+420 100 040 506"
+    }
+  ]
+}

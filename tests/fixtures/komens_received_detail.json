@@ -1,0 +1,29 @@
+{
+  "Message": {
+    "$type": "GeneralMessageReceived",
+    "Id": "400095",
+    "Title": "Sběr papíru",
+    "Text": "<p>Ve středu proběhne sběr papíru.<br>Děkujeme.</p>",
+    "SentDate": "2026-10-01T11:45:00+02:00",
+    "Sender": {
+      "$type": "Sender",
+      "Id": " Z9Q2",
+      "Type": "administrator",
+      "Name": "Jan Vzorový (ředitelství)"
+    },
+    "Attachments": [],
+    "Read": true,
+    "LifeTime": "ToRead",
+    "DateFrom": null,
+    "DateTo": null,
+    "Confirmed": true,
+    "CanConfirm": false,
+    "Type": "OBECNA",
+    "CanAnswer": true,
+    "Hidden": false,
+    "CanHide": true,
+    "CanDelete": false,
+    "RelevantName": "ředitelství",
+    "RelevantPersonType": "administrator"
+  }
+}

@@ -1,0 +1,208 @@
+{
+  "Events": [
+    {
+      "Id": "QW3RT",
+      "Title": "Exkurze do hvězdárny ",
+      "Description": "Sraz v 7:40 před školou.\nS sebou svačinu a pití.",
+      "Times": [
+        {
+          "WholeDay": false,
+          "StartTime": "2026-10-20T08:00:00+02:00",
+          "EndTime": "2026-10-20T12:30:00+02:00",
+          "IntervalStartTime": "2026-10-20T08:00:00+02:00",
+          "IntervalEndTime": "2026-10-20T12:30:00+02:00",
+          "IntervalDate": "2026-10-20T00:00:00+02:00"
+        }
+      ],
+      "EventType": {
+        "Id": "SA",
+        "Abbrev": "škol",
+        "Name": "školní akce"
+      },
+      "Classes": [
+        {
+          "Id": "2B",
+          "Abbrev": "2.B (celá)",
+          "Name": "2. B (celá třída)"
+        }
+      ],
+      "ClassSets": [],
+      "Teachers": [
+        {
+          "Id": "U  12",
+          "Abbrev": "Mo",
+          "Name": "Modrá Květoslava"
+        },
+        {
+          "Id": "UQX7K",
+          "Abbrev": "Ze",
+          "Name": "Zelený Bohumil"
+        }
+      ],
+      "TeacherSets": [],
+      "Rooms": [],
+      "RoomSets": [],
+      "Students": [],
+      "Note": null,
+      "DateChanged": "2026-10-01T14:05:00+02:00"
+    },
+    {
+      "Id": "ZX8CV",
+      "Title": "Lyžařský výcvikový kurz",
+      "Description": "",
+      "Times": [
+        {
+          "WholeDay": true,
+          "StartTime": "2027-01-11T00:00:00+01:00",
+          "EndTime": "2027-01-11T23:59:00+01:00",
+          "IntervalStartTime": null,
+          "IntervalEndTime": null,
+          "IntervalDate": "2027-01-11T00:00:00+01:00"
+        },
+        {
+          "WholeDay": true,
+          "StartTime": "2027-01-12T00:00:00+01:00",
+          "EndTime": "2027-01-12T23:59:00+01:00",
+          "IntervalStartTime": null,
+          "IntervalEndTime": null,
+          "IntervalDate": "2027-01-12T00:00:00+01:00"
+        },
+        {
+          "WholeDay": true,
+          "StartTime": "2027-01-13T00:00:00+01:00",
+          "EndTime": "2027-01-13T23:59:00+01:00",
+          "IntervalStartTime": null,
+          "IntervalEndTime": null,
+          "IntervalDate": "2027-01-13T00:00:00+01:00"
+        }
+      ],
+      "EventType": {
+        "Id": "VK",
+        "Abbrev": "kurz",
+        "Name": "kurz"
+      },
+      "Classes": [
+        {
+          "Id": "31",
+          "Abbrev": "1.A (celá)",
+          "Name": "1. A (celá třída)"
+        },
+        {
+          "Id": "32",
+          "Abbrev": "1.B (celá)",
+          "Name": "1. B (celá třída)"
+        }
+      ],
+      "ClassSets": [],
+      "Teachers": [
+        {
+          "Id": "UQX7K",
+          "Abbrev": "Ze",
+          "Name": "Zelený Bohumil"
+        }
+      ],
+      "TeacherSets": [],
+      "Rooms": [],
+      "RoomSets": [],
+      "Students": [],
+      "Note": null,
+      "DateChanged": "2026-09-15T09:30:00+02:00"
+    },
+    {
+      "Id": "PL4NB",
+      "Title": "Školní ples",
+      "Description": "Vstupenky prodává kancelář školy.",
+      "Times": [
+        {
+          "WholeDay": false,
+          "StartTime": "2027-02-12T19:00:00+01:00",
+          "EndTime": "2027-02-12T23:59:00+01:00",
+          "IntervalStartTime": "2027-02-12T19:00:00+01:00",
+          "IntervalEndTime": null,
+          "IntervalDate": "2027-02-12T00:00:00+01:00"
+        },
+        {
+          "WholeDay": false,
+          "StartTime": "2027-02-13T00:00:00+01:00",
+          "EndTime": "2027-02-13T01:30:00+01:00",
+          "IntervalStartTime": null,
+          "IntervalEndTime": "2027-02-13T01:30:00+01:00",
+          "IntervalDate": "2027-02-13T00:00:00+01:00"
+        }
+      ],
+      "EventType": {
+        "Id": "SP",
+        "Abbrev": "spol",
+        "Name": "společenská akce"
+      },
+      "Classes": [],
+      "ClassSets": [],
+      "Teachers": [],
+      "TeacherSets": [],
+      "Rooms": [
+        {
+          "Id": "TV",
+          "Abbrev": "TV1",
+          "Name": "Tělocvična"
+        }
+      ],
+      "RoomSets": [],
+      "Students": [],
+      "Note": "Pořádá spolek rodičů. ",
+      "DateChanged": "2026-10-10T08:15:00.1234567+02:00"
+    },
+    {
+      "Id": "MT5KL",
+      "Title": "Konzultace s rodiči",
+      "Description": "Individuální konzultace podle rozpisu.",
+      "Times": [
+        {
+          "WholeDay": false,
+          "StartTime": "2026-11-05T16:00:00+01:00",
+          "EndTime": "2026-11-05T18:00:00+01:00",
+          "IntervalStartTime": "2026-11-05T16:00:00+01:00",
+          "IntervalEndTime": "2026-11-05T18:00:00+01:00",
+          "IntervalDate": "2026-11-05T00:00:00+01:00"
+        }
+      ],
+      "EventType": {
+        "Id": "TS",
+        "Abbrev": "konz",
+        "Name": "konzultace"
+      },
+      "Classes": [
+        {
+          "Id": "2B",
+          "Abbrev": "2.B (celá)",
+          "Name": "2. B (celá třída)"
+        }
+      ],
+      "ClassSets": [],
+      "Teachers": [
+        {
+          "Id": "U  12",
+          "Abbrev": "Mo",
+          "Name": "Modrá Květoslava"
+        }
+      ],
+      "TeacherSets": [],
+      "Rooms": [
+        {
+          "Id": "12",
+          "Abbrev": "105",
+          "Name": "Učebna 105"
+        }
+      ],
+      "RoomSets": [],
+      "Students": [
+        {
+          "Id": "S7Q2W",
+          "Abbrev": "",
+          "Name": "Vonásek Ondřej"
+        }
+      ],
+      "Note": null,
+      "DateChanged": "2026-10-12T07:45:00+02:00"
+    }
+  ]
+}

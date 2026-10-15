@@ -1,0 +1,25 @@
+{
+  "MessageTypes": [
+    {
+      "Abbreviation": "OBECNA",
+      "Name": "Obecná zpráva",
+      "ShowEmailNotification": false,
+      "HasTitle": true,
+      "RecipientsTypes": [
+        {
+          "Code": "OD",
+          "Name": "odesílateli",
+          "ShowCopyForClassTeacher": false,
+          "ShowCopyForDirector": false,
+          "ShowCopyForParent": false,
+          "ShowCopyForStudent": false,
+          "TypeOfSelection": "ZERO",
+          "Recipients": []
+        }
+      ],
+      "SuperType": "Message",
+      "ShowConfirmation": true
+    }
+  ],
+  "Recipients": []
+}

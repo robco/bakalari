@@ -1,0 +1,66 @@
+name: Feature request
+description: Suggest an endpoint, a command or another improvement.
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        > [!CAUTION]
+        > **Issues are public. Never paste passwords, tokens, session files or personal data of students.**
+        > A sample response must be redacted: keep its keys, nesting and value types, and replace every name, id,
+        > mark and text with an invented value.
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem or use case
+      description: What do you want to do that the library or the command cannot do yet?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: The method, model field or command you have in mind.
+    validations:
+      required: true
+  - type: input
+    id: endpoint
+    attributes:
+      label: Endpoint (method and path)
+      description: For a new or changed API endpoint, its HTTP method and path.
+      placeholder: "GET /api/3/marks/final"
+  - type: dropdown
+    id: account-types
+    attributes:
+      label: Account types
+      description: The accounts that can use the endpoint, as far as you know.
+      multiple: true
+      options:
+        - Parent
+        - Student
+        - Teacher
+        - No login (public)
+        - Not sure
+  - type: input
+    id: api-version
+    attributes:
+      label: Bakaláři API version
+      description: The output of `bakalari version`, if the request concerns an endpoint.
+      placeholder: "Bakaláři REST API 3.52.1 (application 2.2.1009.7)"
+  - type: textarea
+    id: sample
+    attributes:
+      label: Redacted sample response
+      description: The JSON the server returns, with invented values in place of every name, id, mark and text. It is shown as code.
+      render: json
+  - type: textarea
+    id: context
+    attributes:
+      label: Alternatives and additional context
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: Privacy check
+      options:
+        - label: This request contains no passwords, tokens, session files or real personal data.
+          required: true

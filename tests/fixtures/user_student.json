@@ -1,0 +1,49 @@
+{
+  "UserUID": "7310/ZAK00317MOUREK",
+  "CampaignCategoryCode": "eyJzaWQiOiI3MzEwIiwidXQiOjEsInN5Ijo0fQ==",
+  "Class": {
+    "Id": " 4B",
+    "Abbrev": "4.B ",
+    "Name": "4. B"
+  },
+  "FullName": "Mourková Eliška, 4.B",
+  "SchoolOrganizationName": "Gymnázium Kocourkov",
+  "SchoolType": "SecondarySchool",
+  "UserType": "student",
+  "UserTypeText": "žák",
+  "StudyYear": 4,
+  "EnabledModules": [
+    {
+      "Module": "Komens",
+      "Rights": [
+        "ShowReceivedMessages",
+        "ShowSentMessages",
+        "ShowNoticeBoardMessages",
+        "SendMessages"
+      ]
+    },
+    {
+      "Module": "Marks",
+      "Rights": [
+        "ShowMarks",
+        "ShowFinalMarks"
+      ]
+    },
+    {
+      "Module": "Timetable",
+      "Rights": [
+        "ShowTimetable"
+      ]
+    }
+  ],
+  "SettingModules": {
+    "Common": {
+      "$type": "CommonModuleSettings",
+      "ActualSemester": {
+        "SemesterId": "2",
+        "From": "2027-02-01T00:00:00+01:00",
+        "To": "2027-08-31T23:59:59+02:00"
+      }
+    }
+  }
+}

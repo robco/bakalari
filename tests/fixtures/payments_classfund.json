@@ -1,0 +1,41 @@
+{
+  "MonthlyData": [
+    {
+      "Date": "2026-10-01T00:00:00+02:00",
+      "MonthlyBalance": 160,
+      "Items": [
+        {
+          "Description": "Divadlo 2.B",
+          "Date": "2026-10-08T00:00:00+02:00",
+          "Amount": -90
+        },
+        {
+          "Description": "Příjem z banky (Kolářová Eliška)",
+          "Date": "2026-10-02T00:00:00+02:00",
+          "Amount": 250
+        }
+      ]
+    },
+    {
+      "Date": "2026-09-01T00:00:00+02:00",
+      "MonthlyBalance": -49.5,
+      "Items": [
+        {
+          "Description": "Pracovní sešit Fyzika 2 ",
+          "Date": "2026-09-21T00:00:00+02:00",
+          "Amount": -399.5
+        },
+        {
+          "Description": "Příjem z banky (Kolářová Eliška)",
+          "Date": "2026-09-03T00:00:00+02:00",
+          "Amount": 350
+        }
+      ]
+    },
+    {
+      "Date": "2026-08-01T00:00:00+02:00",
+      "MonthlyBalance": 0,
+      "Items": []
+    }
+  ]
+}

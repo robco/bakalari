@@ -1,0 +1,86 @@
+{
+  "atoms": {
+    "Atoms": [
+      {"Id": "A1B2C3", "Name": "2.B Matematika ", "Subject": {"Id": " 7", "Abbrev": "M ", "Name": "Matematika"}, "Disabled": false, "DisabledText": null},
+      {"Id": "A1B2C4", "Name": "1.A Fyzika sk1", "Subject": {"Id": "F1", "Abbrev": "Fy", "Name": "Fyzika"}, "Disabled": true, "DisabledText": "Klasifikace je uzavřena "},
+      {"Id": "A[9]", "Name": "Seminář", "Subject": null, "Disabled": false, "DisabledText": null}
+    ]
+  },
+  "marks": {
+    "MarkOptions": [
+      {"Id": "1", "Abbrev": "1", "Name": "výborný"},
+      {"Id": "2-", "Abbrev": "2-", "Name": "chvalitebný mínus"},
+      {"Id": "N", "Abbrev": "N", "Name": "nehodnocen"}
+    ],
+    "Marks": [
+      {
+        "Id": "M0001",
+        "MarkDate": "2026-10-05T00:00:00+02:00",
+        "EditDate": "2026-10-05T10:15:42.1234567+02:00",
+        "TeacherId": "UQX01",
+        "HeaderId": "H01",
+        "MarkValue": "1",
+        "Theme": "Zlomky ",
+        "StudentId": "S001",
+        "ReadOnly": false,
+        "ReadOnlyDescription": null,
+        "PublishDate": "2026-10-05T10:15:42+02:00",
+        "ConfirmedWhen": "2026-10-06T19:02:11+02:00",
+        "ConfirmedBy": "ZQ1A2B3C4D5",
+        "MarkConfirmationState": "Confirmed"
+      },
+      {
+        "Id": "M0002",
+        "MarkDate": "2026-10-05T00:00:00+02:00",
+        "EditDate": "2026-10-07T08:01:00+02:00",
+        "TeacherId": "UFI02",
+        "HeaderId": "H01",
+        "MarkValue": "2-",
+        "Theme": "Zlomky ",
+        "StudentId": "S002",
+        "ReadOnly": true,
+        "ReadOnlyDescription": "Známku zapsal jiný učitel",
+        "PublishDate": null,
+        "ConfirmedWhen": null,
+        "ConfirmedBy": "",
+        "MarkConfirmationState": "Unconfirmed"
+      },
+      {
+        "Id": "M0003",
+        "MarkDate": "0001-01-01T00:00:00",
+        "StudentId": "S001",
+        "MarkValue": "N"
+      }
+    ],
+    "Students": [
+      {
+        "Id": "S001",
+        "ClassId": "2B",
+        "DisplayName": "Pokusný Adam",
+        "FirstName": "Adam",
+        "MiddleName": "",
+        "LastName": "Pokusný",
+        "RegistrationNumber": "1",
+        "AverageText1": "1,00 ",
+        "AverageText2": "",
+        "ReleasedOfSubject": false
+      },
+      {
+        "Id": "S002",
+        "ClassId": "2B",
+        "DisplayName": null,
+        "FirstName": "Bára",
+        "MiddleName": "Marie",
+        "LastName": "Zkušební",
+        "RegistrationNumber": 2,
+        "AverageText1": "2,50",
+        "AverageText2": null,
+        "ReleasedOfSubject": true
+      }
+    ],
+    "Teachers": [
+      {"Id": "UQX01", "Abbrev": "Te ", "Name": "Testová Ema"},
+      {"Id": "UFI02", "Abbrev": "Fi", "Name": "Fiktivní Oto"}
+    ]
+  }
+}

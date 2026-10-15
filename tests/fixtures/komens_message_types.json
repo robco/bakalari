@@ -1,0 +1,135 @@
+{
+  "MessageTypes": [
+    {
+      "Abbreviation": "OBECNA",
+      "Name": "Obecná zpráva",
+      "ShowEmailNotification": true,
+      "HasTitle": true,
+      "RecipientsTypes": [
+        {
+          "Code": "U",
+          "Name": "učitel",
+          "ShowCopyForClassTeacher": false,
+          "ShowCopyForDirector": false,
+          "ShowCopyForParent": true,
+          "ShowCopyForStudent": false,
+          "TypeOfSelection": "ONE",
+          "Recipients": [
+            {
+              "Code": "UQX7K",
+              "IsDefault": false,
+              "Abbreviation": "",
+              "DisplayName": "Ukázková Petra, Mgr. ",
+              "Name": "Petra Ukázková Mgr."
+            },
+            {
+              "Code": "T8M4W",
+              "IsDefault": false,
+              "Abbreviation": "",
+              "DisplayName": "Vzorník Tomáš, Ing., Ph.D.",
+              "Name": "Tomáš Vzorník Ing., Ph.D."
+            },
+            {
+              "Code": " 9KX",
+              "IsDefault": false,
+              "Abbreviation": "",
+              "DisplayName": "Zkušební Alena",
+              "Name": "Alena Zkušební"
+            }
+          ]
+        },
+        {
+          "Code": "UV",
+          "Name": "učitelé - všichni",
+          "ShowCopyForClassTeacher": false,
+          "ShowCopyForDirector": true,
+          "ShowCopyForParent": false,
+          "ShowCopyForStudent": false,
+          "TypeOfSelection": "ZERO",
+          "Recipients": []
+        },
+        {
+          "Code": "VS",
+          "Name": "vedení školy",
+          "ShowCopyForClassTeacher": true,
+          "ShowCopyForDirector": false,
+          "ShowCopyForParent": false,
+          "ShowCopyForStudent": true,
+          "TypeOfSelection": "MULTI",
+          "Recipients": [
+            {
+              "Code": "RS",
+              "IsDefault": true,
+              "Abbreviation": "",
+              "DisplayName": "ředitel školy",
+              "Name": "ředitel školy"
+            },
+            {
+              "Code": "ZR",
+              "IsDefault": false,
+              "Abbreviation": "",
+              "DisplayName": "zástupce ředitele",
+              "Name": "zástupce ředitele"
+            }
+          ]
+        }
+      ],
+      "SuperType": "Message",
+      "ShowConfirmation": true
+    },
+    {
+      "Abbreviation": "OMLUVENKA",
+      "Name": "Omluvení absence",
+      "ShowEmailNotification": false,
+      "HasTitle": false,
+      "RecipientsTypes": [
+        {
+          "Code": "U",
+          "Name": "třídní učitel",
+          "ShowCopyForClassTeacher": false,
+          "ShowCopyForDirector": false,
+          "ShowCopyForParent": false,
+          "ShowCopyForStudent": false,
+          "TypeOfSelection": "ONE",
+          "Recipients": [
+            {
+              "Code": "UQX7K",
+              "IsDefault": true,
+              "Abbreviation": "",
+              "DisplayName": "Ukázková Petra, Mgr.",
+              "Name": "Petra Ukázková Mgr."
+            }
+          ]
+        }
+      ],
+      "SuperType": "Message",
+      "ShowConfirmation": false
+    }
+  ],
+  "Recipients": [
+    {
+      "Name": "Petra Ukázková Mgr.",
+      "Abbreviation": "",
+      "Code": "UQX7K",
+      "DisplayName": "Ukázková Petra, Mgr."
+    },
+    {
+      "Name": "Tomáš Vzorník Ing., Ph.D.",
+      "Abbreviation": "",
+      "Code": "T8M4W",
+      "DisplayName": "Vzorník Tomáš, Ing., Ph.D."
+    },
+    {
+      "Name": "Alena Zkušební",
+      "Abbreviation": "",
+      "Code": " 9KX",
+      "DisplayName": "Zkušební Alena"
+    },
+    {
+      "Name": "ředitel školy",
+      "Abbreviation": "",
+      "Code": "RS",
+      "DisplayName": "ředitel školy"
+    }
+  ]
+}

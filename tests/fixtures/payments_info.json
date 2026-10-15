@@ -1,0 +1,8 @@
+{
+  "Instructions": "Pro platbu do třídního fondu použijte níže uvedený bankovní účet, specifický a variabilní symbol.",
+  "BankAccount": "35-1234567899/0100",
+  "VariableSymbol": 2026001234,
+  "SpecificSymbol": 2222,
+  "Amount": 0,
+  "Message": "2.B  Kolářová Eliška třídní fond"
+}

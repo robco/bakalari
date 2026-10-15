@@ -1,0 +1,81 @@
+{
+  "Message": {
+    "$type": "SentMessageWithRecipientsDetail",
+    "Recipients": [
+      {
+        "RecipientId": "UQX7K",
+        "UserType": "teacher"
+      },
+      {
+        "RecipientId": "T8M4W",
+        "UserType": "teacher"
+      }
+    ],
+    "RecipientsProcessed": [
+      {
+        "RecipientId": "UQX7K",
+        "UserType": "teacher",
+        "ActionDate": "2026-10-14T07:41:20+02:00",
+        "ParentPersons": []
+      }
+    ],
+    "Persons": [
+      {
+        "Id": "UQX7K",
+        "UserType": "teacher",
+        "PersonId": "UQX7K",
+        "FirstName": "Petra",
+        "MiddleName": "",
+        "LastName": "Ukázková",
+        "Degree": "Mgr.",
+        "DegreeBehind": null,
+        "ClassAbbreviation": null
+      },
+      {
+        "Id": "T8M4W",
+        "UserType": "teacher",
+        "PersonId": "T8M4W",
+        "FirstName": "Tomáš",
+        "MiddleName": null,
+        "LastName": "Vzorník",
+        "Degree": "Ing.",
+        "DegreeBehind": "Ph.D.",
+        "ClassAbbreviation": null
+      },
+      {
+        "Id": "RPX3N",
+        "UserType": "parents",
+        "PersonId": "P{4Q}",
+        "FirstName": null,
+        "MiddleName": null,
+        "LastName": null,
+        "Degree": null,
+        "DegreeBehind": null,
+        "ClassAbbreviation": null
+      }
+    ],
+    "Attachments": [],
+    "DateFrom": null,
+    "DateTo": null,
+    "CanConfirm": false,
+    "CanAnswer": false,
+    "CanHide": true,
+    "CanDelete": true,
+    "Id": "400120",
+    "Title": "Dotaz k domácímu úkolu",
+    "Text": "<p>Dobrý den,<br>posílám lékařskou zprávu a prosím o zadání úkolu.</p>",
+    "SentDate": "2026-10-14T07:41:09+02:00",
+    "Sender": {
+      "Id": "RPX3N",
+      "Type": "parents",
+      "Name": "Eva Příkladná"
+    },
+    "Read": true,
+    "LifeTime": "ToRead",
+    "Confirmed": true,
+    "Type": "OBECNA",
+    "Hidden": false,
+    "RelevantName": "Mgr. Petra Ukázková",
+    "RelevantPersonType": "teacher"
+  }
+}

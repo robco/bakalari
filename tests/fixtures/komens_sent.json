@@ -1,0 +1,69 @@
+{
+  "Messages": [
+    {
+      "$type": "SentMessageWithRecipients",
+      "RecipientsCount": 1,
+      "RecipientsProcessedCount": 1,
+      "Attachments": [
+        {
+          "Id": "q7w8e9r0t1y2u3i4o5p6a7s8d9f0g1h2j3k4l5z6",
+          "Name": "Lékařská zpráva.jpg",
+          "Size": 183402,
+          "Type": "image/jpeg"
+        }
+      ],
+      "AttachmentsCount": 1,
+      "DateFrom": null,
+      "DateTo": null,
+      "CanConfirm": false,
+      "CanAnswer": false,
+      "CanHide": true,
+      "CanDelete": true,
+      "Id": "400120",
+      "Title": "Dotaz k domácímu úkolu",
+      "Text": "<p>Dobrý den,<br>posílám lékařskou zprávu a prosím o zadání úkolu.</p>",
+      "SentDate": "2026-10-14T07:41:09+02:00",
+      "Sender": {
+        "Id": "RPX3N",
+        "Type": "parents",
+        "Name": "Eva Příkladná"
+      },
+      "Read": true,
+      "LifeTime": "ToRead",
+      "Confirmed": true,
+      "Type": "OBECNA",
+      "Hidden": false,
+      "RelevantName": "Mgr. Petra Ukázková",
+      "RelevantPersonType": "teacher"
+    },
+    {
+      "$type": "SentMessageWithRecipients",
+      "RecipientsCount": 2,
+      "RecipientsProcessedCount": 1,
+      "Attachments": [],
+      "AttachmentsCount": 0,
+      "DateFrom": "2026-10-07T00:00:00+02:00",
+      "DateTo": "2026-10-09T23:59:59+02:00",
+      "CanConfirm": false,
+      "CanAnswer": false,
+      "CanHide": true,
+      "CanDelete": false,
+      "Id": "400108",
+      "Title": "omluvenka: Adam Příkladný, 6.B",
+      "Text": "<div>Omlouvám syna z výuky kvůli nemoci.</div>",
+      "SentDate": "2026-10-10T18:20:00+02:00",
+      "Sender": {
+        "Id": "RPX3N",
+        "Type": "parents",
+        "Name": "Eva Příkladná"
+      },
+      "Read": true,
+      "LifeTime": "ToConfirm",
+      "Confirmed": false,
+      "Type": "OMLUVENKA",
+      "Hidden": false,
+      "RelevantName": "",
+      "RelevantPersonType": "teacher"
+    }
+  ]
+}

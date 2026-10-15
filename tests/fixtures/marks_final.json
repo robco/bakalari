@@ -1,0 +1,114 @@
+{
+  "CertificateTerms": [
+    {
+      "FinalMarks": [
+        {
+          "MarkDate": "2025-06-23T18:12:00+02:00",
+          "EditDate": "2025-06-23T18:12:00+02:00",
+          "MarkText": "1",
+          "SubjectId": "26",
+          "Id": "F5Q(1A"
+        },
+        {
+          "MarkDate": "2025-06-22T20:40:00+02:00",
+          "EditDate": "2025-06-24T07:15:00+02:00",
+          "MarkText": "2",
+          "SubjectId": " 4",
+          "Id": "F5Q)2B"
+        },
+        {
+          "MarkDate": "2025-06-22T21:05:00+02:00",
+          "EditDate": "2025-06-22T21:05:00+02:00",
+          "MarkText": "1",
+          "SubjectId": "12",
+          "Id": "F5Q:3C"
+        }
+      ],
+      "Subjects": [
+        {
+          "Id": "26",
+          "Abbrev": "Chv",
+          "Name": "Chování"
+        },
+        {
+          "Id": " 4",
+          "Abbrev": "ČJL",
+          "Name": "Český jazyk a literatura"
+        },
+        {
+          "Id": "12",
+          "Abbrev": "M",
+          "Name": "Matematika"
+        }
+      ],
+      "GradeName": "pátý",
+      "Grade": 5,
+      "YearInSchool": 5,
+      "SchoolYear": "2024/25",
+      "Semester": "2",
+      "SemesterName": "2.",
+      "Repeated": false,
+      "Closed": true,
+      "AchievementText": "prospěl s vyznamenáním",
+      "MarksAverage": 1.33,
+      "AbsentHours": 31,
+      "NotExcusedHours": 0,
+      "CertificateDate": "2025-06-27T00:00:00+02:00"
+    },
+    {
+      "FinalMarks": [
+        {
+          "MarkDate": "2026-01-26T19:30:00+01:00",
+          "EditDate": "2026-01-26T19:30:00+01:00",
+          "MarkText": "1",
+          "SubjectId": "26",
+          "Id": "G6R(1A"
+        },
+        {
+          "MarkDate": "2026-01-25T16:02:00+01:00",
+          "EditDate": "2026-01-25T16:02:00+01:00",
+          "MarkText": "3",
+          "SubjectId": " 4",
+          "Id": "G6R)2B"
+        },
+        {
+          "MarkDate": "2026-01-25T16:47:00+01:00",
+          "EditDate": "2026-01-25T16:47:00+01:00",
+          "MarkText": "2",
+          "SubjectId": "12",
+          "Id": "G6R:3C"
+        }
+      ],
+      "Subjects": [
+        {
+          "Id": "26",
+          "Abbrev": "Chv",
+          "Name": "Chování"
+        },
+        {
+          "Id": " 4",
+          "Abbrev": "ČJL",
+          "Name": "Český jazyk a literatura"
+        },
+        {
+          "Id": "12",
+          "Abbrev": "M",
+          "Name": "Matematika"
+        }
+      ],
+      "GradeName": "šestý",
+      "Grade": 6,
+      "YearInSchool": 6,
+      "SchoolYear": "2025/26",
+      "Semester": "1",
+      "SemesterName": "1.",
+      "Repeated": false,
+      "Closed": true,
+      "AchievementText": "prospěl",
+      "MarksAverage": 2.0,
+      "AbsentHours": 12,
+      "NotExcusedHours": 2,
+      "CertificateDate": "2026-01-29T00:00:00+01:00"
+    }
+  ]
+}

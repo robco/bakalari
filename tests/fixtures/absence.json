@@ -1,0 +1,29 @@
+{
+  "PercentageThreshold": 0.25,
+  "Absences": [
+    {
+      "Date": "2026-09-14T00:00:00+02:00", "Unsolved": 0, "Ok": 5, "Missed": 0, "Late": 0, "Soon": 0, "School": 0,
+      "DistanceTeaching": 0
+    },
+    {
+      "Date": "2026-09-22T00:00:00+02:00", "Unsolved": 2, "Ok": 0, "Missed": 1, "Late": 1, "Soon": 0, "School": 0,
+      "DistanceTeaching": 0
+    },
+    {
+      "Date": "2026-10-06T00:00:00+02:00", "Unsolved": 0, "Ok": 0, "Missed": 0, "Late": 0, "Soon": 1, "School": 3,
+      "DistanceTeaching": 1
+    }
+  ],
+  "AbsencesPerSubject": [
+    {
+      "SubjectName": "Český jazyk a literatura", "LessonsCount": 20, "Base": 5, "Late": 1, "Soon": 0, "School": 0,
+      "DistanceTeaching": 0
+    },
+    {
+      "SubjectName": "Matematika", "LessonsCount": 21, "Base": 2, "Late": 0, "Soon": 1, "School": 0,
+      "DistanceTeaching": 0
+    },
+    {"SubjectName": "Fyzika", "LessonsCount": 8, "Base": 3, "Late": 0, "Soon": 0, "School": 1, "DistanceTeaching": 1},
+    {"SubjectName": "", "LessonsCount": 4, "Base": 0, "Late": 0, "Soon": 0, "School": 2, "DistanceTeaching": 0}
+  ]
+}

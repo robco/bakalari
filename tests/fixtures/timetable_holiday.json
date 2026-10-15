@@ -1,0 +1,35 @@
+{
+  "Hours": [
+    {"Id": 3, "Caption": "1", "BeginTime": "8:00", "EndTime": "8:45", "Start": 480, "Duration": 45},
+    {"Id": 4, "Caption": "2", "BeginTime": "8:55", "EndTime": "9:40", "Start": 535, "Duration": 45}
+  ],
+  "Days": [
+    {
+      "Atoms": [], "AssistanceAtoms": [], "DayOfWeek": 1, "Date": "2026-12-28T00:00:00+01:00",
+      "DayDescription": "vánoční prázdniny", "DayType": "Holiday"
+    },
+    {
+      "Atoms": [], "AssistanceAtoms": [], "DayOfWeek": 2, "Date": "2026-12-29T00:00:00+01:00",
+      "DayDescription": "vánoční prázdniny", "DayType": "Holiday"
+    },
+    {
+      "Atoms": [], "AssistanceAtoms": [], "DayOfWeek": 3, "Date": "2026-12-30T00:00:00+01:00",
+      "DayDescription": "vánoční prázdniny", "DayType": "Holiday"
+    },
+    {
+      "Atoms": [], "AssistanceAtoms": [], "DayOfWeek": 4, "Date": "2026-12-31T00:00:00+01:00",
+      "DayDescription": "vánoční prázdniny", "DayType": "Holiday"
+    },
+    {
+      "Atoms": [], "AssistanceAtoms": [], "DayOfWeek": 5, "Date": "2027-01-01T00:00:00+01:00",
+      "DayDescription": "Nový rok", "DayType": "Celebration"
+    }
+  ],
+  "Classes": [],
+  "Groups": [],
+  "Subjects": [],
+  "Teachers": [],
+  "Rooms": [],
+  "Cycles": [],
+  "Students": []
+}

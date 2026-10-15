@@ -1,0 +1,60 @@
+{
+  "lessonTags": [
+    {"Id": "T1", "Abbreviation": "EC1 ", "Title": "Projekt"},
+    {"Id": "T 2", "Abbreviation": "EXK", "Title": " Exkurze"},
+    {"Id": "T3", "Abbreviation": null, "Title": null}
+  ],
+  "absence": {
+    "LessonId": "20260921030300012",
+    "ClassBookRecordId": null,
+    "AbsencesGroups": [
+      {
+        "StudentsAbsences": [
+          {
+            "Student": {"IsAdult": false, "RegistrationNumber": 1, "Id": "S001", "Abbrev": "P. A.", "Name": "Pokusný Adam"},
+            "Absences": [
+              {"AbsentKindId": "", "Minutes": 45, "Notice": "", "AbsentType": "Absent", "HourId": "3", "HourIndex": 3, "Start": 480, "Duration": 45, "Subject": null, "PresenceStart": 480, "PresenceDuration": 45, "StudentReleased": false}
+            ],
+            "StudentReleased": false
+          },
+          {
+            "Student": {"IsAdult": false, "RegistrationNumber": 2, "Id": "S002", "Abbrev": "Z. B.", "Name": "Zkušební Bára"},
+            "Absences": [],
+            "StudentReleased": true
+          }
+        ],
+        "AbsentTypeOptions": [
+          {"AbsentType": "", "AbsentKindEnabled": false, "AbsentKindRequired": false, "AbsentNoteEnabled": false, "AbsentKinds": [], "NextAbsentType": "Absent"},
+          {"AbsentType": "Absent", "AbsentKindEnabled": true, "AbsentKindRequired": false, "AbsentNoteEnabled": true, "AbsentKinds": [], "NextAbsentType": "Late"}
+        ],
+        "Group": {"ClassId": "2B", "Id": "AB", "Abbrev": "2.B", "Name": "2.B"}
+      }
+    ],
+    "HourId": 3,
+    "Start": 480,
+    "Duration": 45,
+    "Hours": [{"Id": 3, "Caption": "1", "BeginTime": "8:00", "EndTime": "8:45", "Start": 480, "Duration": 45}],
+    "SchoolEvents": []
+  },
+  "past": {
+    "LessonId": "20260921030300012",
+    "LastTheme": "Pythagorova věta ",
+    "NextLabel": "15"
+  },
+  "studentsTimetable": {
+    "StudentTimetables": [
+      {
+        "Hours": [{"Id": 3, "Start": 480, "Duration": 45}, {"Id": 5, "Start": 600, "Duration": 45}],
+        "Id": "S001",
+        "Abbrev": "",
+        "Name": "Pokusný Adam"
+      },
+      {
+        "Hours": [{"Id": 3, "Start": 480, "Duration": 45}],
+        "Id": "S002",
+        "Abbrev": "",
+        "Name": "Zkušební Bára"
+      }
+    ]
+  }
+}

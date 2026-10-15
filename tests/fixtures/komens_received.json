@@ -1,0 +1,101 @@
+{
+  "Messages": [
+    {
+      "$type": "GeneralMessageReceived",
+      "Id": "400101",
+      "Title": "Třídní schůzky ",
+      "Text": "<div><p>Vážení rodiče,</p><p>zveme Vás na <b>třídní schůzky</b> ve čtvrtek&nbsp;22.&nbsp;10.</p><ul><li>17:00 společná část</li><li>18:00 konzultace</li></ul><p>Program je na <a href=\"https://skola.example/schuzky\">webu školy</a>.</p></div>",
+      "SentDate": "2026-10-12T09:15:30+02:00",
+      "Sender": {
+        "$type": "Sender",
+        "Id": "UQX7K",
+        "Type": "teacher",
+        "Name": "Mgr. Petra Ukázková "
+      },
+      "Attachments": [
+        {
+          "$type": "AttachmentInfo",
+          "Id": "ATT{7Q}x/2026 10 12=AbCdEfGhIjKlMnOpQrSt",
+          "Name": "Pozvánka na schůzky.pdf ",
+          "Type": "application/pdf",
+          "Size": 48213
+        }
+      ],
+      "Read": true,
+      "LifeTime": "ToRead",
+      "DateFrom": null,
+      "DateTo": null,
+      "Confirmed": true,
+      "CanConfirm": false,
+      "Type": "OBECNA",
+      "CanAnswer": true,
+      "Hidden": false,
+      "CanHide": true,
+      "CanDelete": false,
+      "RelevantName": "Mgr. Petra Ukázková",
+      "RelevantPersonType": "teacher"
+    },
+    {
+      "$type": "GeneralMessageReceived",
+      "Id": "400099",
+      "Title": "Souhlas s exkurzí",
+      "Text": "<p>Prosíme o potvrzení účasti na exkurzi do planetária.</p>",
+      "SentDate": "2026-10-05T14:02:11+02:00",
+      "Sender": {
+        "$type": "Sender",
+        "Id": " Z9Q2",
+        "Type": "administrator",
+        "Name": "Jan Vzorový (ředitelství)"
+      },
+      "Attachments": [],
+      "Read": false,
+      "LifeTime": "ToConfirm",
+      "DateFrom": null,
+      "DateTo": null,
+      "Confirmed": false,
+      "CanConfirm": true,
+      "Type": "OBECNA",
+      "CanAnswer": false,
+      "Hidden": false,
+      "CanHide": false,
+      "CanDelete": false,
+      "RelevantName": "ředitelství",
+      "RelevantPersonType": "administrator"
+    },
+    {
+      "$type": "GeneralMessageReceived",
+      "Id": "400087",
+      "Title": "Rozvrh",
+      "Text": "<p>V příloze posílám upravený rozvrh.</p>",
+      "SentDate": "2026-09-28T07:30:00+02:00",
+      "Sender": {
+        "$type": "Sender",
+        "Id": "T8M4W",
+        "Type": "teacher",
+        "Name": "Ing. Tomáš Vzorník"
+      },
+      "Attachments": [
+        {
+          "$type": "AttachmentInfo",
+          "Id": "b5n6m7q8w9e0r1t2y3u4i5o6p7a8s9d0f1g2h3j4",
+          "Name": "rozvrh.xlsx",
+          "Type": "",
+          "Size": 9120
+        }
+      ],
+      "Read": true,
+      "LifeTime": "ToRead",
+      "DateFrom": null,
+      "DateTo": null,
+      "Confirmed": true,
+      "CanConfirm": false,
+      "Type": "OBECNA",
+      "CanAnswer": true,
+      "Hidden": true,
+      "CanHide": true,
+      "CanDelete": false,
+      "RelevantName": "Ing. Tomáš Vzorník",
+      "RelevantPersonType": "teacher"
+    }
+  ]
+}

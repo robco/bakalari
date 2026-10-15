@@ -1,0 +1,259 @@
+
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="utf-8" />
+    <meta id="bkViewport" name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rozvrh</title>
+    <link href="/next/css/bundles/timetable.bundle.min.css?v=20261114" rel="stylesheet" />
+    <script src="/next/js/bundles/thirdpartylibs.bundle.js?v=20261114"></script>
+    <script src="/next/js/Timetable/TimetableCommon.js?v=20261114"></script>
+
+    <script type="text/javascript">
+        const objectType = 'Class';
+        const objectId = '2B';
+        const timetableQuery = '';
+
+        function changeClass() {
+            showTimetable('Class', $('#selectedClass').val());
+        }
+
+        function showTimetable(objectType, objectId) {
+            if (objectId) {
+                var term = $('[name=options]:checked').val();
+                if (!term) {
+                    term = 'Permanent';
+                }
+                var href = appRoot + 'Timetable/Public/' + term + '/' + objectType + '/' + objectId + timetableQuery;
+                window.location.href = href;
+            }
+        }
+    </script>
+
+<script id="guardTemplate" type="text/x-jsrender">
+    <div class="line guard mb-1">
+        <span class="bubble-label">Dozor:</span>
+        <span class="bubble-value">{{:name}}</span>
+    </div>
+</script>
+</head>
+
+<body>
+    <div class="bk-timetable-body">
+        <div class="container-fluid bk-timetable-header">
+                <div class="d-flex">
+                    <div class="w-100">
+                            <div class="bk-header-caption">Z&#225;kladn&#237; škola Vzorov&#225;</div>
+
+                            <div class="bk-timetable-selects row mb-1 mt-1">
+                                    <div class="d-inline-flex m-1 mr-2 position-relative">
+                                        <span class="bk-timetable-label">Tř&#237;da</span>
+                                        <select id="selectedClass" class="custom-select" onchange="changeClass()">
+                                            <option></option>
+                                                <option value="2B"
+                                                          selected="selected"
+                                                        >
+                                                    2.B
+                                                </option>
+                                                <option value="1A"
+                                                        >
+                                                    1.A
+                                                </option>
+                                                <option value="ZQ"
+                                                        >
+                                                    3.C
+                                                </option>
+                                        </select>
+                                    </div>
+                                    <div class="d-inline-flex m-1 mr-2 position-relative">
+                                        <span class="bk-timetable-label">Učitel</span>
+                                        <select id="selectedTeacher" class="custom-select" onchange="changeTeacher()">
+                                            <option></option>
+                                                <option value="UQX01"
+                                                        >
+                                                    Testov&#225; Ema
+                                                </option>
+                                                <option value="UZK(7)"
+                                                        >
+                                                    Uk&#225;zkov&#225; Lucie
+                                                </option>
+                                                <option value="UFI02"
+                                                        >
+                                                    Fiktivní Oto
+                                                </option>
+                                        </select>
+                                    </div>
+                                    <div class="d-inline-flex m-1 mr-2 position-relative">
+                                        <span class="bk-timetable-label">M&#237;stnost</span>
+                                        <select id="selectedRoom" class="custom-select" onchange="changeRoom()">
+                                            <option></option>
+                                                <option value="R1"
+                                                        >
+                                                    12
+                                                </option>
+                                                <option value="G 7"
+                                                        >
+                                                    14
+                                                </option>
+                                                <option value="KL"
+                                                        >
+                                                    Tělocvična
+                                                </option>
+                                        </select>
+                                    </div>
+                                    <div class="d-inline-flex m-1 mr-2">
+                                        <div class="btn-group btn-group-toggle bk-timetable-btngroup" data-toggle="buttons" id="selectedTerm" style="height: 28px;">
+                                                <label class="btn btn-secondary ">
+                                                    <input type="radio" name="options" id="option1" value="Permanent"   onchange="changeTerm()"> St&#225;l&#253;
+                                                    </label>
+                                                <label class="btn btn-secondary ">
+                                                    <input type="radio" name="options" id="option2" value="Actual"    checked="checked"
+ onchange="changeTerm()"> Tento t&#253;den
+                                                    </label>
+                                                <label class="btn btn-secondary ">
+                                                    <input type="radio" name="options" id="option3" value="Next"   onchange="changeTerm()"> Př&#237;št&#237; t&#253;den
+                                                    </label>
+                                        </div>
+                                    </div>
+                            </div>
+                    </div>
+                </div>
+        </div>
+
+        <div id="teacher_canvas" class="bk-canvas">
+            <div class="bk-canvas-content">
+                <div class="bk-canvas-header">
+                    <span class="bk-canvas-title">Zvolte učitele. . .</span>
+                    <span href="javascript:void(0)" class="closebtn ico32-ovladani-krizek" onclick="closeCanvas()"></span>
+                </div>
+                <div class="bk-canvas-body">
+                        <a href="/timetable/public/Actual/teacher/UQX01"
+                           >
+                            <span>Testová Ema</span>
+                        </a>
+                        <a href="/timetable/public/Actual/teacher/U%20%2019"
+                           >
+                            <span>Vzorový Karel</span>
+                        </a>
+                        <a href="/timetable/public/Actual/teacher/UZK(7)"
+                           >
+                            <span>Ukázková Lucie</span>
+                        </a>
+                        <a href="/timetable/public/Actual/teacher/UFI02"
+                           >
+                            <span>Fiktivní Oto</span>
+                        </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="class_canvas" class="bk-canvas">
+            <div class="bk-canvas-content">
+                <div class="bk-canvas-header">
+                    <span class="bk-canvas-title">Zvolte tř&#237;du. . .</span>
+                    <span href="javascript:void(0)" class="closebtn ico32-ovladani-krizek" onclick="closeCanvas()"></span>
+                </div>
+                <div class="bk-canvas-body">
+                        <a href="/timetable/public/Actual/class/2B"
+                           >
+                            <span>2.B</span>
+                        </a>
+                        <a href="/timetable/public/Actual/class/1A"
+                           >
+                            <span>1.A</span>
+                        </a>
+                        <a href="/timetable/public/Actual/class/ZQ"
+                           >
+                            <span>3.C</span>
+                        </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="room_canvas" class="bk-canvas">
+            <div class="bk-canvas-content">
+                <div class="bk-canvas-header">
+                    <span class="bk-canvas-title">Zvolte m&#237;stnost. . .</span>
+                    <span href="javascript:void(0)" class="closebtn ico32-ovladani-krizek" onclick="closeCanvas()"></span>
+                </div>
+                <div class="bk-canvas-body">
+                        <a href="/timetable/public/Actual/room/R1"
+                           >
+                            <span>12</span>
+                        </a>
+                        <a href="/timetable/public/Actual/room/G%207"
+                           >
+                            <span>14</span>
+                        </a>
+                        <a href="/timetable/public/Actual/room/KL"
+                           >
+                            <span>Tělocvična</span>
+                        </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="bk-timetable-days-wrapper" data-bind="foreach: Days">
+            <div class="d-flex flex-row bk-timetable-row">
+                <div class="bk-timetable-day day-name">
+                    <div class="bk-day-wrapper">
+                        <div>
+                            <span class="bk-day-day" data-bind="text: DayAbbrev"></span>
+                            <span class="bk-day-date" data-bind="text: Date"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="bk-cell-wrapper">
+                    <!-- ko if: DayOff -->
+                    <div class="bk-timetable-cell" data-testid="timetable-day-off">
+                        <div class="day-item-volno">
+                            <div class="dayoff-badge">V</div>
+                            <div class="dayoff-content">
+                                <span class="dayoff-name" data-bind="text: DayOffName"></span>
+                                <span>Volno</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /ko-->
+                    <div data-bind="foreach: Hours" class="d-flex">
+                        <div class="bk-timetable-cell">
+                            <!-- ko if: Type() === 'atoms' -->
+                            <div class="day-item">
+                                <div data-bind="foreach: Atoms">
+                                    <div class="day-item-hover position-absolute" data-bind="attr: { 'data-detail': TooltipDetails }" data-testid="timetable-day-item-hover">
+                                        <div class="day-flex">
+                                            <div class="top">
+                                                <div class="left top-hide"><div class="groups-names" data-bind="safeHtml: GroupsNames"></div></div>
+                                                <div class="right top-hide"><div class="first" data-bind="text: Room"></div></div>
+                                            </div>
+                                            <div class="middle">
+                                                <div data-bind="text: SubjectAbbrev"></div>
+                                                <div class="change-badge released-badge" title="Ž&#225;k se ne&#250;častn&#237; v&#253;uky">U</div>
+                                                <span class="teacher-name" data-bind="text: Teacher"></span>
+                                            </div>
+                                            <div class="bottom d-flex"><div class="hour-badge homeworkIco"><span>U</span></div></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /ko-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script type="text/javascript">
+        const timetableData = {"TimetableDataAvailable":false,"SelectedTeacher":null,"ShowTeacherAbsenceReason":true,"Days":[{"Hours":[{"HourText":null,"InfoRemoved":null,"Atoms":[{"ChangeInfo":"","AbsentInfo":null,"IdentCode":"120261111105045","GroupsNames":"","GroupsFullNames":"","Homeworks":null,"HomeworksCount":0,"Notice":"","Room":"12","RoomFullName":"12 - kmenová 2.B","SubjectText":"Matematika","SubjectAbbrev":"M","Teacher":"Te","TeacherFullname":"Mgr. Ema Testová","Theme":"","StudentAbsence":null,"StudentAbsenceText":null,"IsDistanceTeaching":false,"IsSelfStudy":false,"HasChanged":false,"HasAbsent":false,"Absences":[],"HasPlannedClassification":false,"StudentReleased":false,"IsLastRoomLesson":false,"AssistancesCount":0,"Assistance":"","AssistancePrev":"","WithAssistance":false,"SubjectName":null,"TooltipDetails":"{\u0022type\u0022: \u0022atom\u0022, \u0022subjecttext\u0022: \u0022Matematika\u0022, \u0022assistance\u0022: \u0022\u0022, \u0022assistancePrev\u0022: \u0022\u0022, \u0022withAssistance\u0022: false, \u0022assistancesCount\u0022: 0, \u0022teacher\u0022: \u0022Mgr. Ema Testová\u0022, \u0022room\u0022: \u002212 - kmenová 2.B\u0022, \u0022group\u0022: \u0022\u0022, \u0022theme\u0022: \u0022\u0022, \u0022notice\u0022: \u0022\u0022, \u0022changeinfo\u0022: \u0022\u0022, \u0022homeworks\u0022: null, \u0022absencetext\u0022: null, \u0022hasAbsent\u0022: false, \u0022absentInfoText\u0022: \u0022\u0022, \u0022HasPlannedClassification\u0022: false, \u0022IsLastRoomLesson\u0022: false, \u0022SubjectName\u0022: null, \u0022day\u0022: \u002216.11.2026 (pondělí)\u0022, \u0022time\u0022: \u00223 (10:00 - 10:45)\u0022, \u0022IdentCode\u0022: \u0022120261111105045\u0022, \u0022absenceType\u0022: null, \u0022changeBadgeChar\u0022: \u0022\u0022, \u0022infoChangeCode\u0022: \u0022NoChange\u0022, \u0022PlannedClassificationCaption\u0022: \u0022\u0022, \u0022hourIndex\u0022: 5}","AtomAbsenceText":"","SubjectColor":"#86D859","CycleText":null,"StackLevel":0,"CssWidth":"9.52%","CssX":"36.50%","Type":"atom","NewAtom":false,"Day":"16.11.2026 (pondělí)","Time":"10:00 - 10:45","InfoChangeCode":2,"PlannedClassificationCaption":"","HourIndex":5,"OriginalTeacherCodeSameAsLoggedIn":true,"BeginTimeValue":600,"EndTimeValue":645,"Begin":"10:00:00","End":"10:45:00","BadgeChar":"","ChangeType":1}],"InfoAbsent":null,"InfoAbsentName":null,"Type":"atoms","BeginTimeValue":600,"EndTimeValue":645,"Begin":"10:00:00","End":"10:45:00","Index":5,"BeginNoFlexi":"01:00:00","EndNoFlexi":"01:45:00","CssX":null,"CssWidth":null,"TooltipDetails":null},{"HourText":null,"InfoRemoved":null,"Atoms":[{"ChangeInfo":"","AbsentInfo":null,"IdentCode":"120261111203045","GroupsNames":"Aj1","GroupsFullNames":"Aj1 - angličtina 1","Homeworks":null,"HomeworksCount":0,"Notice":"","Room":"14","RoomFullName":"14 - jazyková učebna","SubjectText":"Anglický jazyk","SubjectAbbrev":"Aj","Teacher":"Vz","TeacherFullname":"Ing. Karel Vzorový","Theme":"","StudentAbsence":null,"StudentAbsenceText":null,"IsDistanceTeaching":false,"IsSelfStudy":false,"HasChanged":false,"HasAbsent":false,"Absences":[],"HasPlannedClassification":false,"StudentReleased":false,"IsLastRoomLesson":false,"AssistancesCount":0,"Assistance":"","AssistancePrev":"","WithAssistance":false,"SubjectName":null,"TooltipDetails":"{\u0022type\u0022: \u0022atom\u0022, \u0022subjecttext\u0022: \u0022Anglický jazyk\u0022, \u0022assistance\u0022: \u0022\u0022, \u0022assistancePrev\u0022: \u0022\u0022, \u0022withAssistance\u0022: false, \u0022assistancesCount\u0022: 0, \u0022teacher\u0022: \u0022Ing. Karel Vzorový\u0022, \u0022room\u0022: \u002214 - jazyková učebna\u0022, \u0022group\u0022: \u0022Aj1 - angličtina 1\u0022, \u0022theme\u0022: \u0022\u0022, \u0022notice\u0022: \u0022\u0022, \u0022changeinfo\u0022: \u0022\u0022, \u0022homeworks\u0022: null, \u0022absencetext\u0022: null, \u0022hasAbsent\u0022: false, \u0022absentInfoText\u0022: \u0022\u0022, \u0022HasPlannedClassification\u0022: false, \u0022IsLastRoomLesson\u0022: false, \u0022SubjectName\u0022: null, \u0022day\u0022: \u002216.11.2026 (pondělí)\u0022, \u0022time\u0022: \u00221 (8:00 - 8:45)\u0022, \u0022IdentCode\u0022: \u0022120261111203045\u0022, \u0022absenceType\u0022: null, \u0022changeBadgeChar\u0022: \u0022\u0022, \u0022infoChangeCode\u0022: \u0022NoChange\u0022, \u0022PlannedClassificationCaption\u0022: \u0022\u0022, \u0022hourIndex\u0022: 3}","AtomAbsenceText":"","SubjectColor":"#86D859","CycleText":null,"StackLevel":0,"CssWidth":"9.52%","CssX":"14.28%","Type":"atom","NewAtom":false,"Day":"16.11.2026 (pondělí)","Time":"8:00 - 8:45","InfoChangeCode":2,"PlannedClassificationCaption":"","HourIndex":3,"OriginalTeacherCodeSameAsLoggedIn":true,"BeginTimeValue":480,"EndTimeValue":525,"Begin":"08:00:00","End":"08:45:00","BadgeChar":"","ChangeType":1},{"ChangeInfo":"","AbsentInfo":null,"IdentCode":"120261111303045","GroupsNames":"Nj2","GroupsFullNames":"Nj2 - němčina 2","Homeworks":null,"HomeworksCount":0,"Notice":"","Room":"12","RoomFullName":"12 - kmenová 2.B","SubjectText":"Německý jazyk","SubjectAbbrev":"Nj","Teacher":"Uk","TeacherFullname":"Bc. Lucie Ukázková","Theme":"","StudentAbsence":null,"StudentAbsenceText":null,"IsDistanceTeaching":false,"IsSelfStudy":false,"HasChanged":false,"HasAbsent":false,"Absences":[],"HasPlannedClassification":false,"StudentReleased":false,"IsLastRoomLesson":false,"AssistancesCount":0,"Assistance":"","AssistancePrev":"","WithAssistance":false,"SubjectName":null,"TooltipDetails":"{\u0022type\u0022: \u0022atom\u0022, \u0022subjecttext\u0022: \u0022Německý jazyk\u0022, \u0022assistance\u0022: \u0022\u0022, \u0022assistancePrev\u0022: \u0022\u0022, \u0022withAssistance\u0022: false, \u0022assistancesCount\u0022: 0, \u0022teacher\u0022: \u0022Bc. Lucie Ukázková\u0022, \u0022room\u0022: \u002212 - kmenová 2.B\u0022, \u0022group\u0022: \u0022Nj2 - němčina 2\u0022, \u0022theme\u0022: \u0022\u0022, \u0022notice\u0022: \u0022\u0022, \u0022changeinfo\u0022: \u0022\u0022, \u0022homeworks\u0022: null, \u0022absencetext\u0022: null, \u0022hasAbsent\u0022: false, \u0022absentInfoText\u0022: \u0022\u0022, \u0022HasPlannedClassification\u0022: false, \u0022IsLastRoomLesson\u0022: false, \u0022SubjectName\u0022: null, \u0022day\u0022: \u002216.11.2026 (pondělí)\u0022, \u0022time\u0022: \u00221 (8:00 - 8:45)\u0022, \u0022IdentCode\u0022: \u0022120261111303045\u0022, \u0022absenceType\u0022: null, \u0022changeBadgeChar\u0022: \u0022\u0022, \u0022infoChangeCode\u0022: \u0022NoChange\u0022, \u0022PlannedClassificationCaption\u0022: \u0022\u0022, \u0022hourIndex\u0022: 3}","AtomAbsenceText":"","SubjectColor":"#86D859","CycleText":null,"StackLevel":0,"CssWidth":"9.52%","CssX":"14.28%","Type":"atom","NewAtom":false,"Day":"16.11.2026 (pondělí)","Time":"8:00 - 8:45","InfoChangeCode":2,"PlannedClassificationCaption":"","HourIndex":3,"OriginalTeacherCodeSameAsLoggedIn":true,"BeginTimeValue":480,"EndTimeValue":525,"Begin":"08:00:00","End":"08:45:00","BadgeChar":"","ChangeType":1},{"ChangeInfo":"Odebráno z rozvrhu (Fy, Fiktivní Oto)","AbsentInfo":null,"IdentCode":null,"GroupsNames":null,"GroupsFullNames":null,"Homeworks":null,"HomeworksCount":0,"Notice":null,"Room":null,"RoomFullName":null,"SubjectText":null,"SubjectAbbrev":null,"Teacher":null,"TeacherFullname":null,"Theme":null,"StudentAbsence":null,"StudentAbsenceText":null,"IsDistanceTeaching":false,"IsSelfStudy":false,"HasChanged":false,"HasAbsent":false,"Absences":[],"HasPlannedClassification":false,"StudentReleased":false,"IsLastRoomLesson":false,"AssistancesCount":0,"Assistance":null,"AssistancePrev":null,"WithAssistance":false,"SubjectName":null,"TooltipDetails":"{\u0022type\u0022: \u0022removed\u0022, \u0022subjecttext\u0022: null, \u0022absentinfo\u0022: null, \u0022removedinfo\u0022: \u0022Odebráno z rozvrhu (Fy, Fiktivní Oto)\u0022, \u0022AbsentInfo\u0022: null, \u0022day\u0022: \u002216.11.2026 (pondělí)\u0022, \u0022time\u0022: \u00228:00 - 8:45\u0022}","AtomAbsenceText":null,"SubjectColor":null,"CycleText":null,"StackLevel":0,"CssWidth":"9.52%","CssX":"14.28%","Type":"removed","NewAtom":false,"Day":"16.11.2026 (pondělí)","Time":"8:00 - 8:45","InfoChangeCode":0,"PlannedClassificationCaption":null,"HourIndex":0,"OriginalTeacherCodeSameAsLoggedIn":false,"BeginTimeValue":480,"EndTimeValue":525,"Begin":"08:00:00","End":"08:45:00","BadgeChar":null,"ChangeType":0}],"InfoAbsent":null,"InfoAbsentName":null,"Type":"atoms","BeginTimeValue":480,"EndTimeValue":525,"Begin":"08:00:00","End":"08:45:00","Index":3,"BeginNoFlexi":"01:00:00","EndNoFlexi":"01:45:00","CssX":null,"CssWidth":null,"TooltipDetails":null},{"HourText":null,"InfoRemoved":null,"Atoms":[{"ChangeInfo":"Změna místnosti: 14 (12)","AbsentInfo":null,"IdentCode":"120261111404045","GroupsNames":"","GroupsFullNames":"","Homeworks":null,"HomeworksCount":0,"Notice":"","Room":"14","RoomFullName":"14 - jazyková učebna","SubjectText":"Fyzika","SubjectAbbrev":"Fy","Teacher":"Fi","TeacherFullname":"PaedDr. Oto Fiktivní","Theme":"","StudentAbsence":null,"StudentAbsenceText":null,"IsDistanceTeaching":false,"IsSelfStudy":false,"HasChanged":true,"HasAbsent":false,"Absences":[],"HasPlannedClassification":false,"StudentReleased":false,"IsLastRoomLesson":false,"AssistancesCount":0,"Assistance":"","AssistancePrev":"","WithAssistance":false,"SubjectName":null,"TooltipDetails":"{\u0022type\u0022: \u0022atom\u0022, \u0022subjecttext\u0022: \u0022Fyzika\u0022, \u0022assistance\u0022: \u0022\u0022, \u0022assistancePrev\u0022: \u0022\u0022, \u0022withAssistance\u0022: false, \u0022assistancesCount\u0022: 0, \u0022teacher\u0022: \u0022PaedDr. Oto Fiktivní\u0022, \u0022room\u0022: \u002214 - jazyková učebna\u0022, \u0022group\u0022: \u0022\u0022, \u0022theme\u0022: \u0022\u0022, \u0022notice\u0022: \u0022\u0022, \u0022changeinfo\u0022: \u0022Změna místnosti: 14 (12)\u0022, \u0022homeworks\u0022: null, \u0022absencetext\u0022: null, \u0022hasAbsent\u0022: false, \u0022absentInfoText\u0022: \u0022\u0022, \u0022HasPlannedClassification\u0022: false, \u0022IsLastRoomLesson\u0022: false, \u0022SubjectName\u0022: null, \u0022day\u0022: \u002216.11.2026 (pondělí)\u0022, \u0022time\u0022: \u00222 (8:55 - 9:40)\u0022, \u0022IdentCode\u0022: \u0022120261111404045\u0022, \u0022absenceType\u0022: null, \u0022changeBadgeChar\u0022: \u0022M\u0022, \u0022infoChangeCode\u0022: \u0022RoomChanged\u0022, \u0022PlannedClassificationCaption\u0022: \u0022\u0022, \u0022hourIndex\u0022: 4}","AtomAbsenceText":"","SubjectColor":"#86D859","CycleText":null,"StackLevel":0,"CssWidth":"9.52%","CssX":"25.39%","Type":"atom","NewAtom":false,"Day":"16.11.2026 (pondělí)","Time":"8:55 - 9:40","InfoChangeCode":4,"PlannedClassificationCaption":"","HourIndex":4,"OriginalTeacherCodeSameAsLoggedIn":true,"BeginTimeValue":535,"EndTimeValue":580,"Begin":"08:55:00","End":"09:40:00","BadgeChar":"M","ChangeType":12}],"InfoAbsent":null,"InfoAbsentName":null,"Type":"atoms","BeginTimeValue":535,"EndTimeValue":580,"Begin":"08:55:00","End":"09:40:00","Index":4,"BeginNoFlexi":"01:00:00","EndNoFlexi":"01:45:00","CssX":null,"CssWidth":null,"TooltipDetails":null}],"DayAbbrev":"po","Date":"16.11.","DayOff":false,"DayOffName":"","PauseGuards":[{"DayOfWeekAbbrev":"po","CycleAbbrevs":"","Name":"1. patro","Abbrev":"1.P","Info":"","Begin":"08:45:00","End":"08:55:00","Index":4,"IsPause":true,"BeginNoFlexi":"01:45:00","EndNoFlexi":"01:55:00","CssX":"20.63%","CssWidth":"1.59%","TooltipDetails":"{\u0022day\u0022: \u002216.11.2026 (pondělí)\u0022, \u0022name\u0022: \u00221. patro\u0022, \u0022begin\u0022: \u002208:45\u0022, \u0022end\u0022: \u002208:55\u0022, \u0022info\u0022: \u0022\u0022}","Day":{"StrDate":"20261116","Year":2026,"Month":11,"Day":16,"DayType":1,"DayOfWeek":1,"CycleIndex":1,"ChangeType":2,"DayOffName":"","TimetableDayOfWeek":1,"TimetableCycleIndex":1,"Exception":false,"Date":"2026-11-16T00:00:00+01:00"},"CssY":null,"CssHeight":null}],"HourGuards":[],"GeneralGuards":[],"Absences":[]},{"Hours":null,"DayAbbrev":"út","Date":"17.11.","DayOff":true,"DayOffName":"státní svátek","PauseGuards":[],"HourGuards":[],"GeneralGuards":[],"Absences":[]},{"Hours":[{"HourText":null,"InfoRemoved":null,"Atoms":[{"ChangeInfo":"Suplování: Fiktivní Oto - Testová Ema (nem)","AbsentInfo":null,"IdentCode":"120261111504045","GroupsNames":"","GroupsFullNames":"","Homeworks":null,"HomeworksCount":0,"Notice":"","Room":" 12 ","RoomFullName":"12 - kmenová 2.B","SubjectText":"Český jazyk a literatura","SubjectAbbrev":"Čj","Teacher":"Fi","TeacherFullname":"PaedDr. Oto Fiktivní","Theme":"Vyjmenovaná slova po B ","StudentAbsence":null,"StudentAbsenceText":null,"IsDistanceTeaching":false,"IsSelfStudy":false,"HasChanged":true,"HasAbsent":true,"Absences":[],"HasPlannedClassification":false,"StudentReleased":false,"IsLastRoomLesson":false,"AssistancesCount":0,"Assistance":"","AssistancePrev":"","WithAssistance":false,"SubjectName":null,"TooltipDetails":"{\u0022type\u0022: \u0022atom\u0022, \u0022subjecttext\u0022: \u0022Český jazyk a literatura\u0022, \u0022assistance\u0022: \u0022\u0022, \u0022assistancePrev\u0022: \u0022\u0022, \u0022withAssistance\u0022: false, \u0022assistancesCount\u0022: 0, \u0022teacher\u0022: \u0022PaedDr. Oto Fiktivní\u0022, \u0022room\u0022: \u002212 - kmenová 2.B\u0022, \u0022group\u0022: \u0022\u0022, \u0022theme\u0022: \u0022Vyjmenovaná slova po B \u0022, \u0022notice\u0022: \u0022\u0022, \u0022changeinfo\u0022: \u0022Suplování: Fiktivní Oto - Testová Ema (nem)\u0022, \u0022homeworks\u0022: null, \u0022absencetext\u0022: null, \u0022hasAbsent\u0022: true, \u0022absentInfoText\u0022: \u0022nem | nemoc\u0022, \u0022HasPlannedClassification\u0022: false, \u0022IsLastRoomLesson\u0022: false, \u0022SubjectName\u0022: null, \u0022day\u0022: \u002218.11.2026 (středa)\u0022, \u0022time\u0022: \u00222 (8:55 - 9:40)\u0022, \u0022IdentCode\u0022: \u0022120261111504045\u0022, \u0022absenceType\u0022: null, \u0022changeBadgeChar\u0022: \u0022S\u0022, \u0022infoChangeCode\u0022: \u0022Substitution\u0022, \u0022PlannedClassificationCaption\u0022: \u0022\u0022, \u0022hourIndex\u0022: 4}","AtomAbsenceText":"","SubjectColor":"#86D859","CycleText":null,"StackLevel":0,"CssWidth":"9.52%","CssX":"25.39%","Type":"atom","NewAtom":false,"Day":"18.11.2026 (středa)","Time":"8:55 - 9:40","InfoChangeCode":1,"PlannedClassificationCaption":"","HourIndex":4,"OriginalTeacherCodeSameAsLoggedIn":true,"BeginTimeValue":535,"EndTimeValue":580,"Begin":"08:55:00","End":"09:40:00","BadgeChar":"S","ChangeType":8}],"InfoAbsent":null,"InfoAbsentName":null,"Type":"atoms","BeginTimeValue":535,"EndTimeValue":580,"Begin":"08:55:00","End":"09:40:00","Index":4,"BeginNoFlexi":"01:00:00","EndNoFlexi":"01:45:00","CssX":null,"CssWidth":null,"TooltipDetails":null}],"DayAbbrev":"st","Date":"18.11.","DayOff":false,"DayOffName":"","PauseGuards":[],"HourGuards":[],"GeneralGuards":[],"Absences":[]},{"Hours":[{"HourText":null,"InfoRemoved":null,"Atoms":[{"ChangeInfo":"","AbsentInfo":null,"IdentCode":"120261111606045","GroupsNames":"","GroupsFullNames":"","Homeworks":null,"HomeworksCount":0,"Notice":"Přinést vodovky","Room":"KL","RoomFullName":"Tělocvična","SubjectText":"Výtvarná výchova","SubjectAbbrev":"Vv","Teacher":"Te","TeacherFullname":"Mgr. Ema Testová","Theme":"Podzimní krajina","StudentAbsence":null,"StudentAbsenceText":null,"IsDistanceTeaching":false,"IsSelfStudy":false,"HasChanged":false,"HasAbsent":false,"Absences":[],"HasPlannedClassification":false,"StudentReleased":false,"IsLastRoomLesson":false,"AssistancesCount":0,"Assistance":"","AssistancePrev":"","WithAssistance":false,"SubjectName":null,"TooltipDetails":"{\u0022type\u0022: \u0022atom\u0022, \u0022subjecttext\u0022: \u0022Výtvarná výchova\u0022, \u0022assistance\u0022: \u0022\u0022, \u0022assistancePrev\u0022: \u0022\u0022, \u0022withAssistance\u0022: false, \u0022assistancesCount\u0022: 0, \u0022teacher\u0022: \u0022Mgr. Ema Testová\u0022, \u0022room\u0022: \u0022Tělocvična\u0022, \u0022group\u0022: \u0022\u0022, \u0022theme\u0022: \u0022Podzimní krajina\u0022, \u0022notice\u0022: \u0022Přinést vodovky\u0022, \u0022changeinfo\u0022: \u0022\u0022, \u0022homeworks\u0022: null, \u0022absencetext\u0022: null, \u0022hasAbsent\u0022: false, \u0022absentInfoText\u0022: \u0022\u0022, \u0022HasPlannedClassification\u0022: false, \u0022IsLastRoomLesson\u0022: false, \u0022SubjectName\u0022: null, \u0022day\u0022: \u002219.11.2026 (čtvrtek)\u0022, \u0022time\u0022: \u00224 (10:55 - 11:40)\u0022, \u0022IdentCode\u0022: \u0022120261111606045\u0022, \u0022absenceType\u0022: null, \u0022changeBadgeChar\u0022: \u0022\u0022, \u0022infoChangeCode\u0022: \u0022NoChange\u0022, \u0022PlannedClassificationCaption\u0022: \u0022\u0022, \u0022hourIndex\u0022: 6}","AtomAbsenceText":"","SubjectColor":"#86D859","CycleText":null,"StackLevel":0,"CssWidth":"9.52%","CssX":"47.61%","Type":"atom","NewAtom":false,"Day":"19.11.2026 (čtvrtek)","Time":"10:55 - 11:40","InfoChangeCode":2,"PlannedClassificationCaption":"","HourIndex":6,"OriginalTeacherCodeSameAsLoggedIn":true,"BeginTimeValue":655,"EndTimeValue":700,"Begin":"10:55:00","End":"11:40:00","BadgeChar":"","ChangeType":1}],"InfoAbsent":null,"InfoAbsentName":null,"Type":"atoms","BeginTimeValue":655,"EndTimeValue":700,"Begin":"10:55:00","End":"11:40:00","Index":6,"BeginNoFlexi":"01:00:00","EndNoFlexi":"01:45:00","CssX":null,"CssWidth":null,"TooltipDetails":null}],"DayAbbrev":"čt","Date":"19.11.","DayOff":false,"DayOffName":"","PauseGuards":[],"HourGuards":[],"GeneralGuards":[],"Absences":[]},{"Hours":[],"DayAbbrev":"pá","Date":"20.11.","DayOff":false,"DayOffName":"","PauseGuards":[],"HourGuards":[],"GeneralGuards":[],"Absences":[]}],"ShowGroups":true,"ShowRooms":true,"ShowTeachers":true,"Hours":[{"Caption":"0","BeginTime":"7:05","EndTime":"7:50","CssX":"3.17%","CssWidth":"9.52%","StackLevel":0},{"Caption":"1","BeginTime":"8:00","EndTime":"8:45","CssX":"14.28%","CssWidth":"9.52%","StackLevel":0},{"Caption":"2","BeginTime":"8:55","EndTime":"9:40","CssX":"25.39%","CssWidth":"9.52%","StackLevel":0},{"Caption":"3","BeginTime":"10:00","EndTime":"10:45","CssX":"36.50%","CssWidth":"9.52%","StackLevel":0},{"Caption":"4","BeginTime":"10:55","EndTime":"11:40","CssX":"47.61%","CssWidth":"9.52%","StackLevel":0},{"Caption":"5","BeginTime":"11:50","EndTime":"12:35","CssX":"58.72%","CssWidth":"9.52%","StackLevel":0},{"Caption":"6","BeginTime":"12:45","EndTime":"13:30","CssX":"69.83%","CssWidth":"9.52%","StackLevel":0},{"Caption":"7","BeginTime":"13:40","EndTime":"14:25","CssX":"80.94%","CssWidth":"9.52%","StackLevel":0}],"Raster":[{"CssWidth":"0.79%","CssX":"1.59%","Time":"01:40:00","IsFullHour":false},{"CssWidth":"0.79%","CssX":"2.38%","Time":"01:45:00","IsFullHour":true}],"IsTeachingOverviewEnabled":false,"ShowTimeline":false,"UserType":-1,"ShowBakaLogo":true,"IsIFrame":false};
+
+        /** Kontrola dat */
+        if (timetableData == null) {
+            console.log('no data');
+        }
+        self.SetStackLevels(timetableData);
+        self.TimetableData = ko.mapping.fromJS(timetableData);
+    </script>
+</body>
+</html>

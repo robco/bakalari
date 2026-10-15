@@ -1,0 +1,20 @@
+{
+  "PedagogicalMeasures": [
+    {
+      "SchoolYear": "2025/26",
+      "Semester": "1",
+      "TypeLabel": "pochvala třídního učitele",
+      "Date": "2025-12-18T00:00:00+01:00",
+      "TypeId": "pTU",
+      "Text": "za reprezentaci školy v matematick&#233; olympi&#225;dě &amp; ve sběru pap&#237;ru"
+    },
+    {
+      "SchoolYear": "2024/25",
+      "Semester": "2",
+      "TypeLabel": "napomenutí třídního učitele",
+      "Date": "2025-04-07T00:00:00+02:00",
+      "TypeId": "nTU",
+      "Text": "za opakovan&#233; zapom&#237;n&#225;n&#237; pomůcek"
+    }
+  ]
+}

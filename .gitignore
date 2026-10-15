@@ -1,0 +1,45 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+*.egg
+.eggs/
+build/
+dist/
+wheels/
+.venv/
+venv/
+env/
+.python-version
+
+# Tools
+.coverage
+.coverage.*
+coverage.xml
+htmlcov/
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.ruff_cache/
+.pytest_cache/
+.tox/
+.nox/
+
+# Editors and OS
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Local agent worktrees and secrets
+.claude/worktrees/
+.claude/settings.local.json
+.env
+.env.*
+!.env.example
+.envrc
+*.session.json

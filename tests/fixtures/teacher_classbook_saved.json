@@ -1,0 +1,28 @@
+{
+  "Days": [
+    {
+      "Date": "2026-09-21T00:00:00+02:00",
+      "DayOfWeek": 0,
+      "DayDescription": null,
+      "DayType": 0,
+      "Hours": [
+        {
+          "Id": "2026092103AB",
+          "LessonId": "20260921030300012",
+          "Label": "15",
+          "Notice": "",
+          "PrivateNotice": "",
+          "Tags": [],
+          "Theme": "Pythagorova věta - procvičování",
+          "ClassBookLevel": "SecondLevel",
+          "WeekTheme": null,
+          "HourId": 3,
+          "Subject": {"Id": " 7", "Abbrev": "M ", "Name": "Matematika"},
+          "Groups": [{"ClassId": "2B", "Id": "AB", "Abbrev": "2.B", "Name": "2.B"}],
+          "EditableGroups": ["AB"]
+        }
+      ]
+    }
+  ],
+  "Hours": null
+}

@@ -1,0 +1,35 @@
+{
+  "name": "Kocourkov",
+  "schools": [
+    {
+      "id": "SYKCAAAAAA",
+      "name": "Základní škola Kocourkov, Mlýnská 7",
+      "schoolUrl": "https://zs-kocourkov.school.example/"
+    },
+    {
+      "id": "SYKCAAAAAB",
+      "name": "Gymnázium Kocourkov ",
+      "schoolUrl": "https://gym-kocourkov.school.example/bakaweb"
+    },
+    {
+      "id": "SYKCAAAAAC",
+      "name": "Mateřská škola Kocourkov - Dolní Konec",
+      "schoolUrl": "https://ms-dolni.school.example"
+    },
+    {
+      "id": "SYKCAAAAAD",
+      "name": "Základní umělecká škola Horní Konec",
+      "schoolUrl": "https://zus-horni.school.example/bakalari/"
+    },
+    {
+      "id": "SYKCAAAAAE",
+      "name": "Střední odborná škola Horní Konec",
+      "schoolUrl": "https://sos-horni.school.example/"
+    },
+    {
+      "id": "SYKCAAAAAF",
+      "name": "Základní škola Kocourkovice",
+      "schoolUrl": "https://zs-kocourkovice.school.example/"
+    }
+  ]
+}

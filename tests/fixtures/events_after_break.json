@@ -1,0 +1,108 @@
+{
+  "Events": [
+    {
+      "Id": "OLD1A",
+      "Title": "Sportovní den",
+      "Description": "",
+      "Times": [
+        {
+          "WholeDay": true,
+          "StartTime": "2026-06-24T00:00:00+02:00",
+          "EndTime": "2026-06-24T23:59:00+02:00",
+          "IntervalStartTime": null,
+          "IntervalEndTime": null,
+          "IntervalDate": "2026-06-24T00:00:00+02:00"
+        }
+      ],
+      "EventType": {
+        "Id": "SA",
+        "Abbrev": "škol",
+        "Name": "školní akce"
+      },
+      "Classes": [
+        {
+          "Id": "",
+          "Abbrev": " ()",
+          "Name": " ()"
+        },
+        {
+          "Id": "",
+          "Abbrev": " ()",
+          "Name": " ()"
+        }
+      ],
+      "ClassSets": [],
+      "Teachers": [
+        {
+          "Id": "UQX7K",
+          "Abbrev": "Ze",
+          "Name": "Zelený Bohumil"
+        }
+      ],
+      "TeacherSets": [],
+      "Rooms": [
+        {
+          "Id": "",
+          "Abbrev": "",
+          "Name": ""
+        }
+      ],
+      "RoomSets": [],
+      "Students": [],
+      "Note": null,
+      "DateChanged": "2026-06-01T10:00:00+02:00"
+    },
+    {
+      "Id": "OLD2B",
+      "Title": "Slavnostní zakončení školního roku",
+      "Description": "Předávání vysvědčení v aule.",
+      "Times": [
+        {
+          "WholeDay": false,
+          "StartTime": "2026-06-30T08:00:00+02:00",
+          "EndTime": "2026-06-30T09:30:00+02:00",
+          "IntervalStartTime": "2026-06-30T08:00:00+02:00",
+          "IntervalEndTime": "2026-06-30T09:30:00+02:00",
+          "IntervalDate": "2026-06-30T00:00:00+02:00"
+        }
+      ],
+      "EventType": {
+        "Id": "SA",
+        "Abbrev": "škol",
+        "Name": "školní akce"
+      },
+      "Classes": [
+        {
+          "Id": "",
+          "Abbrev": " ()",
+          "Name": " ()"
+        }
+      ],
+      "ClassSets": [],
+      "Teachers": [
+        {
+          "Id": "U  12",
+          "Abbrev": "Mo",
+          "Name": "Modrá Květoslava"
+        }
+      ],
+      "TeacherSets": [],
+      "Rooms": [
+        {
+          "Id": "",
+          "Abbrev": "",
+          "Name": ""
+        },
+        {
+          "Id": "AU",
+          "Abbrev": "AU",
+          "Name": "Aula"
+        }
+      ],
+      "RoomSets": [],
+      "Students": [],
+      "Note": null,
+      "DateChanged": "2026-06-20T12:00:00+02:00"
+    }
+  ]
+}

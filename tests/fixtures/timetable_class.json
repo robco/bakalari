@@ -1,0 +1,118 @@
+{
+  "Hours": [
+    {"Id": 2, "Caption": "0", "BeginTime": "7:10", "EndTime": "7:55", "Start": 430, "Duration": 45},
+    {"Id": 3, "Caption": "1", "BeginTime": "8:00", "EndTime": "8:45", "Start": 480, "Duration": 45},
+    {"Id": 4, "Caption": "2", "BeginTime": "8:55", "EndTime": "9:40", "Start": 535, "Duration": 45},
+    {"Id": 5, "Caption": "3", "BeginTime": "10:00", "EndTime": "10:45", "Start": 600, "Duration": 45}
+  ],
+  "Days": [
+    {
+      "Atoms": [
+        {
+          "HourId": 3, "Start": 480, "Duration": 45, "GroupIds": ["H2"], "SubjectId": "TV", "TeacherId": "UQX03",
+          "RoomId": "TL", "IsLastRoomLesson": false, "CycleIds": [], "Change": null, "HomeworkIds": [],
+          "Homeworks": [], "Theme": "Atletika", "WeekTheme": null, "Assistants": [], "Notice": "",
+          "LessonRelease": "NoChange", "PlannedClasification": null
+        },
+        {
+          "HourId": 3, "Start": 480, "Duration": 45, "GroupIds": ["H3"], "SubjectId": "TV", "TeacherId": "UQX04",
+          "RoomId": "TM", "IsLastRoomLesson": true, "CycleIds": [], "Change": null, "HomeworkIds": [],
+          "Homeworks": [], "Theme": "Gymnastika", "WeekTheme": null, "Assistants": [], "Notice": "",
+          "LessonRelease": "NoChange", "PlannedClasification": null
+        },
+        {
+          "HourId": 4, "Start": 535, "Duration": 45, "GroupIds": ["H1"], "SubjectId": " 7", "TeacherId": "UQX01",
+          "RoomId": "31", "IsLastRoomLesson": false, "CycleIds": ["1"], "Change": null,
+          "HomeworkIds": ["HWQ7K2M9PA"],
+          "Homeworks": [{"Id": "HWQ7K2M9PA", "Text": "Pracovní sešit str. 12, cvičení 3 a 4 "}],
+          "Theme": "Lineární rovnice", "WeekTheme": null, "Assistants": [], "Notice": "Přineste si kalkulačku.",
+          "LessonRelease": "NoChange", "PlannedClasification": null
+        },
+        {
+          "HourId": 5, "Start": 600, "Duration": 45, "GroupIds": ["H1"], "SubjectId": "12", "TeacherId": "UQX02",
+          "RoomId": "31", "IsLastRoomLesson": true, "CycleIds": ["1"],
+          "Change": {
+            "ChangeSubject": null, "Day": "2026-10-19T00:00:00+02:00", "Hours": "3. hod", "ChangeType": "Substitution",
+            "ChangeDisplayType": "OriginalTeacher", "Description": "Suplování: Veselý Karel", "Time": "10:00 - 10:45",
+            "TypeAbbrev": null, "TypeName": null, "AtomType": "Hour", "ChangeLessonInfo": null, "BeginTime": null,
+            "EndTime": null, "Start": 600, "Duration": 45
+          },
+          "HomeworkIds": [], "Homeworks": [], "Theme": null, "WeekTheme": null, "Assistants": [], "Notice": null,
+          "LessonRelease": "NoChange", "PlannedClasification": null
+        }
+      ],
+      "AssistanceAtoms": [], "DayOfWeek": 1, "Date": "2026-10-19T00:00:00+02:00", "DayDescription": "",
+      "DayType": "WorkDay"
+    },
+    {
+      "Atoms": [
+        {
+          "HourId": 2, "Start": 430, "Duration": 45, "GroupIds": ["H1"], "SubjectId": " 7", "TeacherId": "UQX01",
+          "RoomId": "31", "IsLastRoomLesson": false, "CycleIds": [],
+          "Change": {
+            "ChangeSubject": null, "Day": "2026-10-20T00:00:00+02:00", "Hours": "0. hod", "ChangeType": "Added",
+            "ChangeDisplayType": "OriginalTeacher", "Description": "Přidáno do rozvrhu: M, Horáková Eva, 031",
+            "Time": "7:10 - 7:55", "TypeAbbrev": null, "TypeName": null, "AtomType": "Hour", "ChangeLessonInfo": null,
+            "BeginTime": null, "EndTime": null, "Start": 430, "Duration": 45
+          },
+          "HomeworkIds": [], "Homeworks": [], "Theme": "", "WeekTheme": null, "Assistants": [], "Notice": "",
+          "LessonRelease": "NoChange", "PlannedClasification": null
+        },
+        {
+          "HourId": 3, "Start": 480, "Duration": 45, "GroupIds": ["H1"], "SubjectId": null, "TeacherId": null,
+          "RoomId": null, "IsLastRoomLesson": false, "CycleIds": [],
+          "Change": {
+            "ChangeSubject": null, "Day": "2026-10-20T00:00:00+02:00", "Hours": "1. - 2. hod", "ChangeType": "Canceled",
+            "ChangeDisplayType": "OriginalTeacher", "Description": "Exkurze: Technické muzeum", "Time": "8:00 - 9:40",
+            "TypeAbbrev": "Exk", "TypeName": "Exkurze", "AtomType": "Hour", "ChangeLessonInfo": null, "BeginTime": null,
+            "EndTime": null, "Start": 480, "Duration": 100
+          },
+          "HomeworkIds": [], "Homeworks": [], "Theme": null, "WeekTheme": null, "Assistants": [], "Notice": null,
+          "LessonRelease": "NoChange", "PlannedClasification": null
+        },
+        {
+          "HourId": 4, "Start": 535, "Duration": 45, "GroupIds": ["H1"], "SubjectId": null, "TeacherId": null,
+          "RoomId": null, "IsLastRoomLesson": false, "CycleIds": [],
+          "Change": {
+            "ChangeSubject": null, "Day": "2026-10-20T00:00:00+02:00", "Hours": "1. - 2. hod", "ChangeType": "Canceled",
+            "ChangeDisplayType": "OriginalTeacher", "Description": "Exkurze: Technické muzeum", "Time": "8:00 - 9:40",
+            "TypeAbbrev": "Exk", "TypeName": "Exkurze", "AtomType": "Hour", "ChangeLessonInfo": null, "BeginTime": null,
+            "EndTime": null, "Start": 480, "Duration": 100
+          },
+          "HomeworkIds": [], "Homeworks": [], "Theme": null, "WeekTheme": null, "Assistants": [], "Notice": null,
+          "LessonRelease": "NoChange", "PlannedClasification": null
+        }
+      ],
+      "AssistanceAtoms": [], "DayOfWeek": 2, "Date": "2026-10-20T00:00:00+02:00", "DayDescription": "",
+      "DayType": "WorkDay"
+    },
+    {
+      "Atoms": [], "AssistanceAtoms": [], "DayOfWeek": 3, "Date": "2026-10-21T00:00:00+02:00",
+      "DayDescription": "Ředitelské volno", "DayType": "DirectorDay"
+    }
+  ],
+  "Classes": [{"Id": "1B", "Abbrev": "1.B", "Name": "Prima B"}],
+  "Groups": [
+    {"ClassId": "1B", "Id": "H1", "Abbrev": "1.B", "Name": "Prima B"},
+    {"ClassId": "1B", "Id": "H2", "Abbrev": "1.B Chl", "Name": "Prima B chlapci"},
+    {"ClassId": "1B", "Id": "H3", "Abbrev": "1.B Dív", "Name": "Prima B dívky"}
+  ],
+  "Subjects": [
+    {"Id": " 7", "Abbrev": "M", "Name": "Matematika"},
+    {"Id": "12", "Abbrev": "F", "Name": "Fyzika"},
+    {"Id": "TV", "Abbrev": "Tv", "Name": "Tělesná výchova"}
+  ],
+  "Teachers": [
+    {"Id": "UQX01", "Abbrev": "Ho", "Name": "Mgr. Eva Horáková"},
+    {"Id": "UQX02", "Abbrev": "Ve", "Name": "Mgr. Karel Veselý"},
+    {"Id": "UQX03", "Abbrev": "Ma", "Name": "Bc. Tomáš Malý"},
+    {"Id": "UQX04", "Abbrev": "Bí", "Name": "Mgr. Lucie Bílá"}
+  ],
+  "Rooms": [
+    {"Id": "31", "Abbrev": "031", "Name": "Učebna matematiky"},
+    {"Id": "TL", "Abbrev": "TV1", "Name": "Tělocvična velká"},
+    {"Id": "TM", "Abbrev": "TV2", "Name": "Tělocvična malá"}
+  ],
+  "Cycles": [{"Id": "1", "Abbrev": "L", "Name": "Lichý"}],
+  "Students": []
+}

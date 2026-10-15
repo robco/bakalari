@@ -1,0 +1,24 @@
+{
+  "PersonConsents": [
+    {
+      "Id": 4711,
+      "PersonType": "parents",
+      "PersonId": "R7KX2",
+      "Created": "2025-09-02T08:12:31+02:00",
+      "Title": "Souhlas zákonného zástupce se zasíláním informací o činnosti a akcích školy na jeho e-mailovou adresu a telefon",
+      "PersonalData": "e-mailová adresa, telefon",
+      "UsagePurpose": "informování rodičů",
+      "Body": "Souhlasím, aby škola zpracovávala mou e-mailovou adresu a telefonní číslo za účelem zasílání informací o činnosti a akcích školy. Beru na vědomí, že souhlas je dobrovolný a mohu jej kdykoli odvolat; odvolání souhlasu nemá vliv na zákonnost zpracování před jeho odvoláním.",
+      "Validity": "5 let",
+      "ValidFrom": "2025-09-02T00:00:00+02:00",
+      "ValidTo": null,
+      "ValidYears": 5,
+      "State": "Agreed",
+      "Rights": {
+        "CanAgree": false,
+        "CanDisagree": true,
+        "CanRevokeRequest": true
+      }
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "WebModules": [
+    {
+      "IconId": "ankety",
+      "SubMenu": null,
+      "Url": "next/ankety.aspx",
+      "Name": "Ankety"
+    },
+    {
+      "IconId": "dokumenty",
+      "SubMenu": null,
+      "Url": "next/dokumentyPrehled.aspx",
+      "Name": "Dokumenty"
+    }
+  ],
+  "Dashboard": {
+    "IconId": null,
+    "SubMenu": null,
+    "Url": "next/dash.aspx",
+    "Name": null
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "From": "2026-10-12T00:00:00+02:00",
+  "To": "2026-10-26T00:00:00+02:00",
+  "Changes": [
+    {
+      "ChangeSubject": null, "Day": "2026-10-12T00:00:00+02:00", "Hours": "1. hod", "ChangeType": "Absence",
+      "ChangeDisplayType": "OriginalTeacher", "Description": "Třídnická hodina: Horáková Eva", "Time": "8:00 - 8:45",
+      "TypeAbbrev": "Tříd", "TypeName": "Třídnická hodina", "AtomType": "Hour", "ChangeLessonInfo": null,
+      "BeginTime": "8:00", "EndTime": "8:45", "Start": 0, "Duration": 0
+    },
+    {
+      "ChangeSubject": null, "Day": "2026-10-14T00:00:00+02:00", "Hours": "3. hod", "ChangeType": "Substitution",
+      "ChangeDisplayType": "SubstituteTeacher", "Description": "Suplování: Veselý Karel", "Time": "10:00 - 10:45",
+      "TypeAbbrev": null, "TypeName": null, "AtomType": "Hour",
+      "ChangeLessonInfo": {
+        "ClassAbbrev": "1.B", "GroupAbbrev": "1.B", "IsClassGroup": true, "SubjectAbbrev": "F", "RoomAbbrev": "031"
+      },
+      "BeginTime": "10:00", "EndTime": "10:45", "Start": 0, "Duration": 0
+    },
+    {
+      "ChangeSubject": null, "Day": "2026-10-14T00:00:00+02:00", "Hours": "4. hod", "ChangeType": "RoomChanged",
+      "ChangeDisplayType": "OriginalTeacher", "Description": "Změna učebny: 105", "Time": "10:55 - 11:40",
+      "TypeAbbrev": null, "TypeName": null, "AtomType": "Hour",
+      "ChangeLessonInfo": {
+        "ClassAbbrev": "1.B", "GroupAbbrev": "AjS2", "IsClassGroup": false, "SubjectAbbrev": "Aj", "RoomAbbrev": "105"
+      },
+      "BeginTime": "10:55", "EndTime": "11:40", "Start": 0, "Duration": 0
+    },
+    {
+      "ChangeSubject": null, "Day": "2026-10-16T00:00:00+02:00", "Hours": "1. - 3. hod", "ChangeType": "Canceled",
+      "ChangeDisplayType": "OriginalTeacher", "Description": "Exkurze", "Time": "8:00 - 10:45", "TypeAbbrev": "Exk",
+      "TypeName": "Exkurze", "AtomType": "Hour", "ChangeLessonInfo": null, "BeginTime": "8:00", "EndTime": "10:45",
+      "Start": 0, "Duration": 0
+    },
+    {
+      "ChangeSubject": null, "Day": "2026-10-20T00:00:00+02:00", "Hours": "6. hod", "ChangeType": "Removed",
+      "ChangeDisplayType": "OriginalTeacher", "Description": "", "Time": "12:45 - 13:30", "TypeAbbrev": null,
+      "TypeName": "", "AtomType": "Hour",
+      "ChangeLessonInfo": {
+        "ClassAbbrev": "1.B", "GroupAbbrev": "Dív", "IsClassGroup": false, "SubjectAbbrev": "Tv", "RoomAbbrev": "102"
+      },
+      "BeginTime": "12:45", "EndTime": "13:30", "Start": 0, "Duration": 0
+    },
+    {
+      "ChangeSubject": null, "Day": "2026-10-21T00:00:00+02:00", "Hours": "7. hod", "ChangeType": "Added",
+      "ChangeDisplayType": "SubstituteTeacher", "Description": "Přidáno do rozvrhu: M, Horáková Eva, 031",
+      "Time": "13:35 - 14:20", "TypeAbbrev": null, "TypeName": null, "AtomType": "Hour",
+      "ChangeLessonInfo": {
+        "ClassAbbrev": "1.B", "GroupAbbrev": "1.B", "IsClassGroup": true, "SubjectAbbrev": "M", "RoomAbbrev": "031"
+      },
+      "BeginTime": "13:35", "EndTime": "14:20", "Start": 0, "Duration": 0
+    }
+  ]
+}

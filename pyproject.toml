@@ -1,0 +1,114 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "bakalari-api"
+dynamic = ["version"]
+description = "Unofficial Python client, CLI and MCP server for the Bakaláři school information system REST API v3: timetable, marks, absence, homeworks, Komens messages and more, standard library only."
+readme = "README.md"
+requires-python = ">=3.9"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "Róbert Malovec" }]
+keywords = [
+    "bakalari",
+    "bakaláři",
+    "rozvrh",
+    "komens",
+    "znamky",
+    "známky",
+    "school",
+    "api",
+    "client",
+    "rest",
+    "timetable",
+    "cli",
+    "mcp",
+    "czech",
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Education",
+    "Natural Language :: Czech",
+    "Natural Language :: English",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Topic :: Education",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Typing :: Typed",
+]
+dependencies = []
+
+[project.urls]
+Homepage = "https://github.com/robco/bakalari-api"
+Documentation = "https://github.com/robco/bakalari-api#readme"
+Source = "https://github.com/robco/bakalari-api"
+Issues = "https://github.com/robco/bakalari-api/issues"
+Changelog = "https://github.com/robco/bakalari-api/blob/main/CHANGELOG.md"
+
+[project.scripts]
+bakalari = "bakalari.cli:main"
+bakalari-mcp = "bakalari.mcp:main"
+
+[tool.setuptools]
+packages = ["bakalari"]
+
+[tool.setuptools.package-data]
+bakalari = ["py.typed"]
+
+[tool.setuptools.dynamic]
+version = { attr = "bakalari._version.__version__" }
+
+[tool.ruff]
+target-version = "py39"
+line-length = 120
+
+[tool.ruff.lint]
+# pycodestyle, pyflakes, isort, bugbear and comprehensions. pyupgrade (UP) stays off on purpose: the code keeps the
+# typing.Optional / Dict / List style.
+select = ["E", "F", "W", "I", "B", "C4"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["bakalari"]
+
+[tool.mypy]
+python_version = "3.9"
+files = ["bakalari"]
+disallow_untyped_defs = true
+check_untyped_defs = true
+no_implicit_optional = true
+warn_unused_ignores = true
+warn_redundant_casts = true
+strict_equality = true
+warn_unreachable = true
+
+[[tool.mypy.overrides]]
+# CI type-checks the package only (``mypy bakalari``). Checked explicitly, the tests are relaxed: unannotated test
+# methods are allowed and their bodies, which pass wrong types on purpose, are not checked.
+module = ["tests", "tests.*"]
+disallow_untyped_defs = false
+check_untyped_defs = false
+
+[tool.coverage.run]
+source = ["bakalari"]
+branch = true
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = true
+exclude_lines = [
+    "pragma: no cover",
+    "if TYPE_CHECKING:",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+]

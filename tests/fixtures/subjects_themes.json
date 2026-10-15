@@ -1,0 +1,17 @@
+{
+  "Subject": {"Id": " 2", "Abbrev": "Čj", "Name": "Český jazyk a literatura"},
+  "Themes": [
+    {
+      "Date": "2026-09-01T00:00:00+02:00", "Theme": "Opakování učiva 6. ročníku", "Note": "", "HourCaption": "1. hod",
+      "Start": 480, "Duration": 45, "LessonLabel": "1"
+    },
+    {
+      "Date": "2026-09-03T00:00:00+02:00", "Theme": "Slovní druhy", "Note": "", "HourCaption": "3. hod", "Start": 600,
+      "Duration": 45, "LessonLabel": "2"
+    },
+    {
+      "Date": "2026-10-13T00:00:00+02:00", "Theme": "Diktát: vyjmenovaná slova po B", "Note": "",
+      "HourCaption": "2. hod", "Start": 535, "Duration": 45, "LessonLabel": "12"
+    }
+  ]
+}
