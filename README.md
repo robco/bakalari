@@ -154,7 +154,7 @@ tests/                Optional MCP SDK and read-only live integration tests
 docs/                 User guides and API references
 examples/             Runnable scripts
 .github/workflows/    Python Package CI and Python Package Publish
-.github/scripts/      CI report summaries and distribution/release checks
+.github/scripts/      CI report summaries and distribution checks
 ```
 
 The package stays at the repository root. Each Bakaláři area has its own module; `client.py` combines the
@@ -175,7 +175,8 @@ Default tests run offline, even when account credentials are present. CI checks 
 coverage (at least 90%), lint, types, MCP interoperability and installable distributions, and uploads reports.
 See [CONTRIBUTING.md](https://github.com/robco/bakalari/blob/main/CONTRIBUTING.md) for integration tests,
 code conventions and the release process. Publishing a GitHub release starts the **Python Package Publish**
-workflow, which validates the tag, runs CI and publishes to PyPI using trusted publishing.
+workflow, which builds the package and publishes to PyPI using trusted publishing. Tests and distribution
+checks run separately in **Python Package CI**. The publish workflow can also be run manually from a branch or tag.
 
 ## Support the project
 

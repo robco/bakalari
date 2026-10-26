@@ -137,7 +137,8 @@ library to check compatibility.
 ## Release process
 
 Versions follow [Semantic Versioning](https://semver.org/). The version is set in one place,
-`bakalari/_version.py`.
+`bakalari/_version.py`. Setuptools reads that value for the distribution, and the library, CLI and MCP server
+use it at runtime. The filename is a project convention, not a GitHub Actions or PyPI requirement
 
 1. Set `__version__ = "X.Y.Z"` in `bakalari/_version.py`.
 2. In `CHANGELOG.md`, rename "Unreleased" to `## [X.Y.Z] - YYYY-MM-DD`, add a new empty "Unreleased"
@@ -152,34 +153,32 @@ Versions follow [Semantic Versioning](https://semver.org/). The version is set i
 
 5. On GitHub, publish a release for that tag and use the changelog section as its release notes. The
    [Python Package Publish workflow](.github/workflows/python-publish.yml) starts on `release: published`.
-   It validates that the tag matches the package version and that the changelog contains release notes,
-   runs the reusable CI workflow, then publishes its validated wheel and source distribution to PyPI.
+   It builds the wheel and source distribution, uploads them as `release-dists`, then publishes them to PyPI.
    A tag push alone does not publish a package.
 
-The release check requires a valid dated section with non-empty notes and no pending entries under
-"Unreleased". CI collects both test directories with live tests explicitly disabled, so broken integration-test
-imports cannot be hidden by the default offline discovery path.
+Publishing does not rerun CI or enforce tag naming or changelog formatting. The package version comes from
+`bakalari/_version.py` in the selected checkout, regardless of the branch, tag or release name.
+CI runs tests, lint, type and distribution checks separately; its `python-package` artifact and test and
+coverage reports are retained for 30 days. The publish job uses the `pypi` environment and OpenID Connect
+trusted publishing to upload the distributions from its own build job.
 
-The workflows follow the same test/build and release/publish split as `robotframework-aivision`.
-Distribution files are available in the workflow's `python-package` artifact; test and coverage reports are
-retained for 30 days. The publish job uses the `pypi` environment and OpenID Connect trusted publishing.
-It only downloads and publishes the artifacts built by CI.
-
-For a manual retry, select the release tag explicitly:
+To publish manually, select a branch or tag in GitHub's **Run workflow** dialog, or use:
 
 ```bash
+gh workflow run python-publish.yml --ref main
+# Or publish a specific tag:
 gh workflow run python-publish.yml --ref vX.Y.Z
 ```
 
-A manual run also publishes to **PyPI**. Runs from a branch or a mismatched tag fail validation. PyPI accepts
-each distribution filename only once; check a partially completed upload before retrying. For a local build
+A manual run also publishes to **PyPI**. PyPI accepts each distribution filename only once; bump the package
+version before a new release and check a partially completed upload before retrying. For a local build
 check without publishing, use `python -m build`, `python -m twine check --strict dist/*` and
 `python .github/scripts/check_distribution.py`.
 
 ### First-time setup and migration
 
-1. On GitHub, create the `pypi` environment (Settings, Environments). Restrict deployments to tags matching `v*`
-   and configure required reviewers if desired.
+1. On GitHub, create the `pypi` environment (Settings, Environments). Allow the branches and tags you intend
+   to publish from; remove any tag-only restriction if you want manual publishing from `main`.
 2. Configure a [PyPI trusted publisher](https://docs.pypi.org/trusted-publishers/adding-a-publisher/):
    - PyPI project: `bakalari`
    - Owner: `robco`
