@@ -10,8 +10,8 @@ from pathlib import Path
 SDK_AVAILABLE = importlib.util.find_spec("mcp") is not None and importlib.util.find_spec("jsonschema") is not None
 SERVER = """
 from bakalari.cli import main
-from tests.support import logged_in_client, json_response, load_fixture, empty_response
-from tests.test_cli import clean_environment
+from unittests.support import logged_in_client, json_response, load_fixture, empty_response
+from unittests.test_cli import clean_environment
 client, transport = logged_in_client(json_response(200, load_fixture('marks.json')), empty_response())
 with clean_environment():
     raise SystemExit(main(['mcp', '--allow-writes'], client_factory=lambda args, needs_login: client))

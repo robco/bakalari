@@ -1,0 +1,42 @@
+name: Python Package Publish
+
+on:
+  release:
+    types: [published]
+  # For a manual retry, select the release tag with --ref vX.Y.Z.
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: python-publish-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  release-build:
+    name: Validate, test and build release distributions
+    uses: ./.github/workflows/python-package.yml
+    with:
+      check-release: true
+
+  pypi-publish:
+    name: Publish release distributions to PyPI
+    needs: release-build
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    environment:
+      name: pypi
+      url: https://pypi.org/project/bakalari/
+    permissions:
+      id-token: write
+    steps:
+      - name: Retrieve release distributions
+        uses: actions/download-artifact@v8
+        with:
+          name: python-package
+          path: dist/
+      - name: Publish release distributions to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          packages-dir: dist/

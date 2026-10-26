@@ -1,6 +1,7 @@
 # Source distribution contents in addition to what setuptools adds by itself
 # (the bakalari package with py.typed, README.md, LICENSE and pyproject.toml).
 include CHANGELOG.md CONTRIBUTING.md SECURITY.md CODE_OF_CONDUCT.md
+graft unittests
 graft tests
 graft docs
 graft examples
@@ -14,4 +15,5 @@ prune htmlcov
 prune .mypy_cache
 prune .ruff_cache
 prune .pytest_cache
+prune reports
 global-exclude *.py[cod] .DS_Store .env *.session.json

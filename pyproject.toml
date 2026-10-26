@@ -49,12 +49,27 @@ classifiers = [
 ]
 dependencies = []
 
+[project.optional-dependencies]
+dev = [
+    "build",
+    "twine",
+    "ruff",
+    "mypy<2",
+    "pytest>=8,<9",
+    "pytest-cov>=5,<7",
+    "pytest-html>=4,<5",
+]
+# The reference MCP client is used only for integration tests (Python 3.10+).
+mcp-test = ["mcp>=1.26,<2; python_version >= '3.10'", "jsonschema; python_version >= '3.10'"]
+
 [project.urls]
 Homepage = "https://github.com/robco/bakalari"
 Documentation = "https://github.com/robco/bakalari#readme"
 Source = "https://github.com/robco/bakalari"
 Issues = "https://github.com/robco/bakalari/issues"
 Changelog = "https://github.com/robco/bakalari/blob/main/CHANGELOG.md"
+"Buy Me a Coffee" = "https://www.buymeacoffee.com/robco"
+Revolut = "https://revolut.me/robco"
 
 [project.scripts]
 bakalari = "bakalari.cli:main"
@@ -82,7 +97,7 @@ select = ["E", "F", "W", "I", "B", "C4"]
 known-first-party = ["bakalari"]
 
 [tool.mypy]
-python_version = "3.12"
+python_version = "3.9"
 files = ["bakalari"]
 disallow_untyped_defs = true
 check_untyped_defs = true
@@ -95,9 +110,13 @@ warn_unreachable = true
 [[tool.mypy.overrides]]
 # CI type-checks the package only (``mypy bakalari``). Checked explicitly, the tests are relaxed: unannotated test
 # methods are allowed and their bodies, which pass wrong types on purpose, are not checked.
-module = ["tests", "tests.*"]
+module = ["unittests", "unittests.*", "tests", "tests.*"]
 disallow_untyped_defs = false
 check_untyped_defs = false
+
+[tool.pytest.ini_options]
+testpaths = ["unittests"]
+addopts = "-ra --strict-markers"
 
 [tool.coverage.run]
 source = ["bakalari"]

@@ -20,7 +20,7 @@ Please include:
 
 - the affected version (`bakalari --version`) and your Python version,
 - what the problem is and what an attacker could do with it,
-- steps to reproduce, preferably with synthetic data or the offline test helpers in `tests/support.py`.
+- steps to reproduce, preferably with synthetic data or the offline test helpers in `unittests/support.py`.
 
 Never send real passwords, access or refresh tokens, session files or personal data of students, not even in a
 private report. If reproducing the problem needs a real installation, describe the setup instead.

@@ -14,8 +14,7 @@ git clone https://github.com/robco/bakalari.git
 cd bakalari
 python3 -m venv .venv
 source .venv/bin/activate              # Windows: .venv\Scripts\activate
-python -m pip install -e .
-python -m pip install ruff "mypy<2" build twine coverage
+python -m pip install -e ".[dev]"
 ```
 
 mypy stays below version 2 because mypy 2 can no longer check code against Python 3.9 (`python_version` in
@@ -26,13 +25,28 @@ mypy stays below version 2 because mypy 2 can no longer check code against Pytho
 ### Offline tests
 
 The offline suite needs no network and no account. It drives the client through a scripted transport
-(`FakeTransport` in `tests/support.py`) and uses the synthetic fixtures in `tests/fixtures/`.
+(`FakeTransport` in `unittests/support.py`) and uses the synthetic fixtures in `unittests/fixtures/`.
 
 ```bash
-BAKALARI_SKIP_LIVE=1 python -m unittest discover -v    # the whole offline suite
-python -m unittest tests.test_marks -v                  # one test module
-coverage run -m unittest discover && coverage report    # CI requires at least 90 %
+python -m pytest                                      # the whole offline suite
+python -m unittest unittests.test_marks -v             # one test module, no test dependencies
+python -m pytest --cov=bakalari --cov-fail-under=90    # CI coverage threshold
 ```
+
+The default pytest discovery path is `unittests/`, so it never selects live tests even when credentials are
+present. Without third-party test tools, run `python -m unittest discover -s unittests -t . -v`.
+
+### MCP SDK interoperability
+
+On Python 3.10 or newer, install the optional reference client and run the offline interoperability test:
+
+```bash
+python -m pip install -e ".[dev,mcp-test]"
+python -m pytest tests/test_mcp_sdk.py
+```
+
+CI runs this test alongside the unit tests under coverage. It uses synthetic school responses and requires no
+account. The installed library and MCP server still have no runtime dependencies.
 
 ### Live tests (read-only)
 
@@ -90,8 +104,8 @@ the `typing` style (`Optional`, `Dict`, `List`, `Tuple`, `Mapping`). Don't use `
    path (``GET /api/3/marks``) and notable server behaviour. Comments only explain non-obvious server quirks.
 7. **Errors** are never swallowed. Endpoints that need a module or a right let `BakalariPermissionError`
    propagate. Tokens and passwords never appear in messages, log records or `repr()`.
-8. **Tests** are offline and deterministic (`unittest`), one test module per area module (`tests/test_marks.py`),
-   with synthetic fixtures `tests/fixtures/<area>*.json`. They cover model parsing (padded ids, nulls, missing
+8. **Tests** are offline and deterministic (`unittest`), one test module per area module (`unittests/test_marks.py`),
+   with synthetic fixtures `unittests/fixtures/<area>*.json`. They cover model parsing (padded ids, nulls, missing
    fields), `to_dict()` JSON round trips, the HTTP method, path (including percent-encoded ids), query and body of
    every endpoint method, status handling, contract errors and lenient parsing.
 
@@ -116,7 +130,9 @@ twine check --strict dist/*
 Keep a pull request focused on one change, add tests, update the documentation and add an entry to
 `CHANGELOG.md` under "Unreleased". CI runs the offline tests on Python 3.9 to 3.14 on Linux and on Python 3.13 on
 macOS and Windows, checks coverage (at least 90 %), runs ruff and mypy, and builds the package, checking the wheel
-by installing it into a fresh virtual environment.
+by installing it into a fresh virtual environment. Python 3.12 runs the combined test/build job, which also
+checks the MCP SDK and uploads JUnit, HTML and coverage reports. The remaining matrix jobs use only the standard
+library to check compatibility.
 
 ## Release process
 
@@ -124,38 +140,55 @@ Versions follow [Semantic Versioning](https://semver.org/). The version is set i
 `bakalari/_version.py`.
 
 1. Set `__version__ = "X.Y.Z"` in `bakalari/_version.py`.
-2. In `CHANGELOG.md`, rename the "Unreleased" section to `## [X.Y.Z] - YYYY-MM-DD`, add a new empty "Unreleased"
+2. In `CHANGELOG.md`, rename "Unreleased" to `## [X.Y.Z] - YYYY-MM-DD`, add a new empty "Unreleased"
    section above it, and update the link references at the bottom.
-3. Commit (`git commit -am "Release X.Y.Z"`), push to `main`, and wait for CI to pass.
-4. Tag the commit and push the tag:
+3. Commit the changes, push to `main`, and wait for **Python Package CI** to pass.
+4. Create and push the release tag:
 
    ```bash
    git tag -a vX.Y.Z -m "bakalari X.Y.Z"
    git push origin vX.Y.Z
    ```
 
-5. The [Release workflow](.github/workflows/release.yml) checks that the tag is `v` plus the version in
-   `bakalari/_version.py` and that `CHANGELOG.md` has a section for it. It then runs CI, publishes the sdist and
-   the wheel to PyPI with trusted publishing (environment `pypi`), and creates the GitHub Release with the changelog
-   section as its notes and the distribution files attached.
+5. On GitHub, publish a release for that tag and use the changelog section as its release notes. The
+   [Python Package Publish workflow](.github/workflows/python-publish.yml) starts on `release: published`.
+   It validates that the tag matches the package version and that the changelog contains release notes,
+   runs the reusable CI workflow, then publishes its validated wheel and source distribution to PyPI.
+   A tag push alone does not publish a package.
 
-To rehearse a release, start the Release workflow by hand (Actions, Release, Run workflow). It runs the same
-checks and publishes to TestPyPI (environment `testpypi`). TestPyPI accepts each version only once.
+The workflows follow the same test/build and release/publish split as `robotframework-aivision`.
+Distribution files are available in the workflow's `python-package` artifact; test and coverage reports are
+retained for 30 days. The publish job uses the `pypi` environment and OpenID Connect trusted publishing.
+It only downloads and publishes the artifacts built by CI.
 
-### First-time setup
+For a manual retry, select the release tag explicitly:
 
-1. On GitHub, under Settings, Environments, create the environments `pypi` and `testpypi`. For `pypi`, protection
-   rules are recommended: required reviewers, and deployments only from tags matching `v*`.
-2. On PyPI, open [Publishing](https://pypi.org/manage/account/publishing/) in your account settings and add a
-   pending GitHub Actions publisher:
-   - PyPI Project Name: `bakalari`
+```bash
+gh workflow run python-publish.yml --ref vX.Y.Z
+```
+
+A manual run also publishes to **PyPI**. Runs from a branch or a mismatched tag fail validation. PyPI accepts
+each distribution filename only once; check a partially completed upload before retrying. For a local build
+check without publishing, use `python -m build`, `python -m twine check --strict dist/*` and
+`python .github/scripts/check_distribution.py`.
+
+### First-time setup and migration
+
+1. On GitHub, create the `pypi` environment (Settings, Environments). Restrict deployments to tags matching `v*`
+   and configure required reviewers if desired.
+2. Configure a [PyPI trusted publisher](https://docs.pypi.org/trusted-publishers/adding-a-publisher/):
+   - PyPI project: `bakalari`
    - Owner: `robco`
-   - Repository name: `bakalari`
-   - Workflow name: `release.yml`
-   - Environment name: `pypi`
+   - Repository: `bakalari`
+   - Workflow filename: `python-publish.yml`
+   - Environment: `pypi`
 
-   The first release creates the project on PyPI. No API token is needed.
-3. For the rehearsal, add the same publisher on [TestPyPI](https://test.pypi.org/manage/account/publishing/) with
-   the environment name `testpypi`.
-4. Enable private vulnerability reporting (Settings, Advanced Security, Private vulnerability reporting), which
+   If the project does not exist, add a pending publisher in the account's Publishing settings. No API token
+   is needed. If migrating from the previous workflow, replace the publisher for `release.yml` with the one
+   above; PyPI matches the workflow filename exactly.
+3. If branch protection requires the old CI job names, update those required checks to the checks reported by
+   **Python Package CI**, including the compatibility matrix and **Test & Build (Python 3.12)**.
+4. The old tag-push publisher and manual TestPyPI rehearsal are replaced by this release-based workflow.
+   The `testpypi` environment and its publisher are no longer used.
+5. Enable private vulnerability reporting (Settings, Advanced Security, Private vulnerability reporting), which
    SECURITY.md and the issue forms link to.

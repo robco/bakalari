@@ -24,6 +24,7 @@ dmypy.json
 .pytest_cache/
 .tox/
 .nox/
+reports/
 
 # Editors and OS
 .idea/

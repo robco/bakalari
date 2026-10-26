@@ -4,8 +4,8 @@
 
 ## Checklist
 
-- [ ] Tests added or updated (offline and deterministic, in `tests/test_<area>.py`)
-- [ ] The offline suite passes on Python 3.9 and on the latest Python: `BAKALARI_SKIP_LIVE=1 python -m unittest discover`
+- [ ] Tests added or updated (offline and deterministic, in `unittests/test_<area>.py`)
+- [ ] The offline suite passes on Python 3.9 and on the latest Python: `python -m unittest discover -s unittests -t .`
 - [ ] Fixtures contain synthetic data only: no real names, ids, marks, messages, schools or tokens
 - [ ] `ruff check .` and `mypy bakalari` pass
 - [ ] Documentation updated (README, docs, docstrings)

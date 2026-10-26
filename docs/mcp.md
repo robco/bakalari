@@ -774,13 +774,13 @@ returned homework, message and profile data out of public application logs.
 ### Run the offline implementation tests
 
 The standard offline suite includes protocol, malformed-input, privacy, write-gating, endpoint-dispatch,
-attachment, session-renewal and subprocess tests. An additional CI job checks discovery, schemas, tool calls,
+attachment, session-renewal and subprocess tests. The CI test/build job also checks discovery, schemas, tool calls,
 errors and shutdown through the official MCP Python client with synthetic school responses:
 
 ```bash
 # In a separate development/test virtual environment (Python 3.10+ for the SDK):
 python -m pip install 'mcp>=1.26,<2' jsonschema
-python -m unittest tests.test_mcp tests.test_mcp_sdk -v
+python -m unittest unittests.test_mcp tests.test_mcp_sdk -v
 ```
 
 The SDK is a test dependency only; ordinary package installation remains dependency-free.

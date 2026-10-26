@@ -19,7 +19,7 @@ indent_size = 2
 # Two trailing spaces are a line break in Markdown.
 trim_trailing_whitespace = false
 
-[tests/fixtures/**]
+[unittests/fixtures/**]
 # Fixtures mirror server responses; keep their whitespace exactly as written.
 trim_trailing_whitespace = false
 insert_final_newline = unset

@@ -894,7 +894,7 @@ logging.getLogger("bakalari").setLevel(logging.DEBUG)    # bakalari.client and b
 ## Testing your code
 
 A transport that returns canned answers lets you test code that uses the client without a network or an account
-(the package's own tests do this with the helpers in `tests/support.py` of the source distribution):
+(the package's own tests do this with the helpers in `unittests/support.py` of the source distribution):
 
 ```python
 import json
