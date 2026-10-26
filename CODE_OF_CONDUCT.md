@@ -25,7 +25,7 @@ Not acceptable:
 ## Reporting and enforcement
 
 Report unacceptable behaviour privately to the project maintainer, Róbert Malovec, through the repository's
-private reporting form ([Report a vulnerability](https://github.com/robco/bakalari-api/security/advisories/new))
+private reporting form ([Report a vulnerability](https://github.com/robco/bakalari/security/advisories/new))
 with a title that starts with "Code of conduct". Every report is reviewed promptly and fairly, and the reporter's
 privacy is respected.
 

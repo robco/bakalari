@@ -1586,7 +1586,7 @@ def build_parser() -> argparse.ArgumentParser:
     """The argument parser of the command line; ``bakalari --help`` lists its commands by area."""
     parser = argparse.ArgumentParser(prog="bakalari", formatter_class=argparse.RawDescriptionHelpFormatter,
                                      epilog=_EPILOG)
-    parser.add_argument("--version", action="version", version=f"bakalari-api {__version__}",
+    parser.add_argument("--version", action="version", version=f"bakalari {__version__}",
                         help="print the package version and exit")
     parser.add_argument("--base-url", metavar="URL",
                         help=f"the school's Bakaláři address (default: ${BASE_URL_ENV}, else the session file's)")

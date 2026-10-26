@@ -1,7 +1,7 @@
 # Examples
 
 Small, runnable scripts that use the `bakalari` library. Each one explains itself in its docstring and with
-`--help`, needs only the standard library and the installed package (`python -m pip install bakalari-api`), and
+`--help`, needs only the standard library and the installed package (`python -m pip install bakalari`), and
 reports a module the school has not enabled (HTTP 403) instead of failing with a traceback.
 
 The scripts that log in read the school's address and the login from the environment, through

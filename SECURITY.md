@@ -12,7 +12,7 @@ Security fixes are released as new 1.x versions. Upgrade to the latest release t
 ## Reporting a vulnerability
 
 Report vulnerabilities privately through GitHub's private vulnerability reporting:
-[Report a vulnerability](https://github.com/robco/bakalari-api/security/advisories/new) (the repository's
+[Report a vulnerability](https://github.com/robco/bakalari/security/advisories/new) (the repository's
 Security tab, then "Report a vulnerability"). Don't open a public issue, pull request or discussion about a
 security problem.
 
@@ -49,5 +49,5 @@ Out of scope:
 
 ## Disclaimer
 
-bakalari-api is an unofficial project. It is not affiliated with, endorsed by or supported by BAKALÁŘI software
+bakalari is an unofficial project. It is not affiliated with, endorsed by or supported by BAKALÁŘI software
 s.r.o., the vendor of the Bakaláři school information system.

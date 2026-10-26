@@ -131,7 +131,7 @@ class MunicipalitiesTest(unittest.TestCase):
         call = transport.calls[0]
         self.assertEqual((call.method, call.url, call.body), ("GET", DIRECTORY_URL + "/municipality", None))
         self.assertEqual(call.headers["Accept"], "application/json")
-        self.assertTrue(call.headers["User-Agent"].startswith("bakalari-api-python/"))
+        self.assertTrue(call.headers["User-Agent"].startswith("bakalari-python/"))
         self.assertNotIn("Authorization", call.headers)
 
     def test_contract(self):

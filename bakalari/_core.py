@@ -47,7 +47,7 @@ BASE_URL_ENV = "BAKALARI_URL"
 METHODS = ("GET", "POST", "PUT", "DELETE", "PATCH")
 RETRY_METHODS = ("GET", "PUT", "DELETE")
 RETRY_STATUSES = (502, 503, 504)
-USER_AGENT = f"bakalari-api-python/{__version__}"
+USER_AGENT = f"bakalari-python/{__version__}"
 # Path segments that are web pages rather than the installation root, so a URL copied from the browser works.
 _PAGE_SEGMENTS = ("login", "next", "api", "timetable", "dashboard", "logout")
 

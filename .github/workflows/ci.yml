@@ -187,10 +187,10 @@ jobs:
           cd "$RUNNER_TEMP"  # away from the source tree, so only the installed package can be imported
           output="$("$RUNNER_TEMP/venv/bin/bakalari" --version)"
           echo "$output"
-          case "$output" in
-            *"$version"*) ;;
-            *) echo "::error::'bakalari --version' printed '$output', expected the version $version"; exit 1 ;;
-          esac
+          if [ "$output" != "bakalari $version" ]; then
+            echo "::error::'bakalari --version' printed '$output', expected 'bakalari $version'"
+            exit 1
+          fi
           "$RUNNER_TEMP/venv/bin/python" -m bakalari --help > /dev/null
           "$RUNNER_TEMP/venv/bin/bakalari-mcp" --help > /dev/null
           "$RUNNER_TEMP/venv/bin/python" -m bakalari mcp < /dev/null

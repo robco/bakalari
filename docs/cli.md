@@ -1,6 +1,6 @@
 # Command line reference
 
-`bakalari` is the command line client of `bakalari-api`. It is installed with the package as a console script, and
+`bakalari` is the package's command line client. It is installed with the package as a console script, and
 `python -m bakalari` runs the same program. This page describes the global options, the environment variables, the
 session file, the output and the exit status, and then every command with its options, an example and a sample of
 its output. The [README](../README.md) gives a shorter overview, the [library guide](library.md) describes the
@@ -136,7 +136,7 @@ ema marks --new
 | `--timeout SECONDS` | 30 | The timeout of each request, a positive number. It limits each blocking step (connecting, each read), not the whole command. |
 | `--retries N` | 2 | Retries of `GET`, `PUT` and `DELETE` requests after a connection error or HTTP 502, 503 or 504, waiting 0.5 s, then 1 s, 2 s, ... `0` turns them off. `POST` requests, the login included, are never repeated. |
 | `-v`, `--verbose` | | Log every request (method, path, status; never tokens or passwords) to standard error, with the logins and renewals. |
-| `--version` | | Print the package version (`bakalari-api 1.0.0`) and exit. |
+| `--version` | | Print the package version (`bakalari 1.0.0`) and exit. |
 | `-h`, `--help` | | Show the help and exit. |
 
 `-v` writes the log records of the package to standard error; the query strings and bodies of the requests, the

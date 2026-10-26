@@ -105,7 +105,7 @@ def main(argv: Optional[List[str]] = None) -> int:
     )
     host = urllib.parse.urlsplit(client.base_url).hostname or "bakalari"
     stamp = dt.datetime.now(dt.timezone.utc).strftime("%Y%m%dT%H%M%SZ")
-    lines = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//bakalari-api//homeworks example//EN", "CALSCALE:GREGORIAN"]
+    lines = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//bakalari//homeworks example//EN", "CALSCALE:GREGORIAN"]
     for day, homework in due:
         lines.extend(event_lines(homework, day, host, stamp))
     lines.append("END:VCALENDAR")

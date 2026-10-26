@@ -173,7 +173,7 @@ class MCPServer:
             self._version = requested if requested in SUPPORTED_VERSIONS else PROTOCOL_VERSION
             self._state = "initializing"
             return {"protocolVersion": self._version, "capabilities": {"tools": {"listChanged": False}},
-                    "serverInfo": {"name": "bakalari-api", "version": __version__}, "instructions": _INSTRUCTIONS}
+                    "serverInfo": {"name": "bakalari", "version": __version__}, "instructions": _INSTRUCTIONS}
         if method == "ping":
             return {}
         if method not in ("tools/list", "tools/call"):

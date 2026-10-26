@@ -326,7 +326,7 @@ class RequestTest(unittest.TestCase):
         headers = transport.calls[0].headers
         self.assertEqual(headers["Accept"], "text/html")
         self.assertEqual(headers["Accept-Language"], "cs")
-        self.assertTrue(headers["User-Agent"].startswith("bakalari-api-python/"))
+        self.assertTrue(headers["User-Agent"].startswith("bakalari-python/"))
 
     def test_connection_failure_raises_connection_error_without_the_query(self):
         send = urllib_transport()

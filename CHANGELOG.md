@@ -19,6 +19,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   README, CLI and library guides link to the full usage guide.
 - Offline MCP protocol/integration tests and a CI interoperability check using the official MCP Python client.
 
+### Changed
+
+- Rename the repository and Python distribution from `bakalari-api` to `bakalari`. Install with
+  `python -m pip install bakalari`; the Python import and the `bakalari` and `bakalari-mcp` commands stay the same.
+- Use `bakalari` in CLI version output, MCP server identity, release metadata, documentation and calendar exports,
+  and `bakalari-python/<version>` in the default HTTP User-Agent.
+
 ### Security
 
 - Block redirects to another origin for requests carrying an Authorization header or body, including login
@@ -210,5 +217,5 @@ Compared to the unreleased 1.0 code base, which covered the timetable, the user 
 - `class_timetable()` was verified for the account's own class only; the timetable of another class may be refused.
 - Two commands that renew the same session file at the same moment can race, because the file is not locked.
 
-[Unreleased]: https://github.com/robco/bakalari-api/compare/v1.0.0...HEAD
-[1.0.0]: https://github.com/robco/bakalari-api/releases/tag/v1.0.0
+[Unreleased]: https://github.com/robco/bakalari/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/robco/bakalari/releases/tag/v1.0.0

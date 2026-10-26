@@ -31,7 +31,7 @@ class SDKIntegrationTest(unittest.IsolatedAsyncioTestCase):
         async with stdio_client(parameters) as (reader, writer):
             async with ClientSession(reader, writer) as session:
                 result = await session.initialize()
-                self.assertEqual(result.serverInfo.name, "bakalari-api")
+                self.assertEqual(result.serverInfo.name, "bakalari")
                 listing = await session.list_tools()
                 tools = {tool.name: tool for tool in listing.tools}
                 self.assertIn("marks", tools)

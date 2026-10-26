@@ -10,12 +10,12 @@ body:
         > or personal data of students** (names, marks, absences, messages, ids). Replace every such value with
         > `<redacted>` or an invented one before you submit.
 
-        Security problems belong in a [private report](https://github.com/robco/bakalari-api/security/advisories/new), not in an issue.
+        Security problems belong in a [private report](https://github.com/robco/bakalari/security/advisories/new), not in an issue.
   - type: input
     id: package-version
     attributes:
       label: Package version
-      description: The output of `bakalari --version` or `python -m pip show bakalari-api`.
+      description: The output of `bakalari --version` or `python -m pip show bakalari`.
       placeholder: "1.0.0"
     validations:
       required: true

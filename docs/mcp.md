@@ -23,7 +23,7 @@ standard library are sufficient; there is no MCP runtime dependency to install.
 
 Use Python 3.9 or newer. From the root of a source checkout containing MCP mode, install into a virtual
 environment. These commands install your checkout rather than assuming a previously published release includes
-the feature. If installing a release instead, use `python -m pip install bakalari-api` and verify its MCP help.
+the feature. If installing a release instead, use `python -m pip install bakalari` and verify its MCP help.
 
 ### macOS and Linux
 
@@ -67,7 +67,7 @@ logging in. Use the returned Bakaláři installation URL, which can include a pa
 
 ## Start the server
 
-Install `bakalari-api` in a virtual environment as described in the [README](../README.md#installation).
+Install `bakalari` in a virtual environment as described in the [README](../README.md#installation).
 Configure `BAKALARI_URL`, `BAKALARI_USERNAME` and `BAKALARI_PASSWORD` in the environment of the MCP server process,
 or create a saved session first:
 
@@ -163,7 +163,7 @@ escaped; these are literal paths, not PowerShell expressions:
 {
   "mcpServers": {
     "bakalari": {
-      "command": "C:\\Users\\YourName\\bakalari-api\\.venv\\Scripts\\python.exe",
+      "command": "C:\\Users\\YourName\\bakalari\\.venv\\Scripts\\python.exe",
       "args": [
         "-m", "bakalari", "--session-file",
         "C:\\Users\\YourName\\AppData\\Local\\bakalari\\student.session.json", "mcp"
@@ -645,7 +645,7 @@ process = subprocess.run(
 )
 responses = [json.loads(line) for line in process.stdout.splitlines()]
 assert len(responses) == 2  # The initialized notification has no reply.
-assert responses[0]["result"]["serverInfo"]["name"] == "bakalari-api"
+assert responses[0]["result"]["serverInfo"]["name"] == "bakalari"
 tools = responses[1]["result"]["tools"]
 assert len(tools) == 50
 assert all(tool["annotations"]["readOnlyHint"] for tool in tools)
@@ -732,7 +732,7 @@ a custom `SchoolDirectory`. The CLI handles session files; direct embedding leav
 
 To integrate through the protocol rather than calling `BakalariClient` directly, install the optional official
 client SDK in a separate Python 3.10+ client environment with `python -m pip install 'mcp>=1.26,<2'`. The server
-itself still needs no SDK. This example uses the same interpreter for client and server, so install `bakalari-api` (or this
+itself still needs no SDK. This example uses the same interpreter for client and server, so install `bakalari` (or this
 checkout) there as well. Replace the absolute session path before running it; unlike the offline check, this
 example fetches private school data:
 

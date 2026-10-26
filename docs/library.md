@@ -1,6 +1,6 @@
 # Library guide
 
-This guide describes the Python API of `bakalari-api`: the client and its configuration, the conventions every
+This guide describes the Python API of `bakalari`: the client and its configuration, the conventions every
 model follows, every `BakalariClient` method grouped by area with its parameters and the model it returns, and the
 plumbing underneath (errors, threading, timeouts, retries, transports and logging). The
 [README](../README.md) gives a shorter tour, the [endpoint coverage](endpoints.md) lists the HTTP endpoint behind
@@ -56,7 +56,7 @@ BakalariClient(base_url, username=None, password=None, *, refresh_token=None, cl
 | `transport` | `None` | A function that sends the requests instead of `urllib` (see [transports](#transports)). |
 | `clock`, `sleep` | `time.time`, `time.sleep` | The time source and the wait between retries; meant for tests. |
 | `on_session_update` | `None` | Called with a new `SessionState` after every login and renewal (see [sessions](#sessions)). |
-| `user_agent` | `bakalari-api-python/<version>` | The `User-Agent` header. |
+| `user_agent` | `bakalari-python/<version>` | The `User-Agent` header. |
 
 The configuration stays available as the attributes `base_url` (normalized), `client_id`, `timeout`,
 `renew_margin`, `retries`, `retry_backoff`, `user_agent` and `on_session_update`; changing one affects the

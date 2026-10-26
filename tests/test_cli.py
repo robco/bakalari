@@ -169,7 +169,7 @@ class CliTestCase(unittest.TestCase):
 class ParserTest(CliTestCase):
     def test_version_option(self):
         result = run_without_client(["--version"])
-        self.assertEqual((result.code, result.out), (0, f"bakalari-api {__version__}\n"))
+        self.assertEqual((result.code, result.out), (0, f"bakalari {__version__}\n"))
 
     def test_help_lists_every_command_by_area(self):
         result = run_without_client(["--help"])
