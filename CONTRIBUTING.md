@@ -156,6 +156,10 @@ Versions follow [Semantic Versioning](https://semver.org/). The version is set i
    runs the reusable CI workflow, then publishes its validated wheel and source distribution to PyPI.
    A tag push alone does not publish a package.
 
+The release check requires a valid dated section with non-empty notes and no pending entries under
+"Unreleased". CI collects both test directories with live tests explicitly disabled, so broken integration-test
+imports cannot be hidden by the default offline discovery path.
+
 The workflows follow the same test/build and release/publish split as `robotframework-aivision`.
 Distribution files are available in the workflow's `python-package` artifact; test and coverage reports are
 retained for 30 days. The publish job uses the `pypi` environment and OpenID Connect trusted publishing.

@@ -67,7 +67,16 @@ def normalize_base_url(url: str) -> str:
         raise BakalariConfigError(f"No Bakaláři address: pass base_url or set {BASE_URL_ENV}.")
     if "://" not in url:
         url = "https://" + url
-    parts = urllib.parse.urlsplit(url)
+    try:
+        parts = urllib.parse.urlsplit(url)
+        valid = (parts.scheme in ("http", "https") and bool(parts.hostname)
+                 and parts.username is None and parts.password is None
+                 and (parts.port is None or 0 < parts.port <= 65535)
+                 and not any(char.isspace() or ord(char) < 32 for char in parts.netloc))
+    except ValueError:
+        valid = False
+    if not valid:
+        raise BakalariConfigError("Use an HTTP(S) Bakaláři address with a valid host and no embedded credentials.")
     segments: List[str] = []
     for segment in parts.path.split("/"):
         if segment.lower() in _PAGE_SEGMENTS:
@@ -447,7 +456,10 @@ class ClientCore:
             self._renew()
             response = self._send(method, path, params, form, json_body, data, headers, self._access_token)
         if not _expects(expected_status, response.status):
-            raise self._unexpected_status(method, path, response, expected_status or 200)
+            secrets = [self._password, self._access_token, self._refresh_token, access_token, token]
+            secrets.extend((form or {}).get(key) for key in ("password", "access_token", "refresh_token"))
+            raise self._unexpected_status(method, path, response, expected_status or 200,
+                                          tuple(value for value in secrets if isinstance(value, str) and value))
         return response
 
     def get_json(
@@ -528,10 +540,10 @@ class ClientCore:
 
     @staticmethod
     def _unexpected_status(
-        method: str, path: str, response: HttpResponse, expected: ExpectedStatus
+        method: str, path: str, response: HttpResponse, expected: ExpectedStatus, secrets: Tuple[str, ...] = ()
     ) -> BakalariHTTPError:
         body: Any = None
-        if response.status >= 400:  # error bodies carry no tokens; a successful token response would
+        if response.status >= 400:
             try:
                 body = response.json()
             except ValueError:
@@ -545,7 +557,20 @@ class ClientCore:
             error_class = BakalariNotFoundError
         else:
             error_class = BakalariHTTPError
-        return error_class(method, path, response.status, expected, body)
+        return error_class(method, _redact(path, secrets), response.status, expected, _redact(body, secrets))
+
+
+def _redact(value: Any, secrets: Tuple[str, ...]) -> Any:
+    """Remove known credentials from upstream diagnostics, including nested error bodies."""
+    if isinstance(value, str):
+        for secret in sorted(set(secrets), key=len, reverse=True):
+            value = value.replace(secret, "[REDACTED]")
+        return value
+    if isinstance(value, dict):
+        return {_redact(key, secrets): _redact(item, secrets) for key, item in value.items()}
+    if isinstance(value, list):
+        return [_redact(item, secrets) for item in value]
+    return value
 
 
 def api_path(*segments: Any) -> str:

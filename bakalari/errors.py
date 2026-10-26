@@ -32,7 +32,7 @@ def _safe_path(path: str) -> str:
 class BakalariHTTPError(BakalariError):
     """The server answered with an unexpected HTTP status.
 
-    ``body`` holds the parsed error body for HTTP 4xx/5xx answers (error bodies carry no tokens) and is
+    ``body`` holds the parsed error body for HTTP 4xx/5xx answers (the client redacts known credentials) and is
     ``None`` otherwise, so an unexpected successful token response never ends up in a message or a log.
     ``path`` and the exception message omit the request's query string and fragment.
     """

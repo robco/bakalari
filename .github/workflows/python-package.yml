@@ -80,8 +80,8 @@ jobs:
           python -m mypy bakalari
       - name: Run offline tests and MCP interoperability with coverage
         run: |
-          python -m pytest unittests tests/test_mcp_sdk.py \
-            --cov=bakalari --cov-fail-under=90 \
+          python -m pytest unittests tests \
+            --cov=bakalari --cov-config=pyproject.toml --cov-fail-under=90 \
             --cov-report=term-missing \
             --cov-report=xml:reports/coverage.xml \
             --cov-report=html:reports/htmlcov \

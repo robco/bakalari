@@ -251,6 +251,15 @@ class SchoolsTest(unittest.TestCase):
                 client.schools("Kocourkov", validate=validate)
 
 
+class DirectoryURLSecurityTest(unittest.TestCase):
+    def test_embedded_credentials_and_invalid_ports_are_not_exposed(self):
+        for url in ("https://user:secret@directory.example/api/v1", "https://directory.example:bad/api/v1"):
+            with self.subTest(url=url), self.assertRaises(BakalariConfigError) as raised:
+                SchoolDirectory(url)
+            self.assertNotIn(url, str(raised.exception))
+            self.assertNotIn("secret", str(raised.exception))
+
+
 class FindTest(unittest.TestCase):
     def test_find_asks_only_for_the_matching_municipalities(self):
         client, transport = directory(json_response(200, MUNICIPALITIES), json_response(200, KOCOURKOV), LHOTA, MLYNEC)

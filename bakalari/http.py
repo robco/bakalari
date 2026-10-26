@@ -138,7 +138,7 @@ def parse_content_disposition(value: Optional[str]) -> Optional[str]:
         parameters[key.lower()] = raw
     name: Optional[str] = None
     extended = parameters.get("filename*")
-    if extended and "'" in extended:
+    if extended and extended.count("'") >= 2:
         charset, _, encoded = extended.split("'", 2)
         try:
             name = urllib.parse.unquote(encoded, encoding=charset or "utf-8", errors="replace")

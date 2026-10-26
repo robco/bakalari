@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.0] - 2026-10-26
+
+Initial release of the `bakalari` distribution: an unofficial Python client, CLI and MCP server for
+Bakaláři REST API v3, using only the standard library and supporting Python 3.9 through 3.14.
+
 ### Added
 
 - MCP server mode through `bakalari mcp`, `bakalari-mcp` and `python -m bakalari.mcp`, with no new runtime
@@ -18,28 +23,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   read/write workflows, attachment examples, troubleshooting, an offline connection check and Python integration.
   README, CLI and library guides link to the full usage guide.
 - Offline MCP protocol/integration tests and a CI interoperability check using the official MCP Python client.
-
-### Changed
-
-- Rename the repository and Python distribution from `bakalari-api` to `bakalari`. Install with
-  `python -m pip install bakalari`; the Python import and the `bakalari` and `bakalari-mcp` commands stay the same.
-- Use `bakalari` in CLI version output, MCP server identity, release metadata, documentation and calendar exports,
-  and `bakalari-python/<version>` in the default HTTP User-Agent.
-
-### Security
-
-- Block redirects to another origin for requests carrying an Authorization header or body, including login
-  requests, and reject HTTPS downgrades. Public HTTP(S) redirects remain supported.
-- Remove query strings and fragments from request paths in logs, HTTP errors and JSON contract errors, so raw
-  request paths cannot expose query tokens in diagnostics.
-
-## [1.0.0] - 2026-10-15
-
-The first public release, published on PyPI as `bakalari-api` (the import package and the command are `bakalari`):
-an unofficial client and command line tool for the REST API v3 of the Bakaláři school information system, built on
-the Python standard library only, for Python 3.9 to 3.14.
-
-### Added
 
 #### Client
 
@@ -160,15 +143,16 @@ verification status: 41 of the 71 were verified against a live installation and 
 
 ### Changed
 
-Compared to the unreleased 1.0 code base, which covered the timetable, the user profile and the API version:
+- Rename the repository and Python distribution from `bakalari-api` to `bakalari`. Install with
+  `python -m pip install bakalari`; the Python import and the `bakalari` and `bakalari-mcp` commands stay the same.
+- Use `bakalari` in CLI version output, MCP server identity, release metadata, documentation and calendar exports,
+  and `bakalari-python/<version>` in the default HTTP User-Agent.
 
 - The login variables are `BAKALARI_USERNAME` and `BAKALARI_PASSWORD` instead of `BAK_PTRK_USERNAME` and
   `BAK_PTRK_PASSWORD`.
 - The school's address is required: set `BAKALARI_URL` or pass `base_url` (`--base-url` on the command line). There
   is no default school any more.
 - `user_profile()` returns a typed `UserProfile` instead of the raw dict; the server's object is its `raw` field.
-- The distribution is named `bakalari-api` instead of `bakalari`; the import package and the command stay
-  `bakalari`.
 - The timetable models `Timetable`, `Day`, `Lesson`, `Hour` and `Change` are `Model` dataclasses with new fields;
   the existing fields keep their meaning, and `Lesson.to_dict()` keeps its keys and adds `notice`, `week_theme` and
   `homeworks`.
@@ -178,12 +162,36 @@ Compared to the unreleased 1.0 code base, which covered the timetable, the user 
 - The command line was rewritten; `timetable` keeps its options and output. `bakalari.cli.main()` returns the exit
   status 2 for a usage error instead of letting `SystemExit` escape, and `-v` configures only the package's loggers
   instead of the root logger.
+- Split automation into **Python Package CI** (`python-package.yml`) and **Python Package Publish**
+  (`python-publish.yml`), replacing the previous CI and tag-push publishing workflows. Publishing a GitHub
+  release, or manually running the publish workflow from its matching tag, validates the release, runs reusable
+  CI and publishes its checked distributions through the `pypi` environment using PyPI trusted publishing.
+- Validate that the release tag matches the package version, the changelog has a dated, non-empty release
+  section, and no changes remain under "Unreleased" before publishing.
+- Collect both `unittests/` and `tests/` in CI with live tests explicitly disabled, including official MCP SDK
+  interoperability and release-validation regression tests. Retain test and coverage reports for 30 days.
+- Check wheel and source-distribution contents, typed-package metadata and installed command entry points;
+  keep repository tooling, local state, caches and generated reports out of distributions.
+- Update contributor documentation for the workflow migration, required checks, PyPI trusted-publisher setup
+  and release validation.
+
+### Fixed
+
+- Fall back to the ordinary attachment filename when the server sends a malformed extended filename header.
+- Remove duplicate legacy tests whose missing helper imports broke full test discovery.
+- Pass the coverage configuration explicitly in CI so subprocesses running outside the checkout use the same
+  branch-coverage settings and their results can be combined successfully.
 
 ### Security
 
-- Passwords and tokens never appear in `repr()`, log records, exception messages or the output of the command line;
-  the client keeps them in private attributes. Log records leave out query strings and bodies, and connection error
-  messages leave out the query string, which can carry a push token.
+- Block redirects to another origin for requests carrying an Authorization header or body, including login
+  requests, and reject HTTPS downgrades. Public HTTP(S) redirects remain supported.
+- Remove query strings and fragments from request paths in logs, HTTP errors and JSON contract errors, so raw
+  request paths cannot expose query tokens in diagnostics.
+- Reject malformed installation URLs and embedded URL credentials before they can appear in diagnostics.
+- Redact known passwords and access/refresh tokens echoed in upstream HTTP error bodies, including nested values.
+- Keep stored passwords and tokens in private attributes and exclude token payloads from `repr()`. Request logs
+  omit query strings and bodies, and connection error messages omit query strings that can carry push tokens.
 - TLS certificates are verified by default, and there is no cookie jar, because the API is stateless.
 - The command line writes the session file atomically with mode 0600, restricts a session file that other users
   can read when it loads it (on POSIX systems), refuses a file that is not a Bakaláři session, and `logout`

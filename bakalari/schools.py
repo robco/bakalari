@@ -73,7 +73,7 @@ class School(Model):
             return ""
         try:
             return normalize_base_url(self.url)
-        except ValueError:  # e.g. an unbalanced IPv6 bracket in a mistyped address
+        except (ValueError, BakalariConfigError):  # e.g. an unbalanced IPv6 bracket in a mistyped address
             return self.url
 
     @classmethod
@@ -212,11 +212,12 @@ def _directory_url(value: str) -> str:
     url = url.rstrip("/")
     try:
         parts = urllib.parse.urlsplit(url)
+        normalize_base_url(url)  # Also reject invalid hosts, ports and embedded credentials.
     except ValueError:  # e.g. an unclosed IPv6 bracket
         parts = urllib.parse.SplitResult("", "", "", "", "")
     if parts.scheme not in ("http", "https") or not parts.netloc:
         raise BakalariConfigError(
-            f"No valid school directory address ({value!r}): pass an http(s) base_url or keep the default."
+            "No valid school directory address: pass an http(s) base_url or keep the default."
         )
     return parts.geturl()  # the scheme in lower case
 

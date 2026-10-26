@@ -38,6 +38,36 @@ REFRESH_FORM = {"client_id": "ANDR", "grant_type": "refresh_token", "refresh_tok
 
 
 class LoginTest(unittest.TestCase):
+    def test_error_bodies_cannot_echo_passwords_or_tokens(self):
+        client, _ = make_client(token_response(), json_response(403, {
+            "Message": f"Rejected {PASSWORD}, access-1 and refresh-1",
+            "ModelState": {PASSWORD: ["access-1", "refresh-1"]},
+        }))
+        client.login()
+        with self.assertRaises(BakalariPermissionError) as raised:
+            client.user_profile()
+        error = raised.exception
+        for secret in (PASSWORD, "access-1", "refresh-1"):
+            self.assertNotIn(secret, str(error))
+            self.assertNotIn(secret, error.message)
+            self.assertNotIn(secret, repr(error.body))
+        self.assertIn("[REDACTED]", error.message)
+
+    def test_error_redacts_override_login_password_before_it_is_stored(self):
+        client, _ = make_client(json_response(400, {
+            "error": "invalid_grant", "error_description": "Rejected override-secret",
+        }))
+        with self.assertRaises(BakalariAuthError) as raised:
+            client.login("other-user", "override-secret")
+        self.assertNotIn("override-secret", str(raised.exception))
+        self.assertEqual(raised.exception.body["error"], "invalid_grant")
+
+    def test_plain_text_error_redacts_explicit_access_token(self):
+        client, _ = make_client(text_response(403, "Rejected explicit-secret"))
+        with self.assertRaises(BakalariPermissionError) as raised:
+            client.request("GET", "/api/3/user", access_token="explicit-secret")
+        self.assertNotIn("explicit-secret", str(raised.exception))
+
     def test_login_posts_the_password_grant_form(self):
         client, transport = make_client(token_response())
         info = client.login()
@@ -429,6 +459,15 @@ class PublicEndpointTest(unittest.TestCase):
 
 
 class ConfigurationTest(unittest.TestCase):
+    def test_invalid_urls_and_embedded_credentials_are_rejected_without_echoing(self):
+        for url in ("https://user:secret@school.example", "https://user@school.example", "https:///missing",
+                    "file:///tmp/private", "ftp://school.example", "https://school.example:bad",
+                    "https://school.example:99999", "https://[broken", "https://bad host.example"):
+            with self.subTest(url=url), self.assertRaises(BakalariConfigError) as raised:
+                BakalariClient(url)
+            self.assertNotIn(url, str(raised.exception))
+            self.assertNotIn("secret", str(raised.exception))
+
     def test_from_env_reads_address_and_login(self):
         env = {"BAKALARI_USERNAME": USERNAME, "BAKALARI_PASSWORD": PASSWORD, "BAKALARI_URL": BASE_URL}
         client = BakalariClient.from_env(environ=env, transport=FakeTransport())

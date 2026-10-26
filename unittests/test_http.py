@@ -137,6 +137,13 @@ class ContentDispositionTest(unittest.TestCase):
         self.assertIsNone(parse_content_disposition(None))
         self.assertIsNone(parse_content_disposition(""))
 
+    def test_malformed_extended_filename_uses_fallback(self):
+        for extended in ("utf-8'broken", "broken", "utf-8''"):
+            with self.subTest(extended=extended):
+                self.assertEqual(parse_content_disposition(
+                    f"attachment; filename*={extended}; filename=fallback.txt"), "fallback.txt")
+        self.assertIsNone(parse_content_disposition("attachment; filename*=utf-8'broken"))
+
 
 if __name__ == "__main__":
     unittest.main()
