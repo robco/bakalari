@@ -1,4 +1,4 @@
-# Contributing to bakalari-api
+# Contributing to bakalari
 
 Thank you for helping. This guide covers the development setup, the tests, the code conventions and the release
 process. By taking part you agree to follow the [code of conduct](CODE_OF_CONDUCT.md). Report security problems
@@ -10,8 +10,8 @@ You need Python 3.9 or newer. The package has no runtime dependencies. Test your
 Python (3.9) and on the newest.
 
 ```bash
-git clone https://github.com/robco/bakalari-api.git
-cd bakalari-api
+git clone https://github.com/robco/bakalari.git
+cd bakalari
 python3 -m venv .venv
 source .venv/bin/activate              # Windows: .venv\Scripts\activate
 python -m pip install -e .
@@ -130,7 +130,7 @@ Versions follow [Semantic Versioning](https://semver.org/). The version is set i
 4. Tag the commit and push the tag:
 
    ```bash
-   git tag -a vX.Y.Z -m "bakalari-api X.Y.Z"
+   git tag -a vX.Y.Z -m "bakalari X.Y.Z"
    git push origin vX.Y.Z
    ```
 
@@ -148,9 +148,9 @@ checks and publishes to TestPyPI (environment `testpypi`). TestPyPI accepts each
    rules are recommended: required reviewers, and deployments only from tags matching `v*`.
 2. On PyPI, open [Publishing](https://pypi.org/manage/account/publishing/) in your account settings and add a
    pending GitHub Actions publisher:
-   - PyPI Project Name: `bakalari-api`
+   - PyPI Project Name: `bakalari`
    - Owner: `robco`
-   - Repository name: `bakalari-api`
+   - Repository name: `bakalari`
    - Workflow name: `release.yml`
    - Environment name: `pypi`
 
