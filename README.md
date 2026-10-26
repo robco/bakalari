@@ -202,14 +202,3 @@ checks run separately in **Python Package CI**. The publish workflow can also be
 If this project is useful to you, you can support its development through
 [Buy Me a Coffee](https://www.buymeacoffee.com/robco) or [Revolut](https://revolut.me/robco).
 You can also star the repository, report issues, improve documentation or contribute code.
-
-## Privacy and security
-
-School data is personal. Keep credentials, session files and fetched data private, and use synthetic data in
-issues and tests. Report vulnerabilities as described in
-[SECURITY.md](https://github.com/robco/bakalari/blob/main/SECURITY.md).
-
-This project is not affiliated with or endorsed by BAKALÁŘI software s.r.o. The unofficial API may change;
-use it in line with your school's rules. See the
-[usage guide](https://github.com/robco/bakalari/blob/main/docs/guide.md#privacy-and-safety) for details.
-
