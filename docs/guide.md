@@ -37,6 +37,9 @@ Neznáte adresu své školy? Příkaz `bakalari schools <obec>` ji najde ve veř
 neúspěšná přihlášení a ukazují je majiteli účtu, proto nezkoušejte hesla ani cizí účty. Projekt není nijak spojen
 se společností BAKALÁŘI software s.r.o. Další dokumentace je v angličtině.
 
+[Ukázky použití s AI asistentem](ai-examples.md) obsahují skutečné snímky konverzací a příklady dotazů v češtině
+i angličtině: dnešní rozvrh, plán učení, podepisování známek a vyřizování školních zpráv.
+
 ## Features
 
 | Area | What you get |

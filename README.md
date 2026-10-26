@@ -25,6 +25,26 @@ na jednom místě, bez dalších běhových závislostí. [Český úvod a pří
 
 Available modules and permissions depend on your school and account type.
 
+## See it in action
+
+Ask your AI assistant in everyday language once you have [connected the MCP server](https://github.com/robco/bakalari/blob/main/docs/mcp.md#connect-an-mcp-host).
+These real conversations in Czech show how school data can become a daily overview, a study plan or an action
+you approve. Click any screenshot to view it at full size.
+
+| Check today's timetable | Make a study plan |
+|---|---|
+| <a href="docs/img/show-schedule.png"><img src="docs/img/show-schedule.png" width="240" alt="Czech conversation showing today's lessons, times and when school finishes"></a> | <a href="docs/img/study-plan.png"><img src="docs/img/study-plan.png" width="240" alt="Czech conversation turning recent marks into a study plan for two children"></a> |
+| “What lessons does my child have today, and when do they finish?” | “Use the latest marks to suggest what each child should practise this week.” |
+| **Sign unconfirmed marks** | **Handle school messages** |
+| <a href="docs/img/marks-sign.png"><img src="docs/img/marks-sign.png" width="240" alt="Czech conversation asking for approval to sign 23 marks, then checking that none remain unconfirmed"></a> | <a href="docs/img/messages-reply.png"><img src="docs/img/messages-reply.png" width="240" alt="Czech conversation reviewing a school tournament message, acknowledging it and drafting a reply"></a> |
+| “Show the unsigned marks, then ask me before signing them.” | “Which school messages need a response? Help me acknowledge one and draft a reply.” |
+
+Reading and planning work with the default read tools. Signing marks, acknowledging messages and sending
+replies require `--allow-writes` and the appropriate account permissions. The assistant provides the chat UI,
+summaries and plans; the MCP server provides access to Bakaláři data and actions.
+
+**[Explore all four examples, with Czech and English prompts →](https://github.com/robco/bakalari/blob/main/docs/ai-examples.md)**
+
 ## Documentation
 
 | Guide | Contents |
@@ -33,6 +53,7 @@ Available modules and permissions depend on your school and account type.
 | [Python library](https://github.com/robco/bakalari/blob/main/docs/library.md) | Client methods, models, errors and transports |
 | [Command line](https://github.com/robco/bakalari/blob/main/docs/cli.md) | Commands, options, exports and configuration |
 | [MCP server](https://github.com/robco/bakalari/blob/main/docs/mcp.md) | AI host setup, tool catalog and examples |
+| [AI assistant examples](https://github.com/robco/bakalari/blob/main/docs/ai-examples.md) | Real screenshots, Czech and English prompts, and the tools behind each workflow |
 | [API coverage](https://github.com/robco/bakalari/blob/main/docs/endpoints.md) | Supported endpoints and known limitations |
 | [Example scripts](https://github.com/robco/bakalari/tree/main/examples) | Timetables, marks, attachments, calendars, sessions and school search |
 

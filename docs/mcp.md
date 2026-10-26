@@ -5,8 +5,12 @@
 same Bakaláři client, account rights, token renewal and session persistence as the CLI. Python 3.9+ and the
 standard library are sufficient; there is no MCP runtime dependency to install.
 
+For a quick visual introduction, see [real AI assistant examples](ai-examples.md): checking a timetable,
+making a study plan, signing marks and handling school messages, with screenshots and prompts in Czech and English.
+
 ## Contents
 
+- [Real AI assistant examples](ai-examples.md)
 - [Install and prepare an account](#install-and-prepare-an-account)
 - [Start the server](#start-the-server) and [configuration reference](#configuration-reference)
 - [Connect an MCP host](#connect-an-mcp-host) and [use multiple accounts](#use-multiple-accounts)
