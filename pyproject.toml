@@ -3,7 +3,7 @@ requires = ["setuptools>=77"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "bakalari-api"
+name = "bakalari"
 dynamic = ["version"]
 description = "Unofficial Python client, CLI and MCP server for the Bakaláři school information system REST API v3: timetable, marks, absence, homeworks, Komens messages and more, standard library only."
 readme = "README.md"
@@ -50,11 +50,11 @@ classifiers = [
 dependencies = []
 
 [project.urls]
-Homepage = "https://github.com/robco/bakalari-api"
-Documentation = "https://github.com/robco/bakalari-api#readme"
-Source = "https://github.com/robco/bakalari-api"
-Issues = "https://github.com/robco/bakalari-api/issues"
-Changelog = "https://github.com/robco/bakalari-api/blob/main/CHANGELOG.md"
+Homepage = "https://github.com/robco/bakalari"
+Documentation = "https://github.com/robco/bakalari#readme"
+Source = "https://github.com/robco/bakalari"
+Issues = "https://github.com/robco/bakalari/issues"
+Changelog = "https://github.com/robco/bakalari/blob/main/CHANGELOG.md"
 
 [project.scripts]
 bakalari = "bakalari.cli:main"
@@ -82,7 +82,7 @@ select = ["E", "F", "W", "I", "B", "C4"]
 known-first-party = ["bakalari"]
 
 [tool.mypy]
-python_version = "3.9"
+python_version = "3.12"
 files = ["bakalari"]
 disallow_untyped_defs = true
 check_untyped_defs = true
