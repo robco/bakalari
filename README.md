@@ -213,6 +213,3 @@ This project is not affiliated with or endorsed by BAKALÁŘI software s.r.o. Th
 use it in line with your school's rules. See the
 [usage guide](https://github.com/robco/bakalari/blob/main/docs/guide.md#privacy-and-safety) for details.
 
-## License
-
-[MIT](https://github.com/robco/bakalari/blob/main/LICENSE) — Róbert Malovec.
