@@ -1,9 +1,9 @@
-# bakalari-api
+# Bakalari API & MCP Server
 
-[![CI](https://github.com/robco/bakalari-api/actions/workflows/ci.yml/badge.svg)](https://github.com/robco/bakalari-api/actions/workflows/ci.yml)
-[![PyPI version](https://img.shields.io/pypi/v/bakalari-api.svg)](https://pypi.org/project/bakalari-api/)
-[![Python versions](https://img.shields.io/pypi/pyversions/bakalari-api.svg)](https://pypi.org/project/bakalari-api/)
-[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/robco/bakalari-api/blob/main/LICENSE)
+[![CI](https://github.com/robco/bakalari/actions/workflows/ci.yml/badge.svg)](https://github.com/robco/bakalari/actions/workflows/ci.yml)
+[![PyPI version](https://img.shields.io/pypi/v/bakalari.svg)](https://pypi.org/project/bakalari/)
+[![Python versions](https://img.shields.io/pypi/pyversions/bakalari.svg)](https://pypi.org/project/bakalari/)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/robco/bakalari/blob/main/LICENSE)
 
 An unofficial Python client, command line tool and MCP server for the **REST API v3 of Bakaláři**, the school
 information system used by most Czech schools. It logs in with the same username and password as the Bakaláři
@@ -14,7 +14,7 @@ fund payments, teacher endpoints and more.
 - **Standard library only**: no dependencies, Python 3.9 or newer, typed (`py.typed`).
 - **Complete**: a typed method for every read endpoint of the REST API whose request is known and for the
   documented write endpoints; the rest stays reachable through `request()` (see the
-  [endpoint coverage](https://github.com/robco/bakalari-api/blob/main/docs/endpoints.md)).
+  [endpoint coverage](https://github.com/robco/bakalari/blob/main/docs/endpoints.md)).
 - **Careful with your account**: the password and tokens never appear in logs, `repr()` or error messages, and
   reading a message never marks it as read.
 - **CLI included**: `bakalari timetable`, `bakalari marks --new`, `bakalari messages --unread`, ... a command for
@@ -22,12 +22,12 @@ fund payments, teacher endpoints and more.
 - **MCP server included**: `bakalari mcp` connects AI applications to 50 read tools over stdio, with 11 write
   tools available through `--allow-writes`. No additional dependencies.
 
-Documentation: this README, the [library guide](https://github.com/robco/bakalari-api/blob/main/docs/library.md)
+Documentation: this README, the [library guide](https://github.com/robco/bakalari/blob/main/docs/library.md)
 (every method and model), the
-[command line reference](https://github.com/robco/bakalari-api/blob/main/docs/cli.md) (every command and option),
+[command line reference](https://github.com/robco/bakalari/blob/main/docs/cli.md) (every command and option),
 the [MCP user guide](docs/mcp.md) (setup, tools and practical examples),
-the [endpoint coverage](https://github.com/robco/bakalari-api/blob/main/docs/endpoints.md) and the
-[examples](https://github.com/robco/bakalari-api/tree/main/examples).
+the [endpoint coverage](https://github.com/robco/bakalari/blob/main/docs/endpoints.md) and the
+[examples](https://github.com/robco/bakalari/tree/main/examples).
 
 Use the **command line** to check school information and export it without writing Python. Use the **Python
 library** to build scripts and integrations, or **MCP server mode** to connect an AI assistant. You need your own
@@ -50,7 +50,7 @@ features depend on your school and account type.
 
 ## Česky
 
-**bakalari-api** je neoficiální knihovna a nástroj pro příkazovou řádku v Pythonu (3.9 a novější) pro REST API v3
+**bakalari** je neoficiální knihovna a nástroj pro příkazovou řádku v Pythonu (3.9 a novější) pro REST API v3
 školního systému Bakaláři. Používá jen standardní knihovnu Pythonu, nemá žádné další závislosti a pokrývá všechny
 známé moduly: rozvrh (i rozvrh celé třídy a veřejný rozvrh), suplování, známky (včetně výpočtu průměru s
 hypotetickými známkami a potvrzování známek rodiči), absenci, předměty a probraná témata, domácí úkoly, zprávy
@@ -58,7 +58,7 @@ Komens (čtení, odesílání, odpovědi, přílohy), akce školy, souhlasy GDPR
 uživatele a vyhledání školy v adresáři škol.
 
 ```bash
-pip install bakalari-api
+pip install bakalari
 export BAKALARI_URL=https://skola.bakalari.cz    # adresa webu Bakaláři vaší školy
 export BAKALARI_USERNAME=...                     # stejné přihlašovací údaje jako na webu
 export BAKALARI_PASSWORD=...
@@ -101,7 +101,7 @@ Use a virtual environment to keep the installation separate from other Python pr
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
-python -m pip install bakalari-api
+python -m pip install bakalari
 ```
 
 **Windows (PowerShell):**
@@ -109,18 +109,18 @@ python -m pip install bakalari-api
 ```powershell
 py -m venv .venv
 .\.venv\Scripts\Activate.ps1
-python -m pip install bakalari-api
+python -m pip install bakalari
 ```
 
-If PowerShell does not allow activation scripts, use `.\.venv\Scripts\python.exe -m pip install bakalari-api`
+If PowerShell does not allow activation scripts, use `.\.venv\Scripts\python.exe -m pip install bakalari`
 and `.\.venv\Scripts\python.exe -m bakalari` directly. After activation, the `python` and `bakalari` commands
 below work in that environment. Activate it again when opening a new terminal.
 
 **From source** (also use this before the first release is available on PyPI):
 
 ```bash
-git clone https://github.com/robco/bakalari-api.git
-cd bakalari-api
+git clone https://github.com/robco/bakalari.git
+cd bakalari
 python -m pip install .
 ```
 
@@ -241,7 +241,7 @@ kept exactly as sent (they may be space-padded, `" 2"`), display strings are tri
 timezone-aware `datetime` objects with the server's offset and dates without a time are `datetime.date`. Methods
 with a `validate` parameter check the payload's shape first and raise `BakalariContractError` listing every
 problem; `validate=False` parses leniently. Details are in the
-[library guide](https://github.com/robco/bakalari-api/blob/main/docs/library.md).
+[library guide](https://github.com/robco/bakalari/blob/main/docs/library.md).
 
 ## Command line
 
@@ -399,7 +399,7 @@ standard error as `bakalari: error: ...`; normal request diagnostics omit creden
 control characters in server texts are removed. `web-login` intentionally prints a credential-bearing link,
 and raw `api` output can contain anything returned by the selected endpoint.
 
-The [command line reference](https://github.com/robco/bakalari-api/blob/main/docs/cli.md) describes every command
+The [command line reference](https://github.com/robco/bakalari/blob/main/docs/cli.md) describes every command
 and option with sample output, the session file, the exit status and the error hints.
 <!-- cli:end -->
 
@@ -580,7 +580,7 @@ client = BakalariClient.from_env(on_session_update=save_session)
 client.user_profile()                            # triggers login and saves the session
 ```
 
-[examples/persistent_session.py](https://github.com/robco/bakalari-api/blob/main/examples/persistent_session.py)
+[examples/persistent_session.py](https://github.com/robco/bakalari/blob/main/examples/persistent_session.py)
 does this completely: it loads the file, replaces it atomically with mode 0600 and works without the password
 variables while the refresh token is valid. The command line has the same built in: with `--session-file PATH` (or
 `BAKALARI_SESSION_FILE`) every command loads the session first and saves it at every login and renewal,
@@ -606,7 +606,7 @@ variables while the refresh token is valid. The command line has the same built 
 
 The examples use the `client` from the quick start. Each area needs its Bakaláři module (and sometimes a right) to
 be enabled for the school and the account; otherwise the server answers HTTP 403 and the method raises
-`BakalariPermissionError`. The [library guide](https://github.com/robco/bakalari-api/blob/main/docs/library.md)
+`BakalariPermissionError`. The [library guide](https://github.com/robco/bakalari/blob/main/docs/library.md)
 lists every parameter and model field.
 
 To run any reading example independently, put this at the top of a `.py` file, then run it with `python your_file.py`:
@@ -1079,7 +1079,7 @@ except BakalariError as error:
 | Symptom | What to check or do |
 |---|---|
 | `bakalari` is not found | Activate the environment where you installed the package, or use `python -m bakalari`. On Windows without activation, use `.\.venv\Scripts\python.exe -m bakalari`. |
-| `No module named bakalari` | Install with `python -m pip install bakalari-api` using the same Python interpreter that runs your script. |
+| `No module named bakalari` | Install with `python -m pip install bakalari` using the same Python interpreter that runs your script. |
 | Missing environment variables / exit status 2 | Set the variables in the terminal or IDE that starts the command. Use the Bash or PowerShell syntax above, or select an existing session with `--session-file`. |
 | HTTP 400 `invalid_grant` or HTTP 401 | Check the school URL and your own login on the school's web page. A saved refresh token may have expired; supply the correct login variables and run `login` again. Avoid repeated attempts with a wrong password. |
 | HTTP 403 | Run `bakalari modules --rights`. The module may be disabled or require another account type. Teacher commands need a teacher account; public timetables must be published by the school. |
@@ -1106,7 +1106,7 @@ web login token and the public timetable pages) follow the community documentati
 endpoints have no typed method, mostly because their requests are undocumented (Komens drafts, consent answers,
 emergency alarms, teacher payment prescriptions, ...); they stay reachable through `request()`.
 
-[docs/endpoints.md](https://github.com/robco/bakalari-api/blob/main/docs/endpoints.md) lists every known endpoint
+[docs/endpoints.md](https://github.com/robco/bakalari/blob/main/docs/endpoints.md) lists every known endpoint
 with its client method, return type, verification status and how to call the ones that are not wrapped.
 
 Teacher methods, payment payloads, published timetable pages and write operations have not all been exercised
@@ -1117,25 +1117,25 @@ offline tests verify request construction and parsing, but cannot establish what
 
 Use `BAKALARI_USERNAME` and `BAKALARI_PASSWORD` instead of `BAK_PTRK_USERNAME` and `BAK_PTRK_PASSWORD`, and set
 `BAKALARI_URL` or pass `base_url`: there is no default school. `user_profile()` now returns a typed
-`UserProfile`; its `raw` field holds the server's object. The distribution is `bakalari-api`; the Python import
-and command remain `bakalari`. See [CHANGELOG.md](https://github.com/robco/bakalari-api/blob/main/CHANGELOG.md) for the full list of changes.
+`UserProfile`; its `raw` field holds the server's object. The distribution is `bakalari`; the Python import
+and command remain `bakalari`. See [CHANGELOG.md](https://github.com/robco/bakalari/blob/main/CHANGELOG.md) for the full list of changes.
 
 ## Examples
 
-The [examples](https://github.com/robco/bakalari-api/blob/main/examples/README.md) directory contains complete scripts with argument parsing and error handling.
+The [examples](https://github.com/robco/bakalari/blob/main/examples/README.md) directory contains complete scripts with argument parsing and error handling.
 Clone the repository as shown under [installation](#installation), install the package, and run these commands
 from the repository root after setting the login variables. The scripts are in the source checkout; installing
 the wheel alone does not create an `examples/` directory.
 
 | Script | Example command | Result |
 |---|---|---|
-| [Weekly timetable](https://github.com/robco/bakalari-api/blob/main/examples/weekly_timetable.py) | `python examples/weekly_timetable.py` | This week's lessons, changes and substitutions |
-| [New marks](https://github.com/robco/bakalari-api/blob/main/examples/new_marks.py) | `python examples/new_marks.py --all` | Marks and subject averages; does not confirm marks |
-| [Unread messages](https://github.com/robco/bakalari-api/blob/main/examples/unread_messages.py) | `python examples/unread_messages.py ./attachments` | Message text and downloaded attachments; leaves messages unread |
-| [Homework calendar](https://github.com/robco/bakalari-api/blob/main/examples/homeworks_ics.py) | `python examples/homeworks_ics.py ./homeworks.ics` | A local calendar file for assignments due in the next seven days |
-| [Persistent session](https://github.com/robco/bakalari-api/blob/main/examples/persistent_session.py) | `python examples/persistent_session.py` | Resumes and updates a session file without needing a password on every run |
-| [Class fund](https://github.com/robco/bakalari-api/blob/main/examples/class_fund_qr.py) | `python examples/class_fund_qr.py 500` | Payment instructions and a QR payment string for 500 CZK; does not initiate payment |
-| [School search](https://github.com/robco/bakalari-api/blob/main/examples/find_school.py) | `python examples/find_school.py Praha` | Matching schools and their Bakaláři addresses; no login needed |
+| [Weekly timetable](https://github.com/robco/bakalari/blob/main/examples/weekly_timetable.py) | `python examples/weekly_timetable.py` | This week's lessons, changes and substitutions |
+| [New marks](https://github.com/robco/bakalari/blob/main/examples/new_marks.py) | `python examples/new_marks.py --all` | Marks and subject averages; does not confirm marks |
+| [Unread messages](https://github.com/robco/bakalari/blob/main/examples/unread_messages.py) | `python examples/unread_messages.py ./attachments` | Message text and downloaded attachments; leaves messages unread |
+| [Homework calendar](https://github.com/robco/bakalari/blob/main/examples/homeworks_ics.py) | `python examples/homeworks_ics.py ./homeworks.ics` | A local calendar file for assignments due in the next seven days |
+| [Persistent session](https://github.com/robco/bakalari/blob/main/examples/persistent_session.py) | `python examples/persistent_session.py` | Resumes and updates a session file without needing a password on every run |
+| [Class fund](https://github.com/robco/bakalari/blob/main/examples/class_fund_qr.py) | `python examples/class_fund_qr.py 500` | Payment instructions and a QR payment string for 500 CZK; does not initiate payment |
+| [School search](https://github.com/robco/bakalari/blob/main/examples/find_school.py) | `python examples/find_school.py Praha` | Matching schools and their Bakaláři addresses; no login needed |
 
 Add `--help` to any script for its options. These scripts read school data; the attachment, calendar and session
 examples also write local files.
@@ -1143,8 +1143,8 @@ examples also write local files.
 ## Development and tests
 
 ```bash
-git clone https://github.com/robco/bakalari-api.git
-cd bakalari-api
+git clone https://github.com/robco/bakalari.git
+cd bakalari
 python -m pip install -e .
 python -m pip install ruff "mypy<2"
 BAKALARI_SKIP_LIVE=1 python -m unittest discover -v    # the offline suite: no network, no account
@@ -1154,9 +1154,9 @@ mypy bakalari                                          # mypy < 2, which still c
 
 The offline suite drives the client through a scripted transport with synthetic fixtures. The live tests
 (`tests/test_live.py`) are read-only and run only when `BAKALARI_URL`, `BAKALARI_USERNAME` and `BAKALARI_PASSWORD`
-are set. See [CONTRIBUTING.md](https://github.com/robco/bakalari-api/blob/main/CONTRIBUTING.md) for the
+are set. See [CONTRIBUTING.md](https://github.com/robco/bakalari/blob/main/CONTRIBUTING.md) for the
 conventions, the fixture privacy rule and the release process, and
-[SECURITY.md](https://github.com/robco/bakalari-api/blob/main/SECURITY.md) for reporting vulnerabilities.
+[SECURITY.md](https://github.com/robco/bakalari/blob/main/SECURITY.md) for reporting vulnerabilities.
 
 ## Privacy and safety
 
@@ -1183,11 +1183,11 @@ conventions, the fixture privacy rule and the release process, and
 
 ## Disclaimer
 
-bakalari-api is an unofficial project. It is not affiliated with, endorsed by or supported by BAKALÁŘI software
+bakalari is an unofficial project. It is not affiliated with, endorsed by or supported by BAKALÁŘI software
 s.r.o., the vendor of the Bakaláři school information system; "Bakaláři" is used only to name the system this
 client talks to. The REST API is not officially documented and may change without notice. Use the client in line
 with your school's rules and the terms of the Bakaláři service.
 
 ## License
 
-[MIT](https://github.com/robco/bakalari-api/blob/main/LICENSE)
+[MIT](https://github.com/robco/bakalari/blob/main/LICENSE)
