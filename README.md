@@ -1,6 +1,4 @@
 [![Python Package CI](https://github.com/robco/bakalari/actions/workflows/python-package.yml/badge.svg)](https://github.com/robco/bakalari/actions/workflows/python-package.yml)
-[![PyPI version](https://img.shields.io/pypi/v/bakalari.svg)](https://pypi.org/project/bakalari/)
-[![Python versions](https://img.shields.io/pypi/pyversions/bakalari.svg)](https://pypi.org/project/bakalari/)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/robco/bakalari/blob/main/LICENSE)
 
 [![Buy Me a Coffee](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/robco)
