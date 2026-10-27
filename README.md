@@ -33,10 +33,10 @@ you approve. Click any screenshot to view it at full size.
 
 | Check today's timetable | Make a study plan |
 |---|---|
-| <a href="docs/img/show-schedule.png"><img src="docs/img/show-schedule.png" width="240" alt="Czech conversation showing today's lessons, times and when school finishes"></a> | <a href="docs/img/study-plan.png"><img src="docs/img/study-plan.png" width="240" alt="Czech conversation turning recent marks into a study plan for two children"></a> |
+| <a href="https://raw.githubusercontent.com/robco/bakalari/main/docs/img/show-schedule.png"><img src="https://raw.githubusercontent.com/robco/bakalari/main/docs/img/show-schedule.png" width="240" alt="Czech conversation showing today's lessons, times and when school finishes"></a> | <a href="https://raw.githubusercontent.com/robco/bakalari/main/docs/img/study-plan.png"><img src="https://raw.githubusercontent.com/robco/bakalari/main/docs/img/study-plan.png" width="240" alt="Czech conversation turning recent marks into a study plan for two children"></a> |
 | “What lessons does my child have today, and when do they finish?” | “Use the latest marks to suggest what each child should practise this week.” |
 | **Sign unconfirmed marks** | **Handle school messages** |
-| <a href="docs/img/marks-sign.png"><img src="docs/img/marks-sign.png" width="240" alt="Czech conversation asking for approval to sign 23 marks, then checking that none remain unconfirmed"></a> | <a href="docs/img/messages-reply.png"><img src="docs/img/messages-reply.png" width="240" alt="Czech conversation reviewing a school tournament message, acknowledging it and drafting a reply"></a> |
+| <a href="https://raw.githubusercontent.com/robco/bakalari/main/docs/img/marks-sign.png"><img src="https://raw.githubusercontent.com/robco/bakalari/main/docs/img/marks-sign.png" width="240" alt="Czech conversation asking for approval to sign 23 marks, then checking that none remain unconfirmed"></a> | <a href="https://raw.githubusercontent.com/robco/bakalari/main/docs/img/messages-reply.png"><img src="https://raw.githubusercontent.com/robco/bakalari/main/docs/img/messages-reply.png" width="240" alt="Czech conversation reviewing a school tournament message, acknowledging it and drafting a reply"></a> |
 | “Show the unsigned marks, then ask me before signing them.” | “Which school messages need a response? Help me acknowledge one and draft a reply.” |
 
 Reading and planning work with the default read tools. Signing marks, acknowledging messages and sending
