@@ -173,7 +173,8 @@ class ClientCore:
     or a ``refresh_token`` (or :meth:`import_session`) to resume a session without the password.
 
     ``renew_margin`` is how many seconds before expiry the access token is renewed. ``retries`` re-sends GET, PUT
-    and DELETE requests — and any request marked ``retryable`` (a read-only POST, for example) — that fail with a
+    and DELETE requests — and any request marked ``retryable`` (a read-only POST or the token request, for
+    example) — that fail with a
     connection error or HTTP 502/503/504, waiting ``retry_backoff`` seconds, then twice as long, and so on.
     ``on_session_update`` is called with the new :class:`SessionState` after every
     login and renewal, so an application can persist the rotating refresh token. ``transport``, ``clock`` and
@@ -281,7 +282,10 @@ class ClientCore:
 
         Raises :class:`BakalariAuthError` (HTTP 400, ``body["error"] == "invalid_grant"``) for a wrong login.
         A rejected login keeps the previous tokens and login. Bakaláři counts failed logins per account and
-        shows them to the account owner, so never probe a real account with a wrong password.
+        shows them to the account owner, so never probe a real account with a wrong password. Under the
+        client's ``retries`` policy the token request is re-sent after a connection drop or a gateway answer
+        (HTTP 502/503/504), when no auth verdict arrived; an auth answer is never repeated, so retries cannot
+        multiply counted failed logins.
         """
         username = self._username if username is None else username
         password = self._password if password is None else password
@@ -381,7 +385,11 @@ class ClientCore:
 
     def _token_request(self, grant: Mapping[str, str]) -> HttpResponse:
         form = {"client_id": self.client_id, **grant}
-        return self.request("POST", TOKEN_PATH, form=form, authorized=False)
+        # Retryable: a connection drop or a gateway answer (502/503/504) means no auth verdict arrived, so
+        # re-sending cannot multiply counted failed logins; an auth answer (400/401) is never repeated. If a
+        # renewal was processed but its answer lost, the retry meets the rotated refresh token, is refused,
+        # and _renew falls back to a password login.
+        return self.request("POST", TOKEN_PATH, form=form, authorized=False, retryable=True)
 
     def _store_tokens(self, response: HttpResponse) -> TokenInfo:
         try:

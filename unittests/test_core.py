@@ -205,6 +205,38 @@ class TokenLifecycleTest(unittest.TestCase):
         with self.assertRaises(BakalariError):
             client.refresh()
 
+    def test_login_is_retried_after_a_connection_error(self):
+        # No auth verdict arrived, so the token request is re-sent under the retries policy.
+        client, transport = make_client(
+            BakalariConnectionError("reset"), token_response(), retries=2, retry_backoff=0
+        )
+        client.login()
+        self.assertEqual(len(transport.calls), 2)
+        self.assertTrue(client.is_authenticated)
+
+    def test_login_is_retried_after_a_gateway_status(self):
+        client, transport = make_client(json_response(503, {}), token_response(), retries=2, retry_backoff=0)
+        client.login()
+        self.assertEqual(len(transport.calls), 2)
+
+    def test_login_is_not_retried_after_an_auth_answer(self):
+        # An auth answer is a verdict: repeating it would multiply counted failed logins.
+        client, transport = make_client(INVALID_GRANT, retries=2, retry_backoff=0)
+        with self.assertRaises(BakalariAuthError):
+            client.login()
+        self.assertEqual(len(transport.calls), 1)
+
+    def test_refresh_is_retried_after_a_connection_error(self):
+        client, transport = make_client(
+            token_response(), BakalariConnectionError("reset"), token_response("access-2", "refresh-2"),
+            retries=2, retry_backoff=0,
+        )
+        client.login()
+        client.refresh()
+        self.assertEqual(len(transport.calls), 3)
+        grants = [call.form.get("grant_type") for call in transport.calls]
+        self.assertEqual(grants, ["password", "refresh_token", "refresh_token"])
+
 
 class SessionTest(unittest.TestCase):
     def test_client_can_start_from_a_refresh_token_alone(self):

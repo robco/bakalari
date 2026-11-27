@@ -109,7 +109,7 @@ does not prevent discovery or terminate the connection.
 | `--username-env NAME`, `--password-env NAME` | Read credentials from alternate environment variable names. Useful when creating sessions for several children. |
 | `--session-file PATH` / `BAKALARI_SESSION_FILE` | Resume and persist tokens. Explicit flag takes precedence; no session file is used by default. |
 | `--timeout SECONDS` | Positive timeout per HTTP attempt; default `30`. |
-| `--retries N` | Number of retries for eligible GET/PUT/DELETE failures and read-only POST requests (message listing, marks prediction); default `2`. POST writes are not automatically retried. |
+| `--retries N` | Number of retries for eligible GET/PUT/DELETE failures and retryable POST requests (message listing, marks prediction, the token request); default `2`. POST writes are not automatically retried, and a login is re-sent only when no auth verdict arrived. |
 | `-v`, `--verbose` | Log request diagnostics to stderr, never stdout. Logs can still contain object IDs. |
 | `mcp --allow-writes` | Include write tools for this process; off by default. There is no environment-variable switch for this option. |
 
