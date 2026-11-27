@@ -1,12 +1,52 @@
 import io
 import unittest
+import urllib.error
 import urllib.request
 import urllib.response
 from email.message import Message
+from http.client import IncompleteRead
 from unittest.mock import patch
 
-from bakalari import HttpResponse, urllib_transport
+from bakalari import BakalariConnectionError, HttpResponse, urllib_transport
 from bakalari.http import parse_content_disposition
+
+
+class TruncatedBody:
+    """A response body stream that dies mid-read, like a school server cutting the connection."""
+
+    def __init__(self):
+        self.closed = False
+
+    def read(self, *args):
+        raise IncompleteRead(b"partial", 100)
+
+    def close(self):
+        self.closed = True
+
+
+class TruncatedBodyTest(unittest.TestCase):
+    def send(self, *, error_status=None):
+        def open_request(handler, request):
+            headers = Message()
+            if error_status is not None:
+                raise urllib.error.HTTPError(request.full_url, error_status, "synthetic", headers, TruncatedBody())
+            response = urllib.response.addinfourl(TruncatedBody(), headers, request.full_url, 200)
+            response.msg = "synthetic response"
+            return response
+
+        with patch("urllib.request.getproxies", return_value={}), \
+                patch.object(urllib.request.HTTPSHandler, "https_open", open_request), \
+                patch.object(urllib.request.HTTPHandler, "http_open", open_request):
+            return urllib_transport()("GET", "https://school.example/api/3/user", {}, None, 5)
+
+    def test_truncated_body_is_a_connection_error(self):
+        # No usable response arrived, so the caller may re-send the request under its retries policy.
+        with self.assertRaises(BakalariConnectionError):
+            self.send()
+
+    def test_error_status_survives_a_truncated_error_body(self):
+        response = self.send(error_status=503)
+        self.assertEqual((response.status, response.body), (503, b""))
 
 
 class HttpResponseTest(unittest.TestCase):

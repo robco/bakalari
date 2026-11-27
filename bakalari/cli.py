@@ -1600,8 +1600,8 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--timeout", metavar="SECONDS", type=_positive_float, default=DEFAULT_TIMEOUT,
                         help="the timeout of each request (default: 30)")
     parser.add_argument("--retries", metavar="N", type=_count, default=DEFAULT_RETRIES,
-                        help="retries of GET, PUT, DELETE and read-only POST requests after a connection error or "
-                             "HTTP 502, 503 or 504 (default: %(default)s)")
+                        help="retries of GET, PUT, DELETE, read-only POST and login requests after a connection "
+                             "error or HTTP 502, 503 or 504 (default: %(default)s)")
     parser.add_argument("-v", "--verbose", action="store_true",
                         help="log every request (method, path, status; never tokens or passwords) to standard error")
     commands = parser.add_subparsers(dest="command", metavar="COMMAND", required=True,

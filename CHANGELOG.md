@@ -5,6 +5,21 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.0] - 2026-11-27
+
+### Fixed
+
+- A response body cut short mid-read (`http.client.IncompleteRead` — a school server closing the connection
+  before the whole answer arrived) now raises `BakalariConnectionError` like any other connection failure,
+  instead of leaking through as a raw `http.client` exception. Truncated answers are therefore re-sent under
+  the client's `retries` policy, and MCP callers see the regular "could not reach the school" error instead of
+  an internal one. A truncated *error* body no longer loses the HTTP status either: the status is returned
+  with an empty body.
+- The token request (login and renewal) is now re-sent under the `retries` policy after a connection drop or
+  a gateway answer (HTTP 502, 503 or 504), when no auth verdict arrived. An auth answer (HTTP 400/401) is
+  still never repeated, so retries cannot multiply counted failed logins; a renewal whose answer was lost
+  after the server rotated the refresh token is refused on retry and falls back to a password login as before.
+
 ## [1.2.1] - 2026-11-27
 
 ### Fixed

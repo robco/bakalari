@@ -10,7 +10,7 @@ import urllib.error
 import urllib.parse
 import urllib.request
 from dataclasses import dataclass, field
-from http.client import HTTPMessage
+from http.client import HTTPException, HTTPMessage
 from typing import Any, Callable, Mapping, Optional, Tuple
 
 from .errors import BakalariConnectionError, _safe_path
@@ -90,8 +90,15 @@ def urllib_transport(ssl_context: Optional[ssl.SSLContext] = None) -> Transport:
                 return HttpResponse(response.status, dict(response.headers), response.read(), response.geturl())
         except urllib.error.HTTPError as error:
             with error:
-                return HttpResponse(error.code, dict(error.headers or {}), error.read(), error.geturl() or url)
-        except (urllib.error.URLError, OSError) as error:
+                try:
+                    error_body = error.read()
+                except (OSError, HTTPException):
+                    # A truncated error body must not lose the status: it is only diagnostic.
+                    error_body = b""
+                return HttpResponse(error.code, dict(error.headers or {}), error_body, error.geturl() or url)
+        except (urllib.error.URLError, OSError, HTTPException) as error:
+            # HTTPException covers a truncated body (IncompleteRead) and other protocol-level failures:
+            # no usable response arrived, so the request counts as a connection error and may be re-sent.
             reason = getattr(error, "reason", error)
             # The query is left out of the message: it can carry a push token (register-notification).
             where = _safe_path(url)

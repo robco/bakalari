@@ -50,7 +50,7 @@ BakalariClient(base_url, username=None, password=None, *, refresh_token=None, cl
 | `client_id` | `"ANDR"` | The OAuth client id, that of the official mobile app. |
 | `timeout` | `30.0` | Seconds a request may wait for the server (see [timeouts and retries](#timeouts-and-retries)). |
 | `renew_margin` | `60.0` | How many seconds before its expiry the access token is renewed. |
-| `retries` | `0` | How many times a `GET`, `PUT` or `DELETE` request — or a read-only `POST` marked retryable — is repeated after a connection error or HTTP 502, 503 or 504. |
+| `retries` | `0` | How many times a `GET`, `PUT` or `DELETE` request — or a `POST` marked retryable — is repeated after a connection error or HTTP 502, 503 or 504. |
 | `retry_backoff` | `0.5` | Seconds before the first retry; each further retry waits twice as long. |
 | `ssl_context` | `None` | An `ssl.SSLContext` for the default transport, e.g. with a company CA. |
 | `transport` | `None` | A function that sends the requests instead of `urllib` (see [transports](#transports)). |
@@ -818,11 +818,14 @@ don't wait in it for other threads that use the same client.
 timeout or another network failure raises `BakalariConnectionError`.
 
 `retries` (0 in the library, 2 in the command line and the MCP server) repeats the idempotent `GET`, `PUT` and
-`DELETE` requests — and the read-only `POST` requests marked retryable (the message listing and the marks
-prediction, which change nothing on the server) — after a `BakalariConnectionError` or an HTTP 502, 503 or 504
-answer. It waits `retry_backoff` seconds (0.5) before the first retry and twice as long before each further one.
-`POST` writes, including logins, are never repeated: the server may already have accepted them. When the last
-attempt still fails, the error (or the HTTP error of the last answer) is raised as usual.
+`DELETE` requests — and the `POST` requests marked retryable (the read-only message listing and marks
+prediction, which change nothing on the server, and the token request) — after a `BakalariConnectionError` or
+an HTTP 502, 503 or 504 answer. It waits `retry_backoff` seconds (0.5) before the first retry and twice as long
+before each further one. `POST` writes are never repeated: the server may already have accepted them. The token
+request is re-sent only when no auth verdict arrived (a connection drop or a gateway answer); an auth answer
+(HTTP 400/401) is never repeated, so retries cannot multiply counted failed logins. A response whose body is
+cut short mid-read counts as a connection error, so truncated answers are re-sent too. When the last attempt
+still fails, the error (or the HTTP error of the last answer) is raised as usual.
 
 ## Transports
 
