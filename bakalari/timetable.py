@@ -356,9 +356,12 @@ class Timetable(Model):
 
     @classmethod
     def from_json(cls, data: Mapping[str, Any], *, validate: bool = True) -> "Timetable":
-        """Parses a timetable payload. With ``validate`` (default) a contract violation raises
-        :class:`TimetableContractError`; without it, unknown references resolve to ``None`` and entries that
-        cannot be parsed (non-objects, a day without a valid date) are skipped."""
+        """Parses a timetable payload. With ``validate`` (default) a payload that cannot be interpreted
+        raises :class:`TimetableContractError` (see :func:`validate_timetable`); references to undefined
+        hour slots, subjects, teachers, rooms, groups or cycles resolve to ``None`` (or a placeholder
+        hour) in both modes, because schools publish imperfect lookup tables. Without validation,
+        entries that cannot be parsed at all (non-objects, a day without a valid date) are skipped
+        instead of raising."""
         if validate:
             validate_timetable(data)
         elif not isinstance(data, Mapping):
@@ -531,11 +534,12 @@ def _atom_shape_problems(atom: Mapping[str, Any]) -> List[str]:
     return problems
 
 
-def contract_problems(data: Any) -> List[str]:
-    """Lists every contract violation of a timetable payload (empty when it is valid): the required lists,
-    at least one hour slot, the hour and day fields (including a valid day date), the shape of the nested
-    values (the Atoms, GroupIds, CycleIds, HomeworkIds and Homeworks lists and a Change object), and that every
-    atom references a defined hour slot and only defined subjects, teachers, rooms, groups and cycles."""
+def _problems(data: Any, *, include_references: bool) -> List[str]:
+    """Every contract violation of a timetable payload (empty when it is valid): the required lists,
+    at least one hour slot, the hour and day fields (including a valid day date) and the shape of the
+    nested values (the Atoms, GroupIds, CycleIds, HomeworkIds and Homeworks lists and a Change object).
+    With ``include_references`` it also lists every atom that references an undefined hour slot, subject,
+    teacher, room, group or cycle."""
     if not isinstance(data, Mapping):
         return ["The timetable must be a JSON object"]
     problems = [f"Missing list '{name}'" for name in REQUIRED_LISTS if not isinstance(data.get(name), list)]
@@ -575,24 +579,39 @@ def contract_problems(data: Any) -> List[str]:
             if atom.get("HourId") is None:
                 problems.append(f"{label}: a lesson has no HourId")
             problems.extend(f"{label}: {problem}" for problem in _atom_shape_problems(atom))
-            for field_name, table in SINGLE_REFERENCES:
-                ref = atom.get(field_name)
-                if ref is not None and not (_is_key(ref) and ref in indexes[table]):
-                    problems.append(f"{label}: {field_name} {ref!r} is not defined in {table}")
+            if include_references:
+                for field_name, table in SINGLE_REFERENCES:
+                    ref = atom.get(field_name)
+                    if ref is not None and not (_is_key(ref) and ref in indexes[table]):
+                        problems.append(f"{label}: {field_name} {ref!r} is not defined in {table}")
             for field_name, table in MULTI_REFERENCES:
                 refs = atom.get(field_name)
                 if refs is not None and not isinstance(refs, list):
                     problems.append(f"{label}: {field_name} is not a list")
                     continue
-                for ref in refs or []:
-                    if not (_is_key(ref) and ref in indexes[table]):
-                        problems.append(f"{label}: {field_name} entry {ref!r} is not defined in {table}")
+                if include_references:
+                    for ref in refs or []:
+                        if not (_is_key(ref) and ref in indexes[table]):
+                            problems.append(f"{label}: {field_name} entry {ref!r} is not defined in {table}")
     return problems
 
 
+def contract_problems(data: Any) -> List[str]:
+    """Lists every contract violation of a timetable payload (empty when it is valid): the required lists,
+    at least one hour slot, the hour and day fields (including a valid day date), the shape of the nested
+    values (the Atoms, GroupIds, CycleIds, HomeworkIds and Homeworks lists and a Change object), and that every
+    atom references a defined hour slot and only defined subjects, teachers, rooms, groups and cycles."""
+    return _problems(data, include_references=True)
+
+
 def validate_timetable(data: Any) -> None:
-    """Raises :class:`TimetableContractError` listing every contract violation of a timetable payload."""
-    problems = contract_problems(data)
+    """Raises :class:`TimetableContractError` when a timetable payload cannot be interpreted: it is not a
+    JSON object, a required list is missing, no hour slot is defined, an hour or day field is missing or a
+    day date is invalid, or a nested value has the wrong shape. References to undefined hour slots,
+    subjects, teachers, rooms, groups or cycles do not raise: schools publish imperfect lookup tables (a
+    substituted teacher missing from Teachers, for example) and parsing resolves such a reference to
+    ``None`` instead of discarding the whole timetable. :func:`contract_problems` still lists them."""
+    problems = _problems(data, include_references=False)
     if problems:
         raise TimetableContractError(problems)
 

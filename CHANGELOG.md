@@ -5,6 +5,18 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.0] - 2026-11-27
+
+### Fixed
+
+- Timetable parsing no longer fails when a lesson references an hour slot, subject, teacher, room,
+  group or cycle that the school did not define in the corresponding lookup list (a substituted
+  teacher missing from `Teachers`, for example). Such a reference now resolves to `None` (or a
+  placeholder hour) instead of raising `TimetableContractError` and discarding the whole timetable.
+  Structural violations — a missing required list, no hour slots, missing hour/day fields, an invalid
+  day date or a nested value of the wrong shape — still raise. `contract_problems()` still lists
+  dangling references for diagnostics.
+
 ## [1.1.0] - 2026-10-27
 
 Optimizations and documentation improvements.
