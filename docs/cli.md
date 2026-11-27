@@ -134,7 +134,7 @@ ema marks --new
 | `--password-env NAME` | `BAKALARI_PASSWORD` | The environment variable with the password. |
 | `--session-file PATH` | `$BAKALARI_SESSION_FILE` | Keep the session in this file (mode 0600), so that the password is needed only when it expires; use one file per account. See [the session file](#the-session-file). |
 | `--timeout SECONDS` | 30 | The timeout of each request, a positive number. It limits each blocking step (connecting, each read), not the whole command. |
-| `--retries N` | 2 | Retries of `GET`, `PUT` and `DELETE` requests after a connection error or HTTP 502, 503 or 504, waiting 0.5 s, then 1 s, 2 s, ... `0` turns them off. `POST` requests, the login included, are never repeated. |
+| `--retries N` | 2 | Retries of `GET`, `PUT` and `DELETE` requests — and of the read-only `POST` requests marked retryable (message listing, marks prediction) — after a connection error or HTTP 502, 503 or 504, waiting 0.5 s, then 1 s, 2 s, ... `0` turns them off. `POST` writes, the login included, are never repeated. |
 | `-v`, `--verbose` | | Log every request (method, path, status; never tokens or passwords) to standard error, with the logins and renewals. |
 | `--version` | | Print the package version (`bakalari 1.0.0`) and exit. |
 | `-h`, `--help` | | Show the help and exit. |

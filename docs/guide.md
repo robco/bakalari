@@ -225,8 +225,8 @@ bakalari [global options] COMMAND [options]
 ```
 
 Global options: `--base-url URL`, `--username-env NAME` and `--password-env NAME` (read the login from other
-variables, e.g. another child's), `--session-file PATH`, `--timeout SECONDS` (30), `--retries N` (2: `GET`, `PUT` and
-`DELETE` after a connection error or HTTP 502, 503 or 504), `-v` (log each request to standard error, never secrets)
+variables, e.g. another child's), `--session-file PATH`, `--timeout SECONDS` (30), `--retries N` (2: `GET`, `PUT`,
+`DELETE` and read-only `POST` requests after a connection error or HTTP 502, 503 or 504), `-v` (log each request to standard error, never secrets)
 and `--version`.
 
 Put global options **before** the command: `bakalari --timeout 10 timetable`. Options belonging to the command

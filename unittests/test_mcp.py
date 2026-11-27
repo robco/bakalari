@@ -306,6 +306,12 @@ class ToolsTest(unittest.TestCase):
             result = call(ready(MCPServer(client)), "api_version")["result"]
         self.assertTrue(result["isError"])
 
+    def test_environment_client_retries_like_the_cli(self):
+        from bakalari.mcp import _environment_client
+
+        with clean_environment(BAKALARI_URL=BASE_URL):
+            self.assertEqual(_environment_client().retries, 2)
+
     def test_environment_client_can_use_public_tools_without_credentials(self):
         with clean_environment():
             self.assertTrue(call(ready(MCPServer()), "api_version")["result"]["isError"])
