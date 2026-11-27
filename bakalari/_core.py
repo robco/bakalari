@@ -174,7 +174,8 @@ class ClientCore:
 
     ``renew_margin`` is how many seconds before expiry the access token is renewed. ``retries`` re-sends GET, PUT
     and DELETE requests — and any request marked ``retryable`` (a read-only POST, for example) — that fail with a
-    connection error or HTTP 502/503/504, waiting ``retry_backoff`` seconds, then twice as long, and so on. ``on_session_update`` is called with the new :class:`SessionState` after every
+    connection error or HTTP 502/503/504, waiting ``retry_backoff`` seconds, then twice as long, and so on.
+    ``on_session_update`` is called with the new :class:`SessionState` after every
     login and renewal, so an application can persist the rotating refresh token. ``transport``, ``clock`` and
     ``sleep`` exist for tests. The client is safe to share between threads.
     """
