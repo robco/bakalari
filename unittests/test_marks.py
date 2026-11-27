@@ -549,6 +549,16 @@ class MarksEndpointTest(unittest.TestCase):
                          (dt.date(2026, 10, 15), 3, ""))
         self.assertEqual(sum(mark.is_hypothetical for mark in result.marks), 1)
 
+    def test_what_if_is_retried_after_a_gateway_status(self):
+        # The prediction saves nothing, so its POST is marked retryable.
+        client, transport = logged_in_client(
+            json_response(503, {}), json_response(200, load_fixture("marks_what_if.json")),
+            retries=2, retry_backoff=0,
+        )
+        result = client.what_if(CZECH_ENTRIES)
+        self.assertEqual(result.average, 2.1)
+        self.assertEqual([call.api_path for call in transport.api_calls], ["/api/3/marks/what-if"] * 2)
+
     def test_what_if_response_contract(self):
         client, _ = logged_in_client(json_response(200, {"Message": ""}), json_response(200, {"Message": ""}))
         with self.assertRaises(BakalariContractError):

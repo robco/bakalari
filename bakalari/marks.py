@@ -575,8 +575,9 @@ class MarksEndpoints(ClientCore):
     def what_if(self, marks: Sequence[Mapping[str, Any]], *, validate: bool = True) -> SubjectMarks:
         """``POST /api/3/marks/what-if``: recomputes one subject for a JSON list of ``{Id, MarkText, Weight,
         MaxPoints, SubjectId}`` objects, its current marks plus hypothetical ones with ``Id`` null (see
-        :meth:`Mark.what_if_entry` and :meth:`predict_marks`). HTTP 403 when prediction is disabled for the subject."""
-        data = self.post_json(api_path("marks", "what-if"), json_body=_what_if_objects(marks))
+        :meth:`Mark.what_if_entry` and :meth:`predict_marks`). HTTP 403 when prediction is disabled for the subject.
+        Nothing is saved, so the POST is marked retryable under the client's ``retries`` policy."""
+        data = self.post_json(api_path("marks", "what-if"), json_body=_what_if_objects(marks), retryable=True)
         return SubjectMarks.from_json(data, validate=validate)
 
     def predict_marks(

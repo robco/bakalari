@@ -440,6 +440,29 @@ class RetryTest(unittest.TestCase):
             client.get_json("/api", authorized=False)
         self.assertEqual(len(transport.calls), 1)
 
+    def test_retryable_post_is_retried_after_gateway_statuses_and_connection_errors(self):
+        client, transport = self.client(
+            BakalariConnectionError("reset"), json_response(503, {}), json_response(200, [1])
+        )
+        response = client.request(
+            "POST", "/api/3/komens/messages/received", authorized=False, form={}, retryable=True
+        )
+        self.assertEqual(response.json(), [1])
+        self.assertEqual(len(transport.calls), 3)
+        self.assertEqual(self.sleeps, [0.5, 1.0])
+
+    def test_retryable_post_retries_are_bounded(self):
+        client, transport = self.client(json_response(502, {}), json_response(502, {}), json_response(502, {}))
+        with self.assertRaises(BakalariHTTPError) as raised:
+            client.request("POST", "/api/3/komens/messages/received", authorized=False, form={}, retryable=True)
+        self.assertEqual((raised.exception.status, len(transport.calls)), (502, 3))
+
+    def test_retryable_post_without_client_retries_is_sent_once(self):
+        client, transport = make_client(json_response(503, {}))
+        with self.assertRaises(BakalariHTTPError):
+            client.request("POST", "/api/3/komens/messages/received", authorized=False, form={}, retryable=True)
+        self.assertEqual(len(transport.calls), 1)
+
 
 class PublicEndpointTest(unittest.TestCase):
     def test_api_version_needs_no_login(self):

@@ -173,8 +173,8 @@ class ClientCore:
     or a ``refresh_token`` (or :meth:`import_session`) to resume a session without the password.
 
     ``renew_margin`` is how many seconds before expiry the access token is renewed. ``retries`` re-sends GET, PUT
-    and DELETE requests that fail with a connection error or HTTP 502/503/504, waiting ``retry_backoff`` seconds,
-    then twice as long, and so on. ``on_session_update`` is called with the new :class:`SessionState` after every
+    and DELETE requests — and any request marked ``retryable`` (a read-only POST, for example) — that fail with a
+    connection error or HTTP 502/503/504, waiting ``retry_backoff`` seconds, then twice as long, and so on. ``on_session_update`` is called with the new :class:`SessionState` after every
     login and renewal, so an application can persist the rotating refresh token. ``transport``, ``clock`` and
     ``sleep`` exist for tests. The client is safe to share between threads.
     """
@@ -426,6 +426,7 @@ class ClientCore:
         authorized: bool = True,
         access_token: Optional[str] = None,
         expected_status: Optional[ExpectedStatus] = 200,
+        retryable: bool = False,
     ) -> HttpResponse:
         """Sends a request (``path`` relative to the base URL, e.g. ``/api/3/user``) and returns the response.
 
@@ -433,7 +434,10 @@ class ClientCore:
         ``json_body`` a JSON body and ``data`` a raw body (pass its ``Content-Type`` in ``headers``, e.g. for a
         multipart upload). With ``authorized`` the request carries the managed Bearer token (logging in or
         renewing it first as needed, and renewing once more and retrying when the server answers 401), or
-        ``access_token`` when given, e.g. a forged token for a negative check. A status not in
+        ``access_token`` when given, e.g. a forged token for a negative check. ``retryable`` marks a request
+        that changes nothing on the server (a read-only POST, for example) as safe to re-send under the
+        client's ``retries`` policy, like GET, PUT and DELETE; never mark a write retryable, because the
+        server may already have accepted it. A status not in
         ``expected_status`` (an int or a collection of ints; ``None`` accepts any) raises
         :class:`BakalariAuthError` (HTTP 401, or HTTP 400 from the token endpoint),
         :class:`BakalariPermissionError` (403), :class:`BakalariNotFoundError` (404) or
@@ -450,11 +454,11 @@ class ClientCore:
         if managed:
             self.ensure_token()
         token = (self._access_token if managed else access_token) if authorized else None
-        response = self._send(method, path, params, form, json_body, data, headers, token)
+        response = self._send(method, path, params, form, json_body, data, headers, token, retryable)
         if managed and response.status == 401 and not _expects(expected_status, 401):
             log.info("The Bakaláři API refused the access token; renewing it and retrying once")
             self._renew()
-            response = self._send(method, path, params, form, json_body, data, headers, self._access_token)
+            response = self._send(method, path, params, form, json_body, data, headers, self._access_token, retryable)
         if not _expects(expected_status, response.status):
             secrets = [self._password, self._access_token, self._refresh_token, access_token, token]
             secrets.extend((form or {}).get(key) for key in ("password", "access_token", "refresh_token"))
@@ -476,10 +480,13 @@ class ClientCore:
         form: Optional[Mapping[str, Any]] = None,
         json_body: Any = None,
         expected_status: ExpectedStatus = 200,
+        retryable: bool = False,
     ) -> Any:
-        """``POST`` to an authorized endpoint and return its decoded JSON body (``None`` for an empty body)."""
+        """``POST`` to an authorized endpoint and return its decoded JSON body (``None`` for an empty body).
+        ``retryable`` marks a read-only POST as safe to re-send under the client's ``retries`` policy."""
         response = self.request(
-            "POST", path, params=params, form=form, json_body=json_body, expected_status=expected_status
+            "POST", path, params=params, form=form, json_body=json_body, expected_status=expected_status,
+            retryable=retryable,
         )
         return self._decode_json("POST", path, response)
 
@@ -503,6 +510,7 @@ class ClientCore:
         data: Optional[bytes],
         extra_headers: Optional[Mapping[str, str]],
         token: Optional[str],
+        retryable: bool = False,
     ) -> HttpResponse:
         url = self.base_url + path
         query = {key: value for key, value in (params or {}).items() if value is not None}
@@ -520,7 +528,7 @@ class ClientCore:
         headers.update(extra_headers or {})
         if token:
             headers["Authorization"] = f"Bearer {token}"
-        attempts = 1 + (self.retries if method in RETRY_METHODS else 0)
+        attempts = 1 + (self.retries if (method in RETRY_METHODS or retryable) else 0)
         diagnostic_path = _safe_path(path)
         for attempt in range(attempts):
             last = attempt == attempts - 1

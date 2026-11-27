@@ -5,6 +5,18 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.1] - 2026-11-27
+
+### Fixed
+
+- Transient school-side rejections (a connection drop or an HTTP 502, 503 or 504 answer) no longer
+  fail read operations that can safely be repeated. The read-only POST requests — the Komens message
+  listing and the marks what-if prediction, which change nothing on the server — are now marked
+  retryable and follow the client's `retries` policy like `GET`, `PUT` and `DELETE`. `POST` writes,
+  including logins, are still never repeated: the server may already have accepted them.
+- The standalone MCP server (`bakalari-mcp`, `python -m bakalari.mcp`) now builds its client with
+  `retries=2`, matching the `bakalari mcp` command-line default, instead of the library default of 0.
+
 ## [1.2.0] - 2026-11-27
 
 ### Fixed

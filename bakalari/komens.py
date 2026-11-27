@@ -554,10 +554,11 @@ class KomensEndpoints(ClientCore):
         ``sent``, ``noticeboard``, or ``apology`` and ``rating``, which need extra rights (HTTP 403,
         :class:`~bakalari.BakalariPermissionError`, otherwise). ``since`` sends the form field ``dateFrom`` so that
         only the messages from that date on come back; without it the form is empty and the server returns the
-        whole folder."""
+        whole folder. The listing changes nothing, so it is marked retryable under the client's ``retries``
+        policy even though it is a POST."""
         folder = _folder(folder, MESSAGE_FOLDERS)
         form = compact({"dateFrom": format_date(since)})
-        data = self.post_json(api_path("komens", "messages", folder), form=form)
+        data = self.post_json(api_path("komens", "messages", folder), form=form, retryable=True)
         return parse_messages(data, validate=validate)
 
     def message(

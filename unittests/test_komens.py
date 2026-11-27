@@ -470,6 +470,15 @@ class MessageEndpointsTest(unittest.TestCase):
         self.assertEqual(call.headers["Authorization"], "Bearer access-1")
         self.assertEqual(messages, received_messages())
 
+    def test_messages_are_retried_after_a_gateway_status(self):
+        # The listing is a read-only POST marked retryable, so a transient 503 is re-sent.
+        client, transport = logged_in_client(
+            json_response(503, {}), json_response(200, RECEIVED), retries=2, retry_backoff=0
+        )
+        self.assertEqual(client.messages(), received_messages())
+        self.assertEqual([call.api_path for call in transport.api_calls],
+                         ["/api/3/komens/messages/received"] * 2)
+
     def test_every_folder(self):
         responses = [json_response(200, {"Messages": []}) for _ in MESSAGE_FOLDERS]
         client, transport = logged_in_client(*responses)

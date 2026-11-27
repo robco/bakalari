@@ -37,6 +37,9 @@ PROTOCOL_VERSION = "2025-11-25"
 SUPPORTED_VERSIONS = (PROTOCOL_VERSION, "2025-06-18", "2025-03-26", "2024-11-05")
 MAX_MESSAGE_BYTES = 1024 * 1024
 MAX_RESULT_BYTES = 8 * 1024 * 1024
+# Transient gateway answers and connection drops are re-sent like the CLI does (--retries default);
+# writes are never re-sent by the client, so a failed send still surfaces for the caller to check.
+DEFAULT_RETRIES = 2
 _INSTRUCTIONS = (
     "Use these tools for the configured Bakaláři school account. Start with user_profile to check modules and rights. "
     "IDs are opaque; preserve spaces. Dates use YYYY-MM-DD. Reading messages never marks them read. "
@@ -56,7 +59,9 @@ def _environment_client() -> BakalariClient:
     base_url = os.environ.get(BASE_URL_ENV)
     if not base_url:
         raise BakalariConfigError("Configure BAKALARI_URL before using school tools")
-    return BakalariClient(base_url, os.environ.get(USERNAME_ENV), os.environ.get(PASSWORD_ENV))
+    return BakalariClient(
+        base_url, os.environ.get(USERNAME_ENV), os.environ.get(PASSWORD_ENV), retries=DEFAULT_RETRIES
+    )
 
 
 def _error(identifier: Any, code: int, message: str) -> Dict[str, Any]:
