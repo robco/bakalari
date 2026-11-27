@@ -169,7 +169,10 @@ class ContractTest(unittest.TestCase):
         self.data["Days"] = []
         self.assertEqual(contract_problems(self.data), ["No hour slots are defined"])
 
-    def test_dangling_references_are_listed(self):
+    def test_dangling_references_are_listed_but_do_not_block_parsing(self):
+        # Schools publish imperfect lookup tables (a substituted teacher missing from Teachers, for
+        # example), so a dangling reference must not discard the whole timetable: contract_problems
+        # still lists it, but parsing resolves it to None instead of raising.
         atom = self.data["Days"][0]["Atoms"][1]
         atom.update(TeacherId="T9", HourId=99, GroupIds=["G1", "G9"], CycleIds=["7"])
         problems = contract_problems(self.data)
@@ -179,9 +182,11 @@ class ContractTest(unittest.TestCase):
             "2026-10-12: GroupIds entry 'G9' is not defined in Groups",
             "2026-10-12: CycleIds entry '7' is not defined in Cycles",
         ]))
-        with self.assertRaises(TimetableContractError) as raised:
-            Timetable.from_json(self.data)
-        self.assertEqual(len(raised.exception.problems), 4)
+        lesson = Timetable.from_json(self.data).lessons[1]
+        self.assertIsNone(lesson.teacher)
+        self.assertEqual([group.id for group in lesson.groups], ["G1"])
+        self.assertEqual(lesson.cycles, ())
+        self.assertEqual((lesson.hour.id, lesson.hour.caption), (99, ""))
 
     def test_lenient_parse_resolves_unknown_references_to_none(self):
         data = copy.deepcopy(self.data)
@@ -511,11 +516,18 @@ class TimetableEndpointTest(unittest.TestCase):
         self.assertEqual(len(timetable.taught_lessons), 3)
 
     def test_timetable_contract_is_validated_unless_disabled(self):
-        broken = load_fixture("actual.json")
-        broken["Days"][0]["Atoms"][1]["TeacherId"] = "T9"
-        client, _ = logged_in_client(json_response(200, broken), json_response(200, broken))
+        structural = load_fixture("actual.json")
+        structural["Hours"] = []
+        dangling = load_fixture("actual.json")
+        dangling["Days"][0]["Atoms"][1]["TeacherId"] = "T9"
+        client, _ = logged_in_client(json_response(200, structural), json_response(200, structural),
+                                     json_response(200, dangling), json_response(200, dangling))
         with self.assertRaises(TimetableContractError):
             client.actual_timetable()
+        self.assertTrue(client.actual_timetable(validate=False).days)
+        # A reference to an undefined teacher is a school data gap, not a contract break: it resolves
+        # to None instead of discarding the whole timetable.
+        self.assertIsNone(client.actual_timetable().lessons[1].teacher)
         self.assertIsNone(client.actual_timetable(validate=False).lessons[1].teacher)
 
     def test_non_object_payload_is_a_contract_error(self):
@@ -584,12 +596,11 @@ class ClassTimetableEndpointTest(unittest.TestCase):
                          ["/api/3/timetable/actual/class/1B", "/api/3/timetable/permanent/class/12"])
 
     def test_contract_validation_and_http_errors(self):
+        # A reference to an undefined room resolves to None instead of raising; HTTP errors still raise.
         broken = load_fixture("timetable_class.json")
         broken["Days"][0]["Atoms"][0]["RoomId"] = "R404"
         client, _ = logged_in_client(json_response(200, broken), json_response(200, broken), FORBIDDEN, NOT_FOUND)
-        with self.assertRaises(TimetableContractError) as raised:
-            client.class_timetable("1B")
-        self.assertEqual(raised.exception.problems, ["2026-10-19: RoomId 'R404' is not defined in Rooms"])
+        self.assertIsNone(client.class_timetable("1B").lessons[0].room)
         self.assertIsNone(client.class_timetable("1B", validate=False).lessons[0].room)
         with self.assertRaises(BakalariPermissionError):
             client.class_timetable("2C")

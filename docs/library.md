@@ -339,7 +339,10 @@ Module `bakalari.timetable`.
 - **`ChangeLessonInfo`**: `class_abbrev`, `group_abbrev`, `is_class_group`, `subject_abbrev`, `room_abbrev`;
   `str()` joins the group (or class), subject and room.
 - Functions: `contract_problems(data)` lists the contract violations of a timetable payload and
-  `validate_timetable(data)` raises `TimetableContractError` for them; `to_date(value)` and `week_of(value)` (the
+  `validate_timetable(data)` raises `TimetableContractError` when the payload cannot be interpreted
+  (a reference to an undefined hour slot, subject, teacher, room, group or cycle is listed by
+  `contract_problems` but does not raise — parsing resolves it to `None`, because schools publish
+  imperfect lookup tables); `to_date(value)` and `week_of(value)` (the
   Monday and Sunday of a week) convert `DateLike` values.
 
 ```python
